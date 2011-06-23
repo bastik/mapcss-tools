@@ -1,0 +1,2 @@
+* Symbolizers take default values, but some MapCSS properties do not, e.g. stroke-width for LineSymbolizers. 
+  This prevents the Rule from being rendered in MapCSS.
