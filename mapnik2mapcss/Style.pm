@@ -36,9 +36,11 @@ sub set_linenumber {
 
 sub toMapCSS {
     my $self = shift;
+    my $result = '';
     for (@{ $self->{_rules} }) {
-        print "\n" . $_->toMapCSS();
+        $result .=  "\n" . $_->toMapCSS();
     }
+    return $result;
 }
 
 1;

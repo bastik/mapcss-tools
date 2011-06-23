@@ -78,6 +78,7 @@ if ($output_styles_only) {
     my %hstyles = ();
     for (@$styles) { $hstyles{$_->name} = $_; }
     for my $layer (@$layers) {
+        print "\n";
         print "/**\n";
         print " * Layer '" . $layer->name . "'\n";
         print " */\n";

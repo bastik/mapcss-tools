@@ -8,6 +8,7 @@ use XML::Parser;
 
 use Layer ();
 use Style ();
+use Utils ();
 use Filter::FilterNormalizer ();
 use Filter::FilterParser ();
 use Symbolizer::LineSymbolizer ();
@@ -169,7 +170,7 @@ sub endElement {
     elsif ($element eq 'Filter') 
     {
         die 'only one filter per rule supported' if $rule->filter;
-        $charData = trim($charData);
+        $charData = Utils::trim($charData);
         
         print "Filter:$charData\n" if $main::debug{filter};
         
@@ -243,13 +244,6 @@ sub default {
         }
     }
     print "{$data}\n" if ($main::debug{parsexml} && ! ($data =~ /\s+/));
-}
-
-sub trim {
-    my $str = shift;
-    $str =~ s/^\s+//;
-    $str =~ s/\s+$//;
-    return $str;
 }
 
 1;

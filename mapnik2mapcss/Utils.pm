@@ -3,6 +3,14 @@ package Utils;
 use strict;
 use warnings;
 
+
+sub trim {
+    my $str = shift;
+    $str =~ s/^\s+//;
+    $str =~ s/\s+$//;
+    return $str;
+}
+
 sub toString($) {
     my $o = shift;
     if (ref($o) eq 'ARRAY') {
