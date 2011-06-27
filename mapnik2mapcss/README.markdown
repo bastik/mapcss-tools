@@ -30,3 +30,7 @@ Getting started
     
     If you are getting errors, start with small extracts from the file `my_osm.xml`. Using the option `--output-styles`, only Style elements will be considered, otherwise the Layer elements take precedence and matching Layer - Style pairs are required in the xml.
 
+Dependencies
+------------
+
+`XML::Parser` and `Parse::RecDescent`. In Ubuntu 11.04, these are provided by the packages `libxml-perl` and `libparse-recdescent-perl`.

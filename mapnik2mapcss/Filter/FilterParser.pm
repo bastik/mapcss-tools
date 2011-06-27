@@ -70,7 +70,7 @@ my $grammar = <<'_EOGRAMMAR_';
     
     condition : key op value
     { 
-        print "key/$item{key}=value/$item{value}\n" if $::debug{parseselector};
+        print "key/$item{key}=value/$item{value}\n" if $main::debug{parseselector};
         $return = new FilterCondition($item{key}, $item{value}, $item{op});
     }
     

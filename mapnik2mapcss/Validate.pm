@@ -9,7 +9,7 @@ sub color($) {
     my $value = shift;
     if ($value =~ /^#([[:xdigit:]])([[:xdigit:]])([[:xdigit:]])$/) 
     {
-        if ($main::expand_short_color) {
+        if ($main::args_expand_short_color) {
             return "#$1$1$2$2$3$3";
         } else {
             return $value;
@@ -23,7 +23,7 @@ sub color($) {
     {
         my ($r, $g, $b) = ($1, $2, $3);
         
-        if ($main::restore_named_colors) 
+        if ($main::args_restore_named_colors) 
         {
             my $clr_code = $b + (1 << 8) * $g + (1 << 16) * $r;
             my $named_color = Constants::color_from_code($clr_code);
