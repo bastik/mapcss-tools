@@ -21,6 +21,11 @@ sub operands {
     return $self->{_operands};
 }
 
+sub set_operands {
+    my ($self, $operands) = @_;
+    $self->{_operands} = $operands;
+}
+
 sub negated {
     my $self = shift;
     return $self->{_not};

@@ -7,6 +7,7 @@ use Data::Dumper;
 use Getopt::Long qw(:config no_ignore_case bundling);
 use Pod::Usage;
 
+use Filter::FilterNormalizer ();
 use XmlParserFirstPass ();
 use XmlParserSecondPass ();
 
@@ -18,6 +19,8 @@ use XmlParserSecondPass ();
 our (%minscale2zoom, %maxscale2zoom);
 # The names of the layers that should be parsed. (All layers are included if argument is missing.)
 our @layer_selection;
+# Change Filters that contain internal keywords.
+our %special_processors;
 # Possible debug flags:
 #   parsefilter     - debug the filter parsing
 #   parsexml        - debug basic xml parsing
@@ -36,10 +39,12 @@ our $args_output_styles_only = 0;
     my $debug_flags_tmp = '';
     my $scale2zoom_file;
     my $layers_tmp;
+    my $special_processors_file;
     my $help;
     GetOptions(
         'scale2zoom=s' => \$scale2zoom_file,
         'layers=s' => \$layers_tmp,
+        'special-processors=s' => \$special_processors_file,
         'debug|d=s' => \$debug_flags_tmp,
         'verbose|v' => \$args_verbose,
         'expand-short-color' => \$args_expand_short_color,
@@ -62,6 +67,10 @@ our $args_output_styles_only = 0;
     @layer_selection = ();
     if ($layers_tmp) {
         @layer_selection = split(',', $layers_tmp);
+    }
+    if ($special_processors_file) {
+        die "$0: Cannot find file '$special_processors_file'\n" unless -f $special_processors_file;
+        require $special_processors_file;
     }
 }
 
@@ -86,8 +95,63 @@ our @styles;
         $style_selection{ $_->stylename } = 1;
         print 'found layer \''.$_->name.'\' using style \''.$_->stylename."'\n" if $args_verbose;
     }
-    my $styles = XmlParserSecondPass::parse($xmlfile, \%style_selection, 1);
+    my $styles = XmlParserSecondPass::parse($xmlfile, \%style_selection);
     @styles = @{ $styles };
+}
+
+print "== Find corresponding Style for selected Layers ==\n" if $args_verbose;
+{
+    my %hstyles = ();
+    for (@styles) { $hstyles{$_->name} = $_; }
+    for my $layer (@layers) {
+        die 'Could not find style \''.$layer->stylename.'\' for layer '.$layer->name
+            unless exists $hstyles{$layer->stylename};
+        $layer->set_style($hstyles{$layer->stylename});
+    }
+}
+
+print "== Apply special layer rules ==\n" if $args_verbose;
+for my $layer (@layers) {
+    my $processor = $special_processors{$layer->name};
+    if ($processor) {
+        print 'appying special processor for layer '.$layer->name."\n" if $args_verbose;
+        for my $rule (@{ $layer->style->rules }) {
+            my $filter = $rule->filter;
+            my $process_rec;
+            $process_rec = sub {
+                my $e = shift;
+                if ($e->isa('FilterCondition')) 
+                {
+                    return $processor->($e);
+                } 
+                elsif ($e->isa('Junction')) 
+                {
+                    my @operands = @{ $e->operands };
+                    for (my $i=0; $i < @operands; ++$i) {
+                        $operands[$i] = $process_rec->($operands[$i]);
+                    }
+                    $e->set_operands(\@operands);
+                    return $e;
+                }
+                else
+                {
+                    die;
+                }
+            };
+            $rule->set_filter($process_rec->($filter));
+        }
+    }
+}
+
+#print "== Normalizing Filters ==\n" if $args_verbose;
+
+for my $layer (@layers) {
+    for my $rule (@{ $layer->style->rules }) {
+        my $filter = $rule->filter;
+        $filter = FilterNormalizer::normalize_filter($filter);
+        print "Normalized Parsed Filter:\n    ". $filter->toString() . "\n" if $main::debug{filter};
+        $rule->set_filter($filter);
+    }
 }
 
 ### output the results ###
@@ -102,14 +166,12 @@ if ($args_output_styles_only) {
         print $_->toMapCSS() . "\n";
     }
 } else {
-    my %hstyles = ();
-    for (@styles) { $hstyles{$_->name} = $_; }
     for my $layer (@layers) {
         print "\n";
         print "/**\n";
         print " * Layer '" . $layer->name . "'\n";
         print " */\n";
-        print $hstyles{$layer->stylename}->toMapCSS();
+        print $layer->style->toMapCSS();
     }
 }
 __END__
@@ -143,6 +205,10 @@ write
     --layers layer1,layer2
 
 When this option is omitted, all layers from the input file are used. Each layer refers to a certain Style element. A Style is not parsed, unless it is referenced by one of the selected layers.
+
+=item B<--special-processors FILE>
+
+The Layer element may contain Database queries, that introduce special keywords, like C<[religion]='INT-generic'>. With this option you can hook into Filter processing and change certain elements. An example is given in C<examples/special_processors.pl>.
 
 =item B<--help / -h>
 

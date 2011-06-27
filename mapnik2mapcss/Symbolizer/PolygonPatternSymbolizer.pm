@@ -16,6 +16,14 @@ sub addProperty {
     {
         $self->set_property('fill-image', '"' . Validate::file_path($value) . '"');
     }
+    elsif ($name eq 'type')
+    {
+        # ignore: type should be clear from file name extension
+    }
+    elsif ($name eq 'width' or $name eq 'height')
+    {
+        # ignore: these are the dimension of the image file, so this is redundant information
+    }
     else {
         die "unrecognized property for PolygonPatternSymbolizer: '$name'";
     }

@@ -18,6 +18,11 @@ sub addRule {
     push @{ $self->{_rules} }, $rule;
 }
 
+sub rules {
+    my $self = shift;
+    return $self->{_rules};
+}
+
 sub set_name {
     my ($self, $name) = @_;
     $self->{_name} = $name;

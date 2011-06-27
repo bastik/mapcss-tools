@@ -9,7 +9,6 @@ use XML::Parser;
 use Layer ();
 use Style ();
 use Utils ();
-use Filter::FilterNormalizer ();
 use Filter::FilterParser ();
 use Symbolizer::LineSymbolizer ();
 use Symbolizer::PolygonPatternSymbolizer ();
@@ -40,19 +39,16 @@ my $filterParser;
 
 ## options provided by 'parse'
 
-# normalize the filter for MapCSS output?
-my $normalizeFilter;
 # the selection of styles to parse
 my %style_selection;
 # the file to process
 my $file;
 
 # set up and run the parser
-sub parse($$$) {
+sub parse($$) {
     $file = shift;
     my $style_selection_tmp = shift;
     %style_selection = %{ $style_selection_tmp };
-    $normalizeFilter = shift;
 
     @styles = ();
     undef $style;
@@ -181,12 +177,6 @@ sub endElement {
         defined($filter) || die "unable to parse $charData";
 
         print "Parsed Filter:\n    " . $filter->toString() . "\n" if $main::debug{filter};
-
-        if ($normalizeFilter) {
-            $filter = FilterNormalizer::normalize_filter($filter);
-
-            print "Normalized Parsed Filter:\n    ". $filter->toString() . "\n" if $main::debug{filter};
-        }
 
         $rule->set_filter($filter);
     }

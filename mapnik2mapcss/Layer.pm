@@ -23,6 +23,16 @@ sub stylename {
     return $self->{_stylename};
 }
 
+sub set_style {
+    my ($self, $style) = @_;
+    $self->{_style} = $style;
+}
+
+sub style {
+    my $self = shift;
+    return $self->{_style};
+}
+
 sub name {
     my $self = shift;
     return $self->{_name};
