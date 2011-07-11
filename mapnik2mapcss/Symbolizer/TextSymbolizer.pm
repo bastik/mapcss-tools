@@ -57,7 +57,7 @@ sub addProperty {
         # ignore for now
     }
     else {
-        die "unrecognized property for TextSymbolizer: '$name'";
+        die "unrecognized property for ".ref($self).": '$name'";
     }
 }
 

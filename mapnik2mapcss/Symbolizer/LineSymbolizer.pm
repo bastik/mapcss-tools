@@ -50,7 +50,7 @@ sub addProperty {
         $self->set_property('opacity', $value);
     }
     else {
-        die "unrecognized property for LineSymbolizer: '$name'";
+        die "unrecognized property for ".ref($self).": '$name'";
     }
 }
 

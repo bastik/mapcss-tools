@@ -83,7 +83,7 @@ sub toMapCSS {
         if ($counter{ref($_)}) {
             die "Only one symbolizer of each type (except LineSymbolizer) supported, found more than one of type '".ref($_)."'";
         }
-        if ($_->isa('LineSymbolizer')) {
+        if ($_->isa('LineSymbolizer') || $_->isa('LinePatternSymbolizer')) {
             push(@lines, $_);
         } else {
             if ($_->isa('TextSymbolizer')) {

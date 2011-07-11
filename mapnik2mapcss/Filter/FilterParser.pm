@@ -18,6 +18,7 @@ $::RD_HINT   = 1; # Give out hints to help fix problems.
 my $grammar = <<'_EOGRAMMAR_';
 
     STRING : /[a-zA-Z0-9_:-]+/
+    NUMBER : /[0-9]+/
     EOF: /^\Z/
  
     parse : expression EOF
@@ -80,8 +81,10 @@ my $grammar = <<'_EOGRAMMAR_';
             "'" STRING "'"      { $return = $item{STRING}; }
         |
             "''"                { $return = ''; }
+        |
+            NUMBER              { $return = $item{NUMBER}; }
     
-    op : '=' | '!=' | '<>'
+    op : '=' | '!=' | '<>' | '>=' | '<=' | '>' | '<'
 
 _EOGRAMMAR_
 

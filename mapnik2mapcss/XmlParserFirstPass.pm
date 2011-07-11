@@ -151,7 +151,7 @@ sub endElement {
     {
         if ($layer) {
             die unless $charData;
-            $layer->set_stylename($charData);
+            $layer->add_style($charData);
         }
     }
 }

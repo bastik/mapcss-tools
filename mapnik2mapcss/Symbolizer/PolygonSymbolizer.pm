@@ -26,7 +26,7 @@ sub addProperty {
         # gamma is not supported in mapcss - ignore for now
     }
     else {
-        die "unrecognized property for PolygonSymbolizer: '$name'";
+        die "unrecognized property for ".ref($self).": '$name'";
     }
 }
 

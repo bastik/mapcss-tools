@@ -20,7 +20,7 @@ sub addProperty {
         $self->set_property('allow_overlap', Validate::boolean($value));
     }
     else {
-        die "unrecognized property for PointSymbolizer: '$name'";
+        die "unrecognized property for ".ref($self).": '$name'";
     }
 }
 

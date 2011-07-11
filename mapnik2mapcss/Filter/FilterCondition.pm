@@ -68,8 +68,10 @@ sub toMapCSS {
     } elsif ($self->operator eq '!=' || $self->operator eq '<>') {
         $op = $self->negated ? '=' : '!=';
     } else {
-        die;
+        $op = $self->operator; # comparison operator >= <= > <
+        die if $self->negated;
     }
+
     if ($self->value) {
         return '[' . $self->key . $op . $self->value . ']';
     } else {

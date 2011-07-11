@@ -8,29 +8,28 @@ sub new {
     my $name = shift;
     my $self = {
         _name => $name,
+        # For the first parser pass, this array collects the names of the referenced styles.
+        # The joined list of style names required by all layers is passed to the 2nd pass parser.
+        # After 2nd pass, the style names are replaced by real Style objects.
+        _styles => [],
     };
     bless $self, $class;
     return $self;
 }
 
-sub set_stylename {
-    my ($self, $stylename) = @_;
-    $self->{_stylename} = $stylename;
-}
-
-sub stylename {
+sub styles {
     my $self = shift;
-    return $self->{_stylename};
+    return $self->{_styles};
 }
 
-sub set_style {
+sub add_style {
     my ($self, $style) = @_;
-    $self->{_style} = $style;
+    push @{ $self->{_styles} }, $style;
 }
 
-sub style {
-    my $self = shift;
-    return $self->{_style};
+sub set_styles {
+    my ($self, $styles) = @_;
+    $self->{_styles} = $styles;
 }
 
 sub name {

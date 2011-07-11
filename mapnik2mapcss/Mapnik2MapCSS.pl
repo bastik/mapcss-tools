@@ -3,6 +3,8 @@
 use strict;
 use warnings;
 
+use List::Util qw(first);
+
 use Data::Dumper;
 use Getopt::Long qw(:config no_ignore_case bundling);
 use Pod::Usage;
@@ -51,7 +53,7 @@ our $args_output_styles_only = 0;
         'restore-named-colors' => \$args_restore_named_colors,
         'output-styles' => \$args_output_styles_only,
         'help|h' => \$help,
-    ) or pod2usage(-verbose => 0);
+    ) or pod2usage(-message => "Try '$0 --help' for more information.\n", -verbose => 0);
     pod2usage(-verbose => 2, -noperldoc => 1) if $help;
     pod2usage(
         -message => "Missing mandatory option --scale2zoom SCALE2ZOOM_FILE for conversion of scale to zoom values.\n"
@@ -74,8 +76,13 @@ our $args_output_styles_only = 0;
     }
 }
 
-### read file name ###
+### check input file ###
 my $xmlfile = shift;
+pod2usage(
+    -message => "Missing input file argument.\n"
+                ."Try '$0 --help' for more information.\n",
+    -verbose => 0
+) unless $xmlfile;
 die "Cannot find file \"$xmlfile\"" unless -f $xmlfile;
 
 print "== Parser: 1st pass ==\n" if $args_verbose;
@@ -85,15 +92,20 @@ our @layers;
     my ($fontsets, $layers) = XmlParserFirstPass::parse($xmlfile, \@layer_selection);
     %fontsets = %{ $fontsets };
     @layers = @{ $layers };
+    for my $layer_name (@layer_selection) {
+        die "unable to find layer '$layer_name'" unless first { $_->name eq $layer_name } @layers;
+    }
 }
 
 print "== Parser: 2nd pass ==\n" if $args_verbose;
 our @styles;
 {
     my %style_selection = ();
-    for (@layers) {
-        $style_selection{ $_->stylename } = 1;
-        print 'found layer \''.$_->name.'\' using style \''.$_->stylename."'\n" if $args_verbose;
+    for my $layer (@layers) {
+        for my $style_name (@{ $layer->styles }) {
+            $style_selection{ $style_name } = 1;
+            print 'found layer \''.$layer.'\' using style \''.$style_name."'\n" if $args_verbose;
+        }
     }
     my $styles = XmlParserSecondPass::parse($xmlfile, \%style_selection);
     @styles = @{ $styles };
@@ -104,17 +116,32 @@ print "== Find corresponding Style for selected Layers ==\n" if $args_verbose;
     my %hstyles = ();
     for (@styles) { $hstyles{$_->name} = $_; }
     for my $layer (@layers) {
-        die 'Could not find style \''.$layer->stylename.'\' for layer '.$layer->name
-            unless exists $hstyles{$layer->stylename};
-        $layer->set_style($hstyles{$layer->stylename});
+        my @style_names = @{ $layer->styles };
+        my @styles = ();
+        for my $style_name (@style_names) {
+            die 'Could not find style \''.$style_name.'\' for layer '.$layer->name
+                unless exists $hstyles{$style_name};
+            push @styles, $hstyles{$style_name};
+        }
+        $layer->set_styles(\@styles);
     }
 }
 
 print "== Apply special layer rules ==\n" if $args_verbose;
 for my $layer (@layers) {
-    my $processor = $special_processors{$layer->name};
-    if ($processor) {
-        print 'appying special processor for layer '.$layer->name."\n" if $args_verbose;
+    my $add_filter_processors = $special_processors{$layer->name}->{'set-missing-filter'};
+    for my $processor (@{ $add_filter_processors }) {
+        print 'appying "set-missing-filter" processor for layer '.$layer->name."\n" if $args_verbose;
+        for my $rule (@{ $layer->style->rules }) {
+            if (!defined $rule->filter) {
+                $rule->set_filter($processor->($rule));
+            }
+        }
+    }
+    
+    my $condition_replace_processors = $special_processors{$layer->name}->{'condition-replace'};
+    for my $processor (@{ $condition_replace_processors }) {
+        print 'appying "condition-replace" processor for layer '.$layer->name."\n" if $args_verbose;
         for my $rule (@{ $layer->style->rules }) {
             my $filter = $rule->filter;
             my $process_rec;
@@ -146,11 +173,14 @@ for my $layer (@layers) {
 #print "== Normalizing Filters ==\n" if $args_verbose;
 
 for my $layer (@layers) {
-    for my $rule (@{ $layer->style->rules }) {
-        my $filter = $rule->filter;
-        $filter = FilterNormalizer::normalize_filter($filter);
-        print "Normalized Parsed Filter:\n    ". $filter->toString() . "\n" if $main::debug{filter};
-        $rule->set_filter($filter);
+    for my $style (@{ $layer->styles }) {
+        for my $rule (@{ $style->rules }) {
+            my $filter = $rule->filter;
+            die "Filter required at line ".$rule->linenumber unless defined $filter;
+            $filter = FilterNormalizer::normalize_filter($filter);
+            print "Normalized Parsed Filter:\n    ". $filter->toString() . "\n" if $main::debug{filter};
+            $rule->set_filter($filter);
+        }
     }
 }
 
@@ -170,10 +200,26 @@ if ($args_output_styles_only) {
         print "\n";
         print "/**\n";
         print " * Layer '" . $layer->name . "'\n";
-        print " */\n";
-        print $layer->style->toMapCSS();
+        my @styles = @{ $layer->styles };
+        for (my $i=0; $i<@styles; ++$i) {
+            my $style = $styles[$i];
+            if ($i == 0) {
+                print " * Style '".$style->name."'\n";
+                print " */\n";
+            } else {
+                print "\n";
+                print "/* Style '".$style->name."' */\n";
+            }
+            print $style->toMapCSS();
+        }
     }
 }
+
+sub register_special_processor {
+    my ($layer, $type, $sub) = @_;
+    push @{ $special_processors{$layer}->{$type} }, $sub;
+}
+
 __END__
 
 =head1 NAME

@@ -15,6 +15,7 @@ use Symbolizer::PolygonPatternSymbolizer ();
 use Symbolizer::PolygonSymbolizer ();
 use Symbolizer::PointSymbolizer ();
 use Symbolizer::TextSymbolizer ();
+use Symbolizer::LinePatternSymbolizer ();
 
 use constant SYMBOLIZERS => {
     'LineSymbolizer' => 1,
@@ -22,6 +23,7 @@ use constant SYMBOLIZERS => {
     'PointSymbolizer' => 1,
     'PolygonPatternSymbolizer' => 1,
     'PolygonSymbolizer' => 1,
+    'LinePatternSymbolizer' => 1,
 };
 
 # The list of all (Mapnik-)Styles, partly processed for MapCSS output.
@@ -93,7 +95,7 @@ sub startElement {
         my $name = $attributes{'name'};
         die unless $name;
         if (exists $style_selection{$name}) {
-            $style = new Style();
+            $style = Style->new();
             $style->set_name($name);
             $style->set_linenumber($parser_instance->current_line);
         } else {

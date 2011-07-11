@@ -1,17 +1,19 @@
-{
-    my $lancover_processor = sub {
-        my $c = shift;
-        if ($c->key eq 'religion' and $c->value eq 'INT-generic') {
+register_special_processor('landcover', 'condition-replace',
+    sub {
+        my $cond = shift;
+        if ($cond->key eq 'religion' and $cond->value eq 'INT-generic') {
             my $generic_religion = Conjunction->new([
                 FilterCondition->new('religion', 'christian', '<>'), 
                 FilterCondition->new('religion', 'jewish', '<>')
             ]);
             return $generic_religion;
         }
-        return $c;
-    };
+        return $cond;
+    });
 
-    %special_processors = (
-        'landcover' => $lancover_processor
-    );
-}
+
+register_special_processor('landcover_line', 'set-missing-filter',
+    sub {
+        return FilterCondition->new('man_made', 'cutline', '=');
+    });
+

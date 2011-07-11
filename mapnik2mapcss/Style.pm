@@ -6,7 +6,7 @@ use warnings;
 sub new {
     my $class = shift;
     my $self = {
-        _rules => []
+        _rules => [],
     };
     bless $self, $class;
     return $self;
