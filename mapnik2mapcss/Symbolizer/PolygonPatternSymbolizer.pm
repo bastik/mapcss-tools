@@ -25,7 +25,7 @@ sub addProperty {
         # ignore: these are the dimension of the image file, so this is redundant information
     }
     else {
-        die "unrecognized property for PolygonPatternSymbolizer: '$name'";
+        die "unrecognized property for ".ref($self).": '$name'";
     }
 }
 

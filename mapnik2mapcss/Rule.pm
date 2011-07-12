@@ -71,7 +71,7 @@ sub addSymbolizer {
 }
 
 sub toMapCSS {
-    my $self = shift;
+    my ($self, $basic_type) = @_;
 
     my @lines = ();
     my $text;
@@ -149,7 +149,8 @@ sub toMapCSS {
     }
     elsif (@lines) {
         for (my $i = 0; $i < @lines; ++$i) {
-            my @or_complete = map { 'way' . $zoom . $_ } @or;
+            my $basic_selector = $basic_type eq 'polygon' ? 'area' : 'way';
+            my @or_complete = map { $basic_selector . $zoom . $_ } @or;
             my $layer = $i == 0 ? '' : "::over$i";
             $result .= join("$layer,\n", @or_complete) . $layer . " {\n";
             $result .= $lines[$i]->toMapCSS();

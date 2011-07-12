@@ -37,4 +37,43 @@ sub name {
     return $self->{_name};
 }
 
+sub datasource {
+    my $self = shift;
+    return $self->{_datasource};
+}
+
+sub set_datasource {
+    my ($self, $datasource) = @_;
+    $self->{_datasource} = $datasource;
+}
+
+sub basictype {
+    my $self = shift;
+    if ($self->datasource) {
+        return $self->datasource->basictype;
+    }
+    return undef;
+}
+
+sub toMapCSS {
+    my $self = shift;
+    my $result = '';
+    $result .= "\n";
+    $result .= "/**\n";
+    $result .= " * Layer '" . $self->name . "'\n";
+    my @styles = @{ $self->styles };
+    for (my $i=0; $i<@styles; ++$i) {
+        my $style = $styles[$i];
+        if ($i == 0) {
+            $result .= " * Style '".$style->name."'\n";
+            $result .= " */\n";
+        } else {
+            $result .= "\n";
+            $result .= "/* Style '".$style->name."' */\n";
+        }
+        $result .= $style->toMapCSS($self->basictype);
+    }
+    return $result;
+}
+
 1;

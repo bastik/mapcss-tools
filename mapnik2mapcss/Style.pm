@@ -40,10 +40,10 @@ sub set_linenumber {
 }
 
 sub toMapCSS {
-    my $self = shift;
+    my ($self, $basic_type) = @_;
     my $result = '';
-    for (@{ $self->{_rules} }) {
-        $result .=  "\n" . $_->toMapCSS();
+    for my $rule (@{ $self->{_rules} }) {
+        $result .=  "\n" . $rule->toMapCSS($basic_type);
     }
     return $result;
 }

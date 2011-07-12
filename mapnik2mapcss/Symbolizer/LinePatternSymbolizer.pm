@@ -21,7 +21,7 @@ sub addProperty {
     {
         $self->set_property('pattern-image', '"' . Validate::file_path($value) . '"');
     }
-    elsif ($name eq 'typee')
+    elsif ($name eq 'type')
     {
         # ignore: type should be clear from file name extension
     }

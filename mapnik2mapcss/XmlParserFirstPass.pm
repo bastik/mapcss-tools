@@ -7,11 +7,18 @@ use Data::Dumper;
 use XML::Parser;
 
 use Layer ();
+use PostgisDatasource ();
+use Utils ();
 
 # The hash of FontSet mappings.
 my %fontsets;
-# Content of current xml elements
-my ($fontset, $font);
+
+## Content of current xml elements
+my $fontset;
+my $font;
+my $layer;                  # object corresponding to the current Layer element
+my %datasource_parameter;   # collection of Parameters for the current Datasource element
+my $parameter;              # name of current Parameter element
 
 # Collect the character data as it comes in chunks.
 my $charData;
@@ -22,8 +29,6 @@ my $uninteresting_element;
 # The list of all (Mapnik-)Layers. DB queries are too complicated to parse and
 # process, so this magic has to be filled in manually.
 my @layers;
-# Current layer
-my $layer;
 
 # arguments for parsing
 # the file to process
@@ -97,6 +102,9 @@ sub startElement {
         {
             $layer = Layer->new($name);
         }
+        else {
+            ++$uninteresting_element;
+        }
     }
     elsif ($element eq 'StyleName')
     {
@@ -104,8 +112,12 @@ sub startElement {
     }
     elsif ($element eq 'Datasource')
     {
-        # not supported
-        ++$uninteresting_element;
+        %datasource_parameter = ();
+    }
+    elsif ($element eq 'Parameter')
+    {
+        $parameter = $attributes{'name'};
+        die unless $parameter;
     }
     elsif ($element eq 'Style')
     {
@@ -152,6 +164,21 @@ sub endElement {
         if ($layer) {
             die unless $charData;
             $layer->add_style($charData);
+        }
+    }
+    elsif ($element eq 'Parameter')
+    {
+        $datasource_parameter{ $parameter } = Utils::trim($charData);
+    }
+    elsif ($element eq 'Datasource')
+    {
+        my $type = $datasource_parameter{'type'};
+        die unless $type;
+        if ($type eq 'postgis') {
+            my $ds = PostgisDatasource->new(\%datasource_parameter);
+            $layer->set_datasource($ds);
+        } else {
+            # not supported
         }
     }
 }

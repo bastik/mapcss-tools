@@ -132,9 +132,11 @@ for my $layer (@layers) {
     my $add_filter_processors = $special_processors{$layer->name}->{'set-missing-filter'};
     for my $processor (@{ $add_filter_processors }) {
         print 'appying "set-missing-filter" processor for layer '.$layer->name."\n" if $args_verbose;
-        for my $rule (@{ $layer->style->rules }) {
-            if (!defined $rule->filter) {
-                $rule->set_filter($processor->($rule));
+        for my $style (@{ $layer->styles }) {
+            for my $rule (@{ $style->rules }) {
+                if (!defined $rule->filter) {
+                    $rule->set_filter($processor->($rule));
+                }
             }
         }
     }
@@ -142,30 +144,32 @@ for my $layer (@layers) {
     my $condition_replace_processors = $special_processors{$layer->name}->{'condition-replace'};
     for my $processor (@{ $condition_replace_processors }) {
         print 'appying "condition-replace" processor for layer '.$layer->name."\n" if $args_verbose;
-        for my $rule (@{ $layer->style->rules }) {
-            my $filter = $rule->filter;
-            my $process_rec;
-            $process_rec = sub {
-                my $e = shift;
-                if ($e->isa('FilterCondition')) 
-                {
-                    return $processor->($e);
-                } 
-                elsif ($e->isa('Junction')) 
-                {
-                    my @operands = @{ $e->operands };
-                    for (my $i=0; $i < @operands; ++$i) {
-                        $operands[$i] = $process_rec->($operands[$i]);
+        for my $style (@{ $layer->styles }) {
+            for my $rule (@{ $style->rules }) {
+                my $filter = $rule->filter;
+                my $process_rec;
+                $process_rec = sub {
+                    my $e = shift;
+                    if ($e->isa('FilterCondition')) 
+                    {
+                        return $processor->($e);
+                    } 
+                    elsif ($e->isa('Junction')) 
+                    {
+                        my @operands = @{ $e->operands };
+                        for (my $i=0; $i < @operands; ++$i) {
+                            $operands[$i] = $process_rec->($operands[$i]);
+                        }
+                        $e->set_operands(\@operands);
+                        return $e;
                     }
-                    $e->set_operands(\@operands);
-                    return $e;
-                }
-                else
-                {
-                    die;
-                }
-            };
-            $rule->set_filter($process_rec->($filter));
+                    else
+                    {
+                        die;
+                    }
+                };
+                $rule->set_filter($process_rec->($filter));
+            }
         }
     }
 }
@@ -186,32 +190,18 @@ for my $layer (@layers) {
 
 ### output the results ###
 
-print "Result = ".Dumper(\@styles) if $debug{result};
+print "Result = ".Dumper(\@layers) if $debug{result};
 
 if ($args_output_styles_only) {
-    for (@styles) {
+    for my $style (@styles) {
         print "/**\n";
         print " * Style '" . $_->name . "'\n";
         print " */\n";
-        print $_->toMapCSS() . "\n";
+        print $style->toMapCSS() . "\n";
     }
 } else {
     for my $layer (@layers) {
-        print "\n";
-        print "/**\n";
-        print " * Layer '" . $layer->name . "'\n";
-        my @styles = @{ $layer->styles };
-        for (my $i=0; $i<@styles; ++$i) {
-            my $style = $styles[$i];
-            if ($i == 0) {
-                print " * Style '".$style->name."'\n";
-                print " */\n";
-            } else {
-                print "\n";
-                print "/* Style '".$style->name."' */\n";
-            }
-            print $style->toMapCSS();
-        }
+        print $layer->toMapCSS();
     }
 }
 
