@@ -42,6 +42,34 @@ sub addProperty {
             die;
         }
     }
+    elsif ($name eq 'dy')
+    {
+        $self->set_property('text-offset-y', 0 - Validate::float($value));
+    }
+    elsif ($name eq 'vertical_alignment')
+    {
+        #TODO: this probably needs to be adjusted a little 
+        if ($value eq 'top')
+        {
+            $self->set_property('text-anchor-vertical', 'above');
+        }
+        elsif ($value eq 'middle')
+        {
+            $self->set_property('text-anchor-vertical', 'center');
+        }
+        elsif ($value eq 'bottom')
+        {
+            $self->set_property('text-anchor-vertical', 'below');
+        }
+        elsif ($value eq 'auto')
+        {
+            die "todo";
+        } 
+        else 
+        {
+            die "unexpected value '$value' for property 'vertical_alignment'";
+        }
+    }
     elsif ($name eq 'spacing')
     {
         # Not in MapCSS yet, but sounds useful.

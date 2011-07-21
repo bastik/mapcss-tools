@@ -126,16 +126,32 @@ sub toMapCSS {
 
     if ($point) 
     {
-        if ($text || @lines || $area) {
-            die "Not supported: PointSymbolizer in combination with Text-, Line- or PolygonSymbolizer";
+        my $basic_selector;
+        if ($basic_type eq 'point') {
+            $basic_selector = 'node';
+        } elsif ($basic_type eq 'polygon') {
+            $basic_selector = 'area';
+        } else {
+            die 'Expected PointSymbolizer only for point & polygon table';
         }
-        my @or_complete = map { 'node' . $zoom . $_ } @or;
+        if ($basic_type eq 'point' && $area) {
+            die "PolygonSymolizer, but point db table";
+        }
+        if (@lines) {
+            die "Not supported: PointSymbolizer in combination with LineSymbolizer";
+        }
+
+        my @or_complete = map { $basic_selector . $zoom . $_ } @or;
         $result .= join(",\n", @or_complete) . " {\n";
         $result .= $point->toMapCSS();
+        if ($text) {
+            $result .= $text->toMapCSS();
+        }
         $result .= "}\n";
     }
     elsif ($area) {
         die "Only one LineSymbolizer supported for Rules with PolygonSymbolizer" if @lines > 1;
+        die unless $basic_type eq 'polygon';
         my @or_complete = map { 'area' . $zoom . $_ } @or;
         $result .= join(",\n", @or_complete) . " {\n";
         $result .= $area->toMapCSS();
@@ -162,7 +178,20 @@ sub toMapCSS {
     }
     elsif ($text) 
     {
-        die 'Text only is not supported (line ' . $self->linenumber . ')';
+        my $basic_selector;
+        if ($basic_type eq 'polygon') {
+            $basic_selector = 'area';
+        } elsif ($basic_type eq 'line') {
+            $basic_selector = 'way';
+        } elsif ($basic_type eq 'point') {
+            $basic_selector = 'node';
+        } else {
+            die;
+        }
+        my @or_complete = map { $basic_selector . $zoom . $_ } @or;
+        $result .= join(",\n", @or_complete) . " {\n";
+        $result .= $text->toMapCSS();
+        $result .= "}\n";
     }
     else
     {

@@ -4,13 +4,18 @@ use strict;
 use warnings;
 
 sub new {
-    my ($class, $key, $value, $op) = @_;
+    my ($class, $key, $value) = @_;
+    my $op = @_ > 3 ? $_[3] : '=';
     my $self = {
         _key => $key,
         _value => $value,
         _op => $op,
     };
     bless $self, $class;
+    if ($op eq '<>' || $op eq '!=') {
+        $self->set_operator('=');
+        $self->set_negated(1);
+    }
     return $self;
 }
 
@@ -66,16 +71,33 @@ sub toMapCSS {
     if ($self->operator eq '=') {
         $op = $self->negated ? '!=' : '=';
     } elsif ($self->operator eq '!=' || $self->operator eq '<>') {
-        $op = $self->negated ? '=' : '!=';
+        die 'assertion error';
     } else {
         $op = $self->operator; # comparison operator >= <= > <
-        die if $self->negated;
+        die 'not supported' if $self->negated;
     }
 
     if ($self->value) {
-        return '[' . $self->key . $op . $self->value . ']';
+        if ($self->value eq '#magic_yes') {
+            die 'assertion error' unless $self->operator eq '=';
+            if ($self->negated) {
+                if ($main::yes_true_1_magic_style eq 'halcyon') {
+                    return '[' . $self->key . '!=yes]';
+                } else {
+                    return '[!' . $self->key . '?]';
+                }
+            } else {
+                if ($main::yes_true_1_magic_style eq 'halcyon') {
+                    return '[' . $self->key . '=yes]';
+                } else {
+                    return '[' . $self->key . '?]';
+                }
+            }
+        } else {
+            return '[' . $self->key . $op . $self->value . ']';
+        }
     } else {
-        return '[' . ($op eq '=' ? '!' : '') . $self->key . ']';
+        return '[' . ($self->negated ? '' : '!') . $self->key . ']';
     }
 }
 

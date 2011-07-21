@@ -12,6 +12,8 @@ use Pod::Usage;
 use Filter::FilterNormalizer ();
 use XmlParserFirstPass ();
 use XmlParserSecondPass ();
+use Processor::ConditionReplaceProcessor ();
+use Processor::RuleProcessor ();
 
 ### Command line options ###
 #
@@ -21,8 +23,8 @@ use XmlParserSecondPass ();
 our (%minscale2zoom, %maxscale2zoom);
 # The names of the layers that should be parsed. (All layers are included if argument is missing.)
 our @layer_selection;
-# Change Filters that contain internal keywords.
-our %special_processors;
+# Change Filters that contain internal keywords, etc.
+our @special_processors;
 # Possible debug flags:
 #   parsefilter     - debug the filter parsing
 #   parsexml        - debug basic xml parsing
@@ -35,8 +37,11 @@ our $args_verbose = 0;
 our $args_expand_short_color = 0;
 # try to replace hex-number by named color, if possible
 our $args_restore_named_colors = 0;
-# ignore Layer-s and simply output the Style-s
-our $args_output_styles_only = 0;
+# how to write condition tunner = yes | true | 1
+# 'josm'    => [tunnel?], [!tunnel?]
+# 'halcyon' => [tunnel=yes], [tunnel=no]
+our $yes_true_1_magic_style = 'josm';
+
 {
     my $debug_flags_tmp = '';
     my $scale2zoom_file;
@@ -51,17 +56,16 @@ our $args_output_styles_only = 0;
         'verbose|v' => \$args_verbose,
         'expand-short-color' => \$args_expand_short_color,
         'restore-named-colors' => \$args_restore_named_colors,
-        'output-styles' => \$args_output_styles_only,
+        'yes-true-1-magic-style=s' => \$yes_true_1_magic_style,
         'help|h' => \$help,
     ) or pod2usage(-message => "Try '$0 --help' for more information.\n", -verbose => 0);
     pod2usage(-verbose => 2, -noperldoc => 1) if $help;
-    pod2usage(
-        -message => "Missing mandatory option --scale2zoom SCALE2ZOOM_FILE for conversion of scale to zoom values.\n"
-                    ."Try '$0 --help' for more information.\n",
-        -verbose => 0
-    ) unless $scale2zoom_file;
-
-    die "$0: Cannot find file '$scale2zoom_file'\n" unless -f $scale2zoom_file;
+    die_pod('Missing mandatory option --scale2zoom SCALE2ZOOM_FILE for conversion of scale to zoom values.')
+        unless $scale2zoom_file;
+    die_pod("Unkown value '$yes_true_1_magic_style' for option --yes-true-1-magic-style")
+        unless ($yes_true_1_magic_style eq 'josm' || $yes_true_1_magic_style eq 'halcyon');
+    die_pod("$0: Cannot find file '$scale2zoom_file'\n")
+        unless -f $scale2zoom_file;
     require $scale2zoom_file;
     for (split(',', $debug_flags_tmp)) {
         $debug{$_} = 1;
@@ -76,14 +80,19 @@ our $args_output_styles_only = 0;
     }
 }
 
+sub die_pod {
+    my $msg = shift;
+    pod2usage(
+        -message => "\nError: " . $msg . "\n\n"
+                    ."Try '$0 --help' for more information.\n",
+        -verbose => 0
+    );
+}
+
 ### check input file ###
 my $xmlfile = shift;
-pod2usage(
-    -message => "Missing input file argument.\n"
-                ."Try '$0 --help' for more information.\n",
-    -verbose => 0
-) unless $xmlfile;
-die "Cannot find file \"$xmlfile\"" unless -f $xmlfile;
+die_pod("Missing input file argument.") unless $xmlfile;
+die_pod("Cannot find file '$xmlfile'.") unless -f $xmlfile;
 
 print "== Parser: 1st pass ==\n" if $args_verbose;
 our %fontsets;
@@ -129,49 +138,53 @@ print "== Find corresponding Style for selected Layers ==\n" if $args_verbose;
 
 print "== Apply special layer rules ==\n" if $args_verbose;
 for my $layer (@layers) {
-    my $add_filter_processors = $special_processors{$layer->name}->{'set-missing-filter'};
-    for my $processor (@{ $add_filter_processors }) {
-        print 'appying "set-missing-filter" processor for layer '.$layer->name."\n" if $args_verbose;
-        for my $style (@{ $layer->styles }) {
-            for my $rule (@{ $style->rules }) {
-                if (!defined $rule->filter) {
-                    $rule->set_filter($processor->($rule));
-                }
-            }
-        }
+    for my $processor (@special_processors) {
+        $processor->execute($layer);
     }
     
-    my $condition_replace_processors = $special_processors{$layer->name}->{'condition-replace'};
-    for my $processor (@{ $condition_replace_processors }) {
-        print 'appying "condition-replace" processor for layer '.$layer->name."\n" if $args_verbose;
-        for my $style (@{ $layer->styles }) {
-            for my $rule (@{ $style->rules }) {
-                my $filter = $rule->filter;
-                my $process_rec;
-                $process_rec = sub {
-                    my $e = shift;
-                    if ($e->isa('FilterCondition')) 
-                    {
-                        return $processor->($e);
-                    } 
-                    elsif ($e->isa('Junction')) 
-                    {
-                        my @operands = @{ $e->operands };
-                        for (my $i=0; $i < @operands; ++$i) {
-                            $operands[$i] = $process_rec->($operands[$i]);
-                        }
-                        $e->set_operands(\@operands);
-                        return $e;
-                    }
-                    else
-                    {
-                        die;
-                    }
-                };
-                $rule->set_filter($process_rec->($filter));
-            }
-        }
-    }
+#    my $add_filter_processors = $special_processors{$layer->name}->{'set-missing-filter'};
+#    for my $processor (@{ $add_filter_processors }) {
+#        print 'appying "set-missing-filter" processor for layer '.$layer->name."\n" if $args_verbose;
+#        for my $style (@{ $layer->styles }) {
+#            for my $rule (@{ $style->rules }) {
+#                if (!defined $rule->filter) {
+#                    $rule->set_filter($processor->($rule));
+#                }
+#            }
+#        }
+#    }
+    
+#    my $condition_replace_processors = $special_processors{$layer->name}->{'condition-replace'};
+#    for my $processor (@{ $condition_replace_processors }) {
+#        print 'appying "condition-replace" processor for layer '.$layer->name."\n" if $args_verbose;
+#        for my $style (@{ $layer->styles }) {
+#            for my $rule (@{ $style->rules }) {
+#                my $filter = $rule->filter;
+#                my $process_rec;
+#                $process_rec = sub {
+#                    my $e = shift;
+#                    if ($e->isa('FilterCondition')) 
+#                    {
+#                        return $processor->($e);
+#                    } 
+#                    elsif ($e->isa('Junction')) 
+#                    {
+#                        my @operands = @{ $e->operands };
+#                        for (my $i=0; $i < @operands; ++$i) {
+#                            $operands[$i] = $process_rec->($operands[$i]);
+#                        }
+#                        $e->set_operands(\@operands);
+#                        return $e;
+#                    }
+#                    else
+#                    {
+#                        die;
+#                    }
+#                };
+#                $rule->set_filter($process_rec->($filter));
+#            }
+#        }
+#    }
 }
 
 #print "== Normalizing Filters ==\n" if $args_verbose;
@@ -192,22 +205,23 @@ for my $layer (@layers) {
 
 print "Result = ".Dumper(\@layers) if $debug{result};
 
-if ($args_output_styles_only) {
-    for my $style (@styles) {
-        print "/**\n";
-        print " * Style '" . $_->name . "'\n";
-        print " */\n";
-        print $style->toMapCSS() . "\n";
-    }
-} else {
-    for my $layer (@layers) {
-        print $layer->toMapCSS();
-    }
+#if ($args_output_styles_only) {
+#    for my $style (@styles) {
+#        print "/**\n";
+#        print " * Style '" . $_->name . "'\n";
+#        print " */\n";
+#        print $style->toMapCSS() . "\n";
+#    }
+#}
+for my $layer (@layers) {
+    print $layer->toMapCSS();
 }
 
 sub register_special_processor {
-    my ($layer, $type, $sub) = @_;
-    push @{ $special_processors{$layer}->{$type} }, $sub;
+    my $processor = shift(@_);
+    push @special_processors, $processor;
+#    my ($layer, $type, $sub) = @_;
+#    push @{ $special_processors{$layer}->{$type} }, $sub;
 }
 
 __END__

@@ -51,6 +51,12 @@ sub nonnegativeFloat($) {
     return $value;
 }
 
+sub float($) {
+    my $value = shift;
+    die "float value expected, but found: '$value'" unless $value =~ /^-?\d+(\.\d+)?$/;
+    return $value;
+}
+
 sub boolean($) {
     my $value = shift;
     die "boolean value expected, but found: '$value'" unless $value eq 'true' || $value eq 'false';

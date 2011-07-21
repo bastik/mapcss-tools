@@ -58,7 +58,7 @@ my $grammar = <<'_EOGRAMMAR_';
             "not" "(" expression ")" 
             {
                 $return = $item{expression};
-                $return->set_negated(1);
+                $return->set_negated(!$return->negated);
             } 
         | 
             condition 
