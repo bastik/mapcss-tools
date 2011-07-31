@@ -6,7 +6,8 @@ use warnings;
 sub new {
     my $class = shift;
     my $self = {
-        _symbolizers => []
+        _symbolizers => [],
+        _hints => {},
     };
     bless $self, $class;
     return $self;
@@ -70,8 +71,18 @@ sub addSymbolizer {
     push(@{ $self->{_symbolizers} }, $symb);
 }
 
+sub hint {
+    my ($self, $key) = @_;
+    return $self->{_hints}->{$key};
+}
+
+sub put_hint {
+    my ($self, $key, $value) = @_;
+    $self->{_hints}->{$key} = $value;
+}
+
 sub toMapCSS {
-    my ($self, $basic_type) = @_;
+    my ($self, $out, $basic_type, $subpart, $obect_z_index) = @_;
 
     my @lines = ();
     my $text;
@@ -122,11 +133,12 @@ sub toMapCSS {
     }
     die unless @or;
 
-    my $result = '/* \'' . $self->filename . '\', line ' . $self->linenumber . " */\n";
-
-    if ($point) 
+    my $basic_selector;
+    my $closed = '';
+    my @declarations = ();
+    
+    if ($point)
     {
-        my $basic_selector;
         if ($basic_type eq 'point') {
             $basic_selector = 'node';
         } elsif ($basic_type eq 'polygon') {
@@ -140,45 +152,33 @@ sub toMapCSS {
         if (@lines) {
             die "Not supported: PointSymbolizer in combination with LineSymbolizer";
         }
-
-        my @or_complete = map { $basic_selector . $zoom . $_ } @or;
-        $result .= join(",\n", @or_complete) . " {\n";
-        $result .= $point->toMapCSS();
-        if ($text) {
-            $result .= $text->toMapCSS();
-        }
-        $result .= "}\n";
+        my @symbolizers = ($point);
+        push @symbolizers, $text if $text;
+        push @declarations, \@symbolizers;
     }
     elsif ($area) {
         die "Only one LineSymbolizer supported for Rules with PolygonSymbolizer" if @lines > 1;
         die unless $basic_type eq 'polygon';
-        my @or_complete = map { 'area' . $zoom . $_ } @or;
-        $result .= join(",\n", @or_complete) . " {\n";
-        $result .= $area->toMapCSS();
-        if (@lines) {
-            $result .= $lines[0]->toMapCSS();
-        }
-        if ($text) {
-            $result .= $text->toMapCSS();
-        }
-        $result .= "}\n";
+        $basic_selector = 'area';
+        $closed = $self->hint('closed') ? ':closed' : '';
+        
+        my @symbolizers = ($area);
+        push @symbolizers, $lines[0] if @lines;
+        push @symbolizers, $text if $text;
+        @declarations = (\@symbolizers);
     }
     elsif (@lines) {
+        $basic_selector = $basic_type eq 'polygon' ? 'area' : 'way';
+        $closed = $self->hint('closed') ? ':closed' : '';
+        
         for (my $i = 0; $i < @lines; ++$i) {
-            my $basic_selector = $basic_type eq 'polygon' ? 'area' : 'way';
-            my @or_complete = map { $basic_selector . $zoom . $_ } @or;
-            my $layer = $i == 0 ? '' : "::over$i";
-            $result .= join("$layer,\n", @or_complete) . $layer . " {\n";
-            $result .= $lines[$i]->toMapCSS();
-            if ($text && $i == @lines - 1) {
-                $result .= $text->toMapCSS();
-            }
-            $result .= "}\n";
+            my @symbolizers = ($lines[$i]);
+            push @symbolizers, $text if $text && $i == @lines - 1;
+            push @declarations, \@symbolizers;
         }
     }
     elsif ($text) 
     {
-        my $basic_selector;
         if ($basic_type eq 'polygon') {
             $basic_selector = 'area';
         } elsif ($basic_type eq 'line') {
@@ -188,14 +188,38 @@ sub toMapCSS {
         } else {
             die;
         }
-        my @or_complete = map { $basic_selector . $zoom . $_ } @or;
-        $result .= join(",\n", @or_complete) . " {\n";
-        $result .= $text->toMapCSS();
-        $result .= "}\n";
+        @declarations = ([$text]);
     }
     else
     {
         die 'No symbolizer at line ' . $self->linenumber;
+    }
+
+    my $result = '';
+    my $output = sub {
+        my $str = shift;
+        if ($out) {
+            print $out $str;
+        } else {
+            $result .= $str;
+        }
+    };
+    $output->('/* \'' . $self->filename . '\', line ' . $self->linenumber . " */\n");
+
+    for (my $i = 0; $i < @declarations; ++$i) {
+        my $symbolizers = $declarations[$i];
+        my $layer;
+        if ($subpart) {
+            $layer = $i == 0 ? "::$subpart" : "::${subpart}_over$i";
+        } else {
+            $layer = $i == 0 ? '' : "::over$i";
+        }
+        my @or_complete = map { $basic_selector . $zoom . $_ . $closed . $layer } @or;
+        $output->(join(",\n", @or_complete) . " {\n");
+        for my $symbolizer (@$symbolizers) {
+            $output->($symbolizer->toMapCSS());
+        }
+        $output->("}\n");
     }
     return $result;
 }

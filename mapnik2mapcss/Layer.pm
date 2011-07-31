@@ -55,23 +55,56 @@ sub basictype {
     return undef;
 }
 
-sub toMapCSS {
+sub subpart {
     my $self = shift;
+    return $self->{_subpart};
+}
+
+sub set_subpart {
+    my ($self, $subpart) = @_;
+    $self->{_subpart} = $subpart;
+}
+
+sub object_z_index {
+    my $self = shift;
+    return $self->{_subpart};
+}
+
+sub set_object_z_index {
+    my ($self, $object_z_index) = @_;
+    $self->{_obect_z_index} = $object_z_index;
+}
+
+sub toMapCSS {
+    my ($self, $out) = @_;
     my $result = '';
-    $result .= "\n";
-    $result .= "/**\n";
-    $result .= " * Layer '" . $self->name . "'\n";
+    my $layer_comment = '';
+    $layer_comment .= "\n";
+    $layer_comment .= "/**\n";
+    $layer_comment .= " * Layer '" . $self->name . "'\n";
+    if ($out) {
+        print $out $layer_comment;
+    } else {
+        $result .= $layer_comment;
+    }
     my @styles = @{ $self->styles };
     for (my $i=0; $i<@styles; ++$i) {
         my $style = $styles[$i];
+        my $style_comment = '';
         if ($i == 0) {
-            $result .= " * Style '".$style->name."'\n";
-            $result .= " */\n";
+            $style_comment .= " * Style '".$style->name."'\n";
+            $style_comment .= " */\n";
         } else {
-            $result .= "\n";
-            $result .= "/* Style '".$style->name."' */\n";
+            $style_comment .= "\n";
+            $style_comment .= "/* Style '".$style->name."' */\n";
         }
-        $result .= $style->toMapCSS($self->basictype);
+        if (defined $out) {
+            print $out $style_comment;
+        } else {
+            $result .= $style_comment;
+        }
+        my $style_str = $style->toMapCSS($out, $self->basictype, $self->subpart, $self->object_z_index);
+        $result .= $style_str unless $out;
     }
     return $result;
 }

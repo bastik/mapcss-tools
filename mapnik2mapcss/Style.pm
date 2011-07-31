@@ -40,10 +40,16 @@ sub set_linenumber {
 }
 
 sub toMapCSS {
-    my ($self, $basic_type) = @_;
+    my ($self, $out, $basic_type, $subpart, $obect_z_index) = @_;
     my $result = '';
     for my $rule (@{ $self->{_rules} }) {
-        $result .=  "\n" . $rule->toMapCSS($basic_type);
+        if ($out) {
+            print $out "\n";
+        } else {
+            $result .=  "\n";
+        }
+        my $rule_str =  $rule->toMapCSS($out, $basic_type, $subpart, $obect_z_index);
+        $result .=  $rule_str unless (defined $out);
     }
     return $result;
 }

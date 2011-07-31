@@ -65,6 +65,14 @@ sub toString {
 #    return sprintf('<FilterCondition key:\'%s\', value:\'%s\', op:\'%s\'' . ($self->negated ? ', negated' : '') . '>', $self->key, $self->value, $self->operator);
 }
 
+sub equals {
+    my ($self, $other) = @_;
+    return $self->key eq $other->key
+        && $self->value eq $other->value
+        && $self->operator eq $other->operator
+        && $self->negated eq $other->negated;
+}
+
 sub toMapCSS {
     my $self = shift;
     my $op;
@@ -77,7 +85,7 @@ sub toMapCSS {
         die 'not supported' if $self->negated;
     }
 
-    if ($self->value) {
+    if (defined $self->value && !($self->value eq '')) {
         if ($self->value eq '#magic_yes') {
             die 'assertion error' unless $self->operator eq '=';
             if ($self->negated) {

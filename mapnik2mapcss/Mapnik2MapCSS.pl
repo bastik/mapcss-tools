@@ -4,7 +4,6 @@ use strict;
 use warnings;
 
 use List::Util qw(first);
-
 use Data::Dumper;
 use Getopt::Long qw(:config no_ignore_case bundling);
 use Pod::Usage;
@@ -13,6 +12,7 @@ use Filter::FilterNormalizer ();
 use XmlParserFirstPass ();
 use XmlParserSecondPass ();
 use Processor::ConditionReplaceProcessor ();
+use Processor::LayerProcessor ();
 use Processor::RuleProcessor ();
 
 ### Command line options ###
@@ -31,6 +31,8 @@ our @special_processors;
 #   filter          - debug the filer post processing
 #   result          - dump the final structure
 our %debug = ();
+# Output file. '-' means STDOUT, which is the default.
+my $outfile = '-';
 # more verbose output
 our $args_verbose = 0;
 # when this option is enabled, color values of the form #e1a are expanded to #ee11aa
@@ -41,6 +43,13 @@ our $args_restore_named_colors = 0;
 # 'josm'    => [tunnel?], [!tunnel?]
 # 'halcyon' => [tunnel=yes], [tunnel=no]
 our $yes_true_1_magic_style = 'josm';
+# for josm, the 'area' basic selector applies to unclosed ways as well.
+# (Although this usually indicates a mapping error.) But some features can
+# be linear _or_ an area depending, whether the way is closed or not.
+# (E.g. highway=pedestrian)
+# This option adds :closed selector to area, if the tag is also valid on
+# a unclosed way.
+our $area_closed_josm_hint;
 
 {
     my $debug_flags_tmp = '';
@@ -49,6 +58,7 @@ our $yes_true_1_magic_style = 'josm';
     my $special_processors_file;
     my $help;
     GetOptions(
+        'outfile=s' => \$outfile,
         'scale2zoom=s' => \$scale2zoom_file,
         'layers=s' => \$layers_tmp,
         'special-processors=s' => \$special_processors_file,
@@ -57,6 +67,7 @@ our $yes_true_1_magic_style = 'josm';
         'expand-short-color' => \$args_expand_short_color,
         'restore-named-colors' => \$args_restore_named_colors,
         'yes-true-1-magic-style=s' => \$yes_true_1_magic_style,
+        'area-closed-josm-hint' => \$area_closed_josm_hint,
         'help|h' => \$help,
     ) or pod2usage(-message => "Try '$0 --help' for more information.\n", -verbose => 0);
     pod2usage(-verbose => 2, -noperldoc => 1) if $help;
@@ -142,52 +153,9 @@ for my $layer (@layers) {
         $processor->execute($layer);
     }
     
-#    my $add_filter_processors = $special_processors{$layer->name}->{'set-missing-filter'};
-#    for my $processor (@{ $add_filter_processors }) {
-#        print 'appying "set-missing-filter" processor for layer '.$layer->name."\n" if $args_verbose;
-#        for my $style (@{ $layer->styles }) {
-#            for my $rule (@{ $style->rules }) {
-#                if (!defined $rule->filter) {
-#                    $rule->set_filter($processor->($rule));
-#                }
-#            }
-#        }
-#    }
-    
-#    my $condition_replace_processors = $special_processors{$layer->name}->{'condition-replace'};
-#    for my $processor (@{ $condition_replace_processors }) {
-#        print 'appying "condition-replace" processor for layer '.$layer->name."\n" if $args_verbose;
-#        for my $style (@{ $layer->styles }) {
-#            for my $rule (@{ $style->rules }) {
-#                my $filter = $rule->filter;
-#                my $process_rec;
-#                $process_rec = sub {
-#                    my $e = shift;
-#                    if ($e->isa('FilterCondition')) 
-#                    {
-#                        return $processor->($e);
-#                    } 
-#                    elsif ($e->isa('Junction')) 
-#                    {
-#                        my @operands = @{ $e->operands };
-#                        for (my $i=0; $i < @operands; ++$i) {
-#                            $operands[$i] = $process_rec->($operands[$i]);
-#                        }
-#                        $e->set_operands(\@operands);
-#                        return $e;
-#                    }
-#                    else
-#                    {
-#                        die;
-#                    }
-#                };
-#                $rule->set_filter($process_rec->($filter));
-#            }
-#        }
-#    }
 }
 
-#print "== Normalizing Filters ==\n" if $args_verbose;
+print "== Normalizing Filters ==\n" if $args_verbose;
 
 for my $layer (@layers) {
     for my $style (@{ $layer->styles }) {
@@ -201,27 +169,62 @@ for my $layer (@layers) {
     }
 }
 
+#print "== Optimizing Filters ==\n" if $args_verbose;
+
+#for my $layer (@layers) {
+#    for my $style (@{ $layer->styles }) {
+#        for my $rule (@{ $style->rules }) {
+#            my $filter = $rule->filter;
+#            $filter = optimize($filter);
+#            print "Optimized Filter:\n    ". $filter->toString() . "\n" if $main::debug{filter};
+#            $rule->set_filter($filter);
+#        }
+#    }
+#}
+
+#sub optimize {
+#    my $filter = shift;
+#    my @or = @{ $filter->operands };
+#    for my $con (@or) {
+#        my @ops = @{ $con->operands };
+#        my %keys = ();
+#        for my $cond (@ops) {
+#            $keys{$cond->key} = 1;
+#        }
+#        my @rem = ();
+#        for my $key (keys %keys) {
+#            my @pos = ();
+#            my @neg = ();
+#            for (my $i; $i < @ops; ++$i) {
+#                my $cond = $ops[i];
+#                continue unless $cond->key eq $key;
+#                push($cond->negated ? @neg : @pos, $i);
+#            }
+#            if (@pos) {
+#                push @rem, @neg;
+#            }
+#        }
+#    
+#    }
+#}
+
 ### output the results ###
 
 print "Result = ".Dumper(\@layers) if $debug{result};
 
-#if ($args_output_styles_only) {
-#    for my $style (@styles) {
-#        print "/**\n";
-#        print " * Style '" . $_->name . "'\n";
-#        print " */\n";
-#        print $style->toMapCSS() . "\n";
-#    }
-#}
+my $out;
+if ($outfile eq '-') {
+    $out = *STDOUT;
+} else {
+    open($out, '>', $outfile) or die "Could not write to '$outfile': $!";
+}
 for my $layer (@layers) {
-    print $layer->toMapCSS();
+    $layer->toMapCSS($out);
 }
 
 sub register_special_processor {
     my $processor = shift(@_);
     push @special_processors, $processor;
-#    my ($layer, $type, $sub) = @_;
-#    push @{ $special_processors{$layer}->{$type} }, $sub;
 }
 
 __END__
