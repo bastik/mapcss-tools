@@ -76,6 +76,17 @@ sub hint {
     return $self->{_hints}->{$key};
 }
 
+#####################
+# possible hints: 
+#  * closed     Adds :closed pseudo selector.
+#  * under      When there are multiple LineSymbolizers, treats the last
+#               one as the "main" stroke and the previous ones get negative
+#               z-index. Otherwise the first line is the proper line and the
+#               others are mere overlays.
+#               The value of the 'under' hint determines the subpart name.
+#  * flat       Do not adjust the z-index of overlays, keep them on the same
+#               level as the main stroke (probably because they do not overlap).
+#                
 sub put_hint {
     my ($self, $key, $value) = @_;
     $self->{_hints}->{$key} = $value;
@@ -135,6 +146,8 @@ sub toMapCSS {
 
     my $basic_selector;
     my $closed = '';
+    # multiple declarations, each one gets its own subpart
+    # each is a list of symbolizers
     my @declarations = ();
     
     if ($point)
@@ -209,18 +222,42 @@ sub toMapCSS {
     for (my $i = 0; $i < @declarations; ++$i) {
         my $symbolizers = $declarations[$i];
         my $layer;
-        if ($subpart) {
-            $layer = $i == 0 ? "::$subpart" : "::${subpart}_over$i";
+        if ($self->hint('under')) {
+            if ($subpart) {
+                $layer = $i == @declarations - 1 ? "::$subpart" : "::${subpart}_" . $self->hint('under') . (@declarations - $i);
+            } else {
+                $layer = $i == @declarations - 1 ? '' : "::" . $self->hint('under') . (@declarations - $i - 1);
+            }
         } else {
-            $layer = $i == 0 ? '' : "::over$i";
+            if ($subpart) {
+                $layer = $i == 0 ? "::$subpart" : "::${subpart}_over$i";
+            } else {
+                $layer = $i == 0 ? '' : "::over$i";
+            }
         }
         my @or_complete = map { $basic_selector . $zoom . $_ . $closed . $layer } @or;
         $output->(join(",\n", @or_complete) . " {\n");
         for my $symbolizer (@$symbolizers) {
             $output->($symbolizer->toMapCSS());
         }
+        my $this_z_index;
+        if ($self->hint('under')) {
+            if ($i < @declarations) {
+                $this_z_index = -(@declarations - $i - 1) / 10.0;
+            }
+        } else {
+            if ($i > 0) {
+                $this_z_index = $i / 10.0;
+            }
+        }
+        if ($self->hint('flat')) {
+            undef $this_z_index;
+        }
         if (defined $z_index) {
-            $output->("    z-index: $z_index;\n");
+            $this_z_index = $z_index + (defined $this_z_index ? $this_z_index : 0);
+        }
+        if (defined $this_z_index) {
+            $output->("    z-index: $this_z_index;\n");
         }
         $output->("}\n");
     }

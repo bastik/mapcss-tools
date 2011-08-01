@@ -67,10 +67,18 @@ sub toString {
 
 sub equals {
     my ($self, $other) = @_;
-    return $self->key eq $other->key
-        && $self->value eq $other->value
-        && $self->operator eq $other->operator
-        && $self->negated eq $other->negated;
+    return 0 unless ref($self) eq ref($other);
+    return equal($self->key, $other->key)
+        && equal($self->value, $other->value)
+        && equal($self->operator, $other->operator)
+        && !!$self->negated eq !!$other->negated;
+}
+
+sub equal {
+    my ($a, $b) = @_;
+    return 1 if !defined $a && !defined $b;
+    return 1 if defined $a && defined $b && $a eq $b;
+    return 0;
 }
 
 sub toMapCSS {

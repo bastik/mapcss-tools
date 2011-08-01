@@ -145,10 +145,6 @@ register_special_processor(RuleProcessor->new('castle_walls',
     }
 ));
 
-#31 minor-roads-casing
-register_special_processor(ConditionReplaceProcessor->new('minor-roads-casing', $tunnel));
-register_special_processor(ConditionReplaceProcessor->new('minor-roads-casing', $int_minor));
-
 #30 highway-area-casing
 if ($main::area_closed_josm_hint) {
     register_special_processor(RuleProcessor->new('highway-area-casing',
@@ -158,6 +154,19 @@ if ($main::area_closed_josm_hint) {
         }
     ));
 }
+
+#31 minor-roads-casing
+register_special_processor(LayerProcessor->new('minor-roads-casing',
+    sub {
+        my $layer = shift;
+        $layer->set_subpart('minor-roads-casing-links', 'roads-casing');
+        $layer->set_subpart('minor-roads-casing', 'roads-casing');
+        $layer->set_z_index('minor-roads-casing-links', -1);
+        $layer->set_z_index('minor-roads-casing', -1);
+    }
+));
+register_special_processor(ConditionReplaceProcessor->new('minor-roads-casing', $tunnel));
+register_special_processor(ConditionReplaceProcessor->new('minor-roads-casing', $int_minor));
 
 #32 highway-area-fill
 if ($main::area_closed_josm_hint) {
@@ -169,7 +178,7 @@ if ($main::area_closed_josm_hint) {
     ));
 }
 
-#32 buildings
+#34 buildings
 register_special_processor(RuleProcessor->new('buildings',
     sub {
         my $rule = shift;
@@ -236,6 +245,62 @@ register_special_processor(ConditionReplaceProcessor->new('buildings',
     }
 ));
 
+#37 minor-roads-fill
+register_special_processor(ConditionReplaceProcessor->new('minor-roads-fill', $tunnel));
+register_special_processor(ConditionReplaceProcessor->new('minor-roads-fill', $int_minor));
+register_special_processor(ConditionReplaceProcessor->new('minor-roads-fill',
+    sub {
+        my $cond = shift;
+        if ($cond->key eq 'railway' and $cond->value eq 'spur-siding-yard') {
+            return Disjunction->new([
+                FilterCondition->new('railway', 'spur'),
+                FilterCondition->new('railway', 'siding'),
+                Conjunction->new([
+                    FilterCondition->new('railway', 'rail'),
+                    Disjunction->new([
+                        FilterCondition->new('service', 'spur'),
+                        FilterCondition->new('service', 'siding'),
+                        FilterCondition->new('service', 'yard'),
+                    ]),
+                ]),
+            ]);
+        }
+        return $cond;
+    }
+));
+register_special_processor(ConditionReplaceProcessor->new('minor-roads-fill',
+    sub {
+        my $cond = shift;
+        if ($cond->key eq 'bridge' and $cond->value eq 'yes') {
+            my $bridge = Disjunction->new([
+                FilterCondition->new('bridge', '#magic_yes'),
+                FilterCondition->new('bridge', 'viaduct'),
+            ]);
+            $bridge->set_negated($cond->negated);
+            return $bridge;
+        }
+        return $cond;
+    }
+));
+register_special_processor(RuleProcessor->new('minor-roads-fill',
+    sub {
+        my $rule = shift;
+        my $railtunnel = Conjunction->new([
+            FilterCondition->new('railway', 'rail'),
+            FilterCondition->new('tunnel', '#magic_yes'),
+        ]);
+        if ($railtunnel->equals($rule->filter)) {
+            $rule->put_hint('flat', 1);
+        }
+        my $railnottunnel = Conjunction->new([
+            FilterCondition->new('railway', 'rail'),
+            FilterCondition->new('tunnel', '#magic_yes', '<>'),
+        ]);
+        if ($railnottunnel->equals($rule->filter)) {
+            $rule->put_hint('under', 'casing');
+        }
+    }
+));
 
 #38 ferry-routes
 register_special_processor(RuleProcessor->new('ferry-routes',
@@ -320,8 +385,8 @@ register_special_processor(RuleProcessor->new('direction_pre_bridges',
 register_special_processor(LayerProcessor->new('direction_pre_bridges',
     sub {
         my $layer = shift;
-        $layer->set_subpart('oneway');
-        $layer->set_z_index(15.0);
+        $layer->set_subpart('directions', 'oneway');
+        $layer->set_z_index('directions', 15.0);
     }
 ));
 
@@ -371,6 +436,83 @@ register_special_processor(RuleProcessor->new('bridges_layer0',
 #                FilterCondition->new('layer', '0'),
 #            ]),
         ]));
+    }
+));
+
+#45 bridges_access0
+register_special_processor(LayerProcessor->new('bridges_access0',
+    sub {
+        my $layer = shift;
+        $layer->set_subpart('access', 'access');
+        $layer->set_z_index('access', 7);
+    }
+));
+register_special_processor(ConditionReplaceProcessor->new('bridges_access0', $int_minor));
+register_special_processor(RuleProcessor->new('bridges_access0',
+    sub {
+        my $rule = shift;
+        my $filter = $rule->filter;
+        $rule->set_filter(Conjunction->new([
+            $rule->filter,
+            Disjunction->new([
+                FilterCondition->new('bridge', '#magic_yes'),
+                FilterCondition->new('bridge', 'viaduct'),
+            ]),
+#            FilterCondition->new('layer', '0', '<='),
+        ]));
+    }
+));
+
+#46 bridges_directions0
+register_special_processor(ConditionReplaceProcessor->new('bridges_directions0', $oneway));
+register_special_processor(RuleProcessor->new('bridges_directions0',
+    sub {
+        my $rule = shift;
+        my $filter = $rule->filter;
+        $rule->set_filter(Conjunction->new([
+            $rule->filter,
+            Disjunction->new([
+                FilterCondition->new('highway', '', '<>'),
+                FilterCondition->new('railway', '', '<>'),
+                FilterCondition->new('waterway', '', '<>'),
+            ]),
+            Disjunction->new([
+                FilterCondition->new('bridge', '#magic_yes', '<>'),
+                FilterCondition->new('bridge', 'viaduct', '<>'),
+            ]),
+        ]));
+    }
+));
+register_special_processor(LayerProcessor->new('bridges_directions0',
+    sub {
+        my $layer = shift;
+        $layer->set_subpart('directions', 'oneway');
+        $layer->set_z_index('directions', 15.0);
+    }
+));
+
+#62 trams
+register_special_processor(LayerProcessor->new('trams',
+    sub {
+        my $layer = shift;
+        $layer->set_subpart('trams', 'tram');
+        $layer->set_z_index('trams', 17);
+    }
+));
+register_special_processor(RuleProcessor->new('trams',
+    sub {
+        my $rule = shift;
+        my $filter = $rule->filter;
+        $rule->set_filter(Conjunction->new([
+            $rule->filter,
+            FilterCondition->new('tunnel', '#magic_yes', '<>'),
+        ]));
+    }
+));
+register_special_processor(RuleProcessor->new('trams',
+    sub {
+        my $rule = shift;
+        $rule->put_hint('under', 'under');
     }
 ));
 
