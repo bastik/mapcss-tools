@@ -82,7 +82,7 @@ sub put_hint {
 }
 
 sub toMapCSS {
-    my ($self, $out, $basic_type, $subpart, $obect_z_index) = @_;
+    my ($self, $out, $basic_type, $subpart, $z_index) = @_;
 
     my @lines = ();
     my $text;
@@ -218,6 +218,9 @@ sub toMapCSS {
         $output->(join(",\n", @or_complete) . " {\n");
         for my $symbolizer (@$symbolizers) {
             $output->($symbolizer->toMapCSS());
+        }
+        if (defined $z_index) {
+            $output->("    z-index: $z_index;\n");
         }
         $output->("}\n");
     }

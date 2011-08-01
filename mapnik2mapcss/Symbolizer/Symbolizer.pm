@@ -20,7 +20,7 @@ sub set_property {
 sub toMapCSS {
     my ($self) = @_;
     my $result = '';
-    for (keys %{ $self->{_properties} }) {
+    for (sort keys %{ $self->{_properties} }) {
         $result .= "    $_: $self->{_properties}->{$_};\n";
     }
     return $result;

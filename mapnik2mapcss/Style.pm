@@ -40,7 +40,7 @@ sub set_linenumber {
 }
 
 sub toMapCSS {
-    my ($self, $out, $basic_type, $subpart, $obect_z_index) = @_;
+    my ($self, $out, $basic_type, $subparts, $z_indices) = @_;
     my $result = '';
     for my $rule (@{ $self->{_rules} }) {
         if ($out) {
@@ -48,7 +48,7 @@ sub toMapCSS {
         } else {
             $result .=  "\n";
         }
-        my $rule_str =  $rule->toMapCSS($out, $basic_type, $subpart, $obect_z_index);
+        my $rule_str =  $rule->toMapCSS($out, $basic_type, $subparts->{$self->name}, $z_indices->{$self->name});
         $result .=  $rule_str unless (defined $out);
     }
     return $result;

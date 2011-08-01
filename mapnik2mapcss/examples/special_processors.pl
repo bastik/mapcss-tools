@@ -321,11 +321,21 @@ register_special_processor(LayerProcessor->new('direction_pre_bridges',
     sub {
         my $layer = shift;
         $layer->set_subpart('oneway');
-        $layer->set_object_z_index(1.0);
+        $layer->set_z_index(15.0);
     }
 ));
 
 #44 bridges_layer0
+register_special_processor(LayerProcessor->new('bridges_layer0',
+    sub {
+        my $layer = shift;
+        $layer->set_subpart('bridges_casing', 'bridge-casing1');
+        $layer->set_z_index('bridges_casing', 2);
+        $layer->set_subpart('bridges_casing2', 'bridge-casing2');
+        $layer->set_z_index('bridges_casing2', 3);
+        $layer->set_z_index('bridges_fill', 4);
+    }
+));
 register_special_processor(ConditionReplaceProcessor->new('bridges_layer0',
     sub {
         my $cond = shift;
@@ -356,10 +366,10 @@ register_special_processor(RuleProcessor->new('bridges_layer0',
                 FilterCondition->new('bridge', '#magic_yes'),
                 FilterCondition->new('bridge', 'viaduct'),
             ]),
-            Disjunction->new([
-                FilterCondition->new('layer', ''),
-                FilterCondition->new('layer', '0'),
-            ]),
+#            Disjunction->new([
+#                FilterCondition->new('layer', ''),
+#                FilterCondition->new('layer', '0'),
+#            ]),
         ]));
     }
 ));

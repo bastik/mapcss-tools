@@ -55,24 +55,24 @@ sub basictype {
     return undef;
 }
 
-sub subpart {
+sub subparts {
     my $self = shift;
     return $self->{_subpart};
 }
 
 sub set_subpart {
-    my ($self, $subpart) = @_;
-    $self->{_subpart} = $subpart;
+    my ($self, $style_name, $subpart) = @_;
+    $self->{_subpart}->{$style_name} = $subpart;
 }
 
-sub object_z_index {
+sub z_indices {
     my $self = shift;
-    return $self->{_subpart};
+    return $self->{_z_index};
 }
 
-sub set_object_z_index {
-    my ($self, $object_z_index) = @_;
-    $self->{_obect_z_index} = $object_z_index;
+sub set_z_index {
+    my ($self, $style_name, $z_index) = @_;
+    $self->{_z_index}->{$style_name} = $z_index;
 }
 
 sub toMapCSS {
@@ -103,7 +103,7 @@ sub toMapCSS {
         } else {
             $result .= $style_comment;
         }
-        my $style_str = $style->toMapCSS($out, $self->basictype, $self->subpart, $self->object_z_index);
+        my $style_str = $style->toMapCSS($out, $self->basictype, $self->subparts, $self->z_indices);
         $result .= $style_str unless $out;
     }
     return $result;
