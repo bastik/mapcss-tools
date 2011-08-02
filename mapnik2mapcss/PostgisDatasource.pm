@@ -14,7 +14,7 @@ sub new {
         push @types, $1;
     }
     die 'could not detect database table' unless @types;
-    die 'not supported' if @types > 1;
+    $types[0] = 'join' if @types > 1;
     if ($types[0] eq 'roads') {
         $types[0] = 'line';
     }

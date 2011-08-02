@@ -113,6 +113,10 @@ sub startElement {
     {
         die unless $rule;
     }
+    elsif ($element eq 'ElseFilter')
+    {
+        die unless $rule;
+    }
     elsif (SYMBOLIZERS->{$element}) 
     {
         die unless $rule;
@@ -181,6 +185,11 @@ sub endElement {
         print "Parsed Filter:\n    " . $filter->toString() . "\n" if $main::debug{filter};
 
         $rule->set_filter($filter);
+    }
+    elsif ($element eq 'ElseFilter')
+    {
+        die 'only one filter per rule supported' if $rule->filter;
+        $rule->set_filter('ElseFilter'); # this will be replaced in a special processor
     }
     elsif (SYMBOLIZERS->{$element})
     {

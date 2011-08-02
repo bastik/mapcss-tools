@@ -3,6 +3,8 @@ package Validate;
 use strict;
 use warnings;
 
+use Carp;
+
 use Constants;
 
 sub color($) {
@@ -59,7 +61,9 @@ sub float($) {
 
 sub boolean($) {
     my $value = shift;
-    die "boolean value expected, but found: '$value'" unless $value eq 'true' || $value eq 'false';
+    $value = 'true' if $value eq '1';
+    $value = 'false' if $value eq '0';
+    confess "boolean value expected, but found: '$value'" unless $value eq 'true' || $value eq 'false';
     return $value;
 }
 

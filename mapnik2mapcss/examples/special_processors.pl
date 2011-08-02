@@ -1,3 +1,6 @@
+use warnings;
+use strict;
+
 {
 
 my $tunnel = sub {
@@ -145,6 +148,67 @@ register_special_processor(RuleProcessor->new('castle_walls',
     }
 ));
 
+#25 turning_circle-casing
+register_special_processor(LayerProcessor->new('turning_circle-casing',
+    sub {
+        my $layer = shift;
+        $layer->set_subpart('turning_circle-casing', 'turning_circle-casing');
+        $layer->set_z_index('turning_circle-casing', -1);
+    }
+));
+register_special_processor(ConditionReplaceProcessor->new('turning_circle-casing',
+    sub {
+        my $cond = shift;
+        if ($cond->key eq 'int_tc_type') {
+            $cond->set_key('highway');
+        }
+        return $cond;
+    }
+));
+register_special_processor(RuleProcessor->new('turning_circle-casing',
+    sub {
+        my $rule = shift;
+        $rule->put_hint('join', 'node');
+        $rule->put_hint('concat', sub {
+            my ($basic_selector, $zoom, $conditions, $closed, $layer) =  @_;
+            return "way${conditions} > ${basic_selector}${zoom}[highway=turning_circle]${closed}${layer}";
+        });
+    }
+));
+
+#26 footbikecycle-tunnels
+register_special_processor(RuleProcessor->new('footbikecycle-tunnels',
+    sub {
+        my $rule = shift;
+        $rule->set_filter(Conjunction->new([
+            $rule->filter,
+            FilterCondition->new('tunnel', '#magic_yes'),
+        ]));
+        $rule->put_hint('under', 'under');
+    }
+));
+
+#27 tracks-tunnels
+register_special_processor(RuleProcessor->new('tracks-tunnels',
+    sub {
+        my $rule = shift;
+        if ($rule->filter eq 'ElseFilter') {
+            $rule->set_filter(Conjunction->new([
+                FilterCondition->new('tracktype', 'grade1', '<>'),
+                FilterCondition->new('tracktype', 'grade2', '<>'),
+                FilterCondition->new('tracktype', 'grade3', '<>'),
+                FilterCondition->new('tracktype', 'grade4', '<>'),
+                FilterCondition->new('tracktype', 'grade5', '<>'),
+            ])); 
+        }
+        $rule->set_filter(Conjunction->new([
+            $rule->filter,
+            FilterCondition->new('tunnel', '#magic_yes'),
+        ]));
+        $rule->put_hint('under', 'under');
+    }
+));
+
 #30 highway-area-casing
 if ($main::area_closed_josm_hint) {
     register_special_processor(RuleProcessor->new('highway-area-casing',
@@ -245,7 +309,66 @@ register_special_processor(ConditionReplaceProcessor->new('buildings',
     }
 ));
 
+#35 turning_circle-fill
+register_special_processor(ConditionReplaceProcessor->new('turning_circle-fill',
+    sub {
+        my $cond = shift;
+        if ($cond->key eq 'int_tc_type') {
+            $cond->set_key('highway');
+        }
+        return $cond;
+    }
+));
+register_special_processor(RuleProcessor->new('turning_circle-fill',
+    sub {
+        my $rule = shift;
+        $rule->put_hint('join', 'node');
+        #$rule->put_hint('
+        $rule->put_hint('concat', sub {
+            my ($basic_selector, $zoom, $conditions, $closed, $layer) =  @_;
+            return "way${conditions} > ${basic_selector}${zoom}[highway=turning_circle]${closed}${layer}";
+        });
+    }
+));
+
 #37 minor-roads-fill
+my ($rail_tunnel, $rail_not_tunnel, $spur_tunnel, $narrow_gauge_tunnel);
+register_special_processor(RuleProcessor->new('minor-roads-fill',
+    sub {
+        my $rule = shift;
+        unless (defined $rail_tunnel) {
+            my $filterParser = new FilterParser();
+            # line 3712
+            $rail_tunnel = $filterParser->parse(
+                "(([railway]='rail') and ([tunnel]='yes'))"
+            );
+            # line 3768, 3783
+            $rail_not_tunnel = $filterParser->parse(
+                "(([railway]='rail') and not (([tunnel]='yes')))"
+            );
+            # line 3806
+            $spur_tunnel = $filterParser->parse(
+                "(([railway]='spur-siding-yard') and ([tunnel]='yes'))"
+            );
+            # line 3875
+            $narrow_gauge_tunnel = $filterParser->parse(
+                "((([railway]='narrow_gauge') or ([railway]='funicular')) and ([tunnel]='yes'))"
+            );
+        }
+        if ($rail_tunnel->equals($rule->filter)) {
+            $rule->put_hint('flat', 1);
+        }
+        if ($rail_not_tunnel->equals($rule->filter)) {
+            $rule->put_hint('under', 'casing');
+        }
+        if ($spur_tunnel->equals($rule->filter)) {
+            $rule->put_hint('flat', '1');
+        }
+        if ($narrow_gauge_tunnel->equals($rule->filter)) {
+            $rule->put_hint('under', 'casing');
+        }
+    }
+));
 register_special_processor(ConditionReplaceProcessor->new('minor-roads-fill', $tunnel));
 register_special_processor(ConditionReplaceProcessor->new('minor-roads-fill', $int_minor));
 register_special_processor(ConditionReplaceProcessor->new('minor-roads-fill',
@@ -280,25 +403,6 @@ register_special_processor(ConditionReplaceProcessor->new('minor-roads-fill',
             return $bridge;
         }
         return $cond;
-    }
-));
-register_special_processor(RuleProcessor->new('minor-roads-fill',
-    sub {
-        my $rule = shift;
-        my $railtunnel = Conjunction->new([
-            FilterCondition->new('railway', 'rail'),
-            FilterCondition->new('tunnel', '#magic_yes'),
-        ]);
-        if ($railtunnel->equals($rule->filter)) {
-            $rule->put_hint('flat', 1);
-        }
-        my $railnottunnel = Conjunction->new([
-            FilterCondition->new('railway', 'rail'),
-            FilterCondition->new('tunnel', '#magic_yes', '<>'),
-        ]);
-        if ($railnottunnel->equals($rule->filter)) {
-            $rule->put_hint('under', 'casing');
-        }
     }
 ));
 

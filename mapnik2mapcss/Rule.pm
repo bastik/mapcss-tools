@@ -86,6 +86,8 @@ sub hint {
 #               The value of the 'under' hint determines the subpart name.
 #  * flat       Do not adjust the z-index of overlays, keep them on the same
 #               level as the main stroke (probably because they do not overlap).
+#  * concat     A sub that concatinates the string elements of a selector.
+#               (To override the default behaviour.)
 #                
 sub put_hint {
     my ($self, $key, $value) = @_;
@@ -156,6 +158,8 @@ sub toMapCSS {
             $basic_selector = 'node';
         } elsif ($basic_type eq 'polygon') {
             $basic_selector = 'area';
+        } elsif ($self->hint('join')) {
+            $basic_selector = $self->hint('join');
         } else {
             die 'Expected PointSymbolizer only for point & polygon table';
         }
@@ -235,7 +239,15 @@ sub toMapCSS {
                 $layer = $i == 0 ? '' : "::over$i";
             }
         }
-        my @or_complete = map { $basic_selector . $zoom . $_ . $closed . $layer } @or;
+        my $concat = $self->hint('concat') ? $self->hint('concat') :
+            sub {
+                my ($basic_selector, $zoom, $conditions, $closed, $layer) =  @_;
+                return "${basic_selector}${zoom}${conditions}${closed}${layer}";
+            };
+        my @or_complete = ();
+        for my $conditions (@or) {
+            push @or_complete, $concat->($basic_selector, $zoom, $conditions, $closed, $layer);
+        }
         $output->(join(",\n", @or_complete) . " {\n");
         for my $symbolizer (@$symbolizers) {
             $output->($symbolizer->toMapCSS());
