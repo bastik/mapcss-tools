@@ -88,6 +88,9 @@ sub hint {
 #               level as the main stroke (probably because they do not overlap).
 #  * concat     A sub that concatinates the string elements of a selector.
 #               (To override the default behaviour.)
+#  * z-index    overrides the layer z-index
+#  * join       when db query is a join operation, this sets the basic
+#               selector
 #                
 sub put_hint {
     my ($self, $key, $value) = @_;
@@ -105,7 +108,7 @@ sub toMapCSS {
     my %counter = ();
     for (@{ $self->{_symbolizers} }) {
         if ($counter{ref($_)}) {
-            die "Only one symbolizer of each type (except LineSymbolizer) supported, found more than one of type '".ref($_)."'";
+            die "Only one symbolizer of each type (except LineSymbolizer) supported, found more than one of type '".ref($_)."' at l. ".$self->linenumber.' f.';
         }
         if ($_->isa('LineSymbolizer') || $_->isa('LinePatternSymbolizer')) {
             push(@lines, $_);
@@ -202,6 +205,8 @@ sub toMapCSS {
             $basic_selector = 'way';
         } elsif ($basic_type eq 'point') {
             $basic_selector = 'node';
+        } elsif ($self->hint('join')) {
+            $basic_selector = $self->hint('join');
         } else {
             die;
         }
@@ -264,6 +269,9 @@ sub toMapCSS {
         }
         if ($self->hint('flat')) {
             undef $this_z_index;
+        }
+        if ($self->hint('z-index')) {
+            $z_index = $self->hint('z-index');
         }
         if (defined $z_index) {
             $this_z_index = $z_index + (defined $this_z_index ? $this_z_index : 0);

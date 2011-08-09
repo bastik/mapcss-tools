@@ -3,6 +3,28 @@ use strict;
 
 {
 
+#### area z_index
+my $area_offset = -1000;
+my $water_areas_z_index =   $area_offset + 1;
+my $water_areas_overlay_z_index = $area_offset + 2;
+my $stadium_z_index =       $area_offset + 1;
+my $leisure_track_z_index = $area_offset + 2;
+my $leisure_pitch_z_index = $area_offset + 3;
+my $buildings_z_index=      $area_offset + 100;
+
+#### line z_index
+my $line_offset = 0;
+my $water_lines_casing_z_index =   $line_offset  + -1;
+my $bridges_casing_z_index =       $line_offset  + 2;
+my $bridges_casing2_z_index =      $line_offset  + 3;
+my $bridges_fill_z_index =         $line_offset  + 4;
+my $access_z_index =               $line_offset  + 7;
+ # used both for bridges and !bridges
+my $directions_z_index =           $line_offset  + 15;
+my $tram_z_index =                 $line_offset  + 17;
+
+
+
 my $tunnel = sub {
     my $cond = shift;
     if ($cond->key eq 'tunnel' and $cond->value eq 'yes') {
@@ -56,7 +78,7 @@ sub search_condition {
 }
 
 
-# 06 landcover
+#06 landcover
 register_special_processor(ConditionReplaceProcessor->new('landcover',
     sub {
         my $cond = shift;
@@ -71,7 +93,7 @@ register_special_processor(ConditionReplaceProcessor->new('landcover',
     }
 ));
 
-# 07 landcover_line
+#07 landcover_line
 register_special_processor(RuleProcessor->new('landcover_line',
     sub {
         my $rule = shift;
@@ -79,7 +101,67 @@ register_special_processor(RuleProcessor->new('landcover_line',
     }
 ));
 
-# 12 glaciers-text
+#08 sports_grounds
+my $stadium;
+register_special_processor(RuleProcessor->new('sports_grounds',
+    sub {
+        my $rule = shift;
+        unless (defined $stadium) {
+            my $filterParser = new FilterParser();
+            # line 3712
+            $stadium = $filterParser->parse(
+                "(([leisure]='sports_centre') or ([leisure]='stadium'))"
+            );
+        }
+        if ($stadium->equals($rule->filter)) {
+            $rule->put_hint('z-index', $stadium_z_index);
+        }
+        elsif ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'leisure' && $rule->filter->value eq 'track') {
+            $rule->put_hint('z-index', $leisure_track_z_index);
+        }
+        elsif ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'leisure' && $rule->filter->value eq 'pitch') {
+            $rule->put_hint('z-index', $leisure_pitch_z_index);
+        }
+    }
+));
+
+#09 water-lines-casing
+register_special_processor(LayerProcessor->new('water-lines-casing',
+    sub {
+        my $layer = shift;
+        $layer->set_subpart('water-lines-casing', 'water_lines-casing');
+        $layer->set_z_index('water-lines-casing', $water_lines_casing_z_index);
+    }
+));
+register_special_processor(RuleProcessor->new('water-lines-casing',
+    sub {
+        my $rule = shift;
+        $rule->set_filter(Conjunction->new([
+            $rule->filter,
+            Disjunction->new([
+                FilterCondition->new('tunnel', '#magic_yes', '<>'),
+            ]),
+        ]));
+    }
+));
+
+#10 water_areas
+register_special_processor(LayerProcessor->new('water_areas',
+    sub {
+        my $layer = shift;
+        $layer->set_z_index('water_areas', $water_areas_z_index);
+    }
+));
+
+#11 water-areas-overlay
+register_special_processor(LayerProcessor->new('water-areas-overlay',
+    sub {
+        my $layer = shift;
+        $layer->set_z_index('water-areas-overlay', $water_areas_overlay_z_index);
+    }
+));
+
+#12 glaciers-text
 register_special_processor(RuleProcessor->new('glaciers-text',
     sub {
         my $rule = shift;
@@ -91,7 +173,7 @@ register_special_processor(RuleProcessor->new('glaciers-text',
     }
 ));
 
-# 14 water_lines
+#14 water_lines
 register_special_processor(ConditionReplaceProcessor->new('water_lines', $tunnel));
 register_special_processor(RuleProcessor->new('water_lines',
     sub {
@@ -246,6 +328,8 @@ if ($main::area_closed_josm_hint) {
 register_special_processor(RuleProcessor->new('buildings',
     sub {
         my $rule = shift;
+        $rule->put_hint('z-index', $buildings_z_index);
+        
         return if ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'aeroway' && $rule->filter->value eq 'terminal');
 
         my $has_pos_building = 0; # is there a condion [building=*] ?
@@ -323,11 +407,46 @@ register_special_processor(RuleProcessor->new('turning_circle-fill',
     sub {
         my $rule = shift;
         $rule->put_hint('join', 'node');
-        #$rule->put_hint('
         $rule->put_hint('concat', sub {
             my ($basic_selector, $zoom, $conditions, $closed, $layer) =  @_;
             return "way${conditions} > ${basic_selector}${zoom}[highway=turning_circle]${closed}${layer}";
         });
+    }
+));
+
+#36 tracks-notunnel-nobridge
+register_special_processor(RuleProcessor->new('tracks-notunnel-nobridge',
+    sub {
+        my $rule = shift;
+        $rule->put_hint('under', 'casing');
+        
+        if ($rule->filter eq 'ElseFilter') {
+            $rule->set_filter(Conjunction->new([
+                FilterCondition->new('tracktype', 'grade1', '<>'),
+                FilterCondition->new('tracktype', 'grade2', '<>'),
+                FilterCondition->new('tracktype', 'grade3', '<>'),
+                FilterCondition->new('tracktype', 'grade4', '<>'),
+                FilterCondition->new('tracktype', 'grade5', '<>'),
+            ])); 
+        }
+        
+        $rule->set_filter(Conjunction->new([
+            FilterCondition->new('highway', 'track'),
+            $rule->filter,
+            Disjunction->new([
+                FilterCondition->new('bridge', ''),
+                FilterCondition->new('bridge', 'no'),
+                # according to taginfo, bridge=false is not used at all
+                # so reduce complexity a bit                
+                #FilterCondition->new('bridge', 'false'),
+            ]),
+            Disjunction->new([
+                FilterCondition->new('tunnel', ''),
+                FilterCondition->new('tunnel', 'no'),
+                # tunnel=false isn't used at all either
+                #FilterCondition->new('tunnel', 'false'),
+            ]),
+        ]));
     }
 ));
 
@@ -490,7 +609,7 @@ register_special_processor(LayerProcessor->new('direction_pre_bridges',
     sub {
         my $layer = shift;
         $layer->set_subpart('directions', 'oneway');
-        $layer->set_z_index('directions', 15.0);
+        $layer->set_z_index('directions', $directions_z_index);
     }
 ));
 
@@ -499,10 +618,10 @@ register_special_processor(LayerProcessor->new('bridges_layer0',
     sub {
         my $layer = shift;
         $layer->set_subpart('bridges_casing', 'bridge-casing1');
-        $layer->set_z_index('bridges_casing', 2);
+        $layer->set_z_index('bridges_casing', $bridges_casing_z_index);
         $layer->set_subpart('bridges_casing2', 'bridge-casing2');
-        $layer->set_z_index('bridges_casing2', 3);
-        $layer->set_z_index('bridges_fill', 4);
+        $layer->set_z_index('bridges_casing2', $bridges_casing2_z_index);
+        $layer->set_z_index('bridges_fill', $bridges_fill_z_index);
     }
 ));
 register_special_processor(ConditionReplaceProcessor->new('bridges_layer0',
@@ -548,7 +667,7 @@ register_special_processor(LayerProcessor->new('bridges_access0',
     sub {
         my $layer = shift;
         $layer->set_subpart('access', 'access');
-        $layer->set_z_index('access', 7);
+        $layer->set_z_index('access', $access_z_index);
     }
 ));
 register_special_processor(ConditionReplaceProcessor->new('bridges_access0', $int_minor));
@@ -591,7 +710,7 @@ register_special_processor(LayerProcessor->new('bridges_directions0',
     sub {
         my $layer = shift;
         $layer->set_subpart('directions', 'oneway');
-        $layer->set_z_index('directions', 15.0);
+        $layer->set_z_index('directions', $directions_z_index);
     }
 ));
 
@@ -600,13 +719,12 @@ register_special_processor(LayerProcessor->new('trams',
     sub {
         my $layer = shift;
         $layer->set_subpart('trams', 'tram');
-        $layer->set_z_index('trams', 17);
+        $layer->set_z_index('trams', $tram_z_index);
     }
 ));
 register_special_processor(RuleProcessor->new('trams',
     sub {
         my $rule = shift;
-        my $filter = $rule->filter;
         $rule->set_filter(Conjunction->new([
             $rule->filter,
             FilterCondition->new('tunnel', '#magic_yes', '<>'),
@@ -620,6 +738,63 @@ register_special_processor(RuleProcessor->new('trams',
     }
 ));
 
+#63 guideways
+register_special_processor(RuleProcessor->new('guideways',
+    sub {
+        my $rule = shift;
+
+        $rule->put_hint('under', 'casing');
+
+        $rule->set_filter(Conjunction->new([
+            FilterCondition->new('highway', 'bus_guideway'),
+            FilterCondition->new('tunnel', '#magic_yes', '<>'),
+        ]));
+    }
+));
+
+#66 admin-other
+register_special_processor(RuleProcessor->new('admin-other',
+    sub {
+        my $rule = shift;
+        my $filter = $rule->filter;
+        if ($filter->isa('FilterCondition') &&
+                $filter->key eq 'admin_level' && 
+                $filter->value eq '') 
+        {
+            $rule->set_filter(Conjunction->new([
+                $filter,
+                FilterCondition->new('admin_level', '8', '>'),
+            ]));
+        }
+    }
+));
+
+
+#68 placenames-capital
+register_special_processor(RuleProcessor->new('placenames-capital',
+    sub {
+        my $rule = shift;
+        $rule->set_filter(Conjunction->new([
+            Disjunction->new([
+                FilterCondition->new('place', 'city'),
+                FilterCondition->new('place', 'metropolis'),
+                FilterCondition->new('place', 'town'),
+            ]),
+            FilterCondition->new('captial', '#magic_yes'),
+        ]));
+    }
+));
+
+#69 placenames-medium
+register_special_processor(RuleProcessor->new('placenames-medium',
+    sub {
+        my $rule = shift;
+        $rule->set_filter(Conjunction->new([
+            $rule->filter,
+            FilterCondition->new('captial', '#magic_yes', '<>'),
+        ]));
+    }
+));
 
 #74 amenity-points
 register_special_processor(RuleProcessor->new('amenity-points',
@@ -671,6 +846,44 @@ register_special_processor(RuleProcessor->new('power_poles',
     sub {
         my $rule = shift;
         $rule->set_filter(FilterCondition->new('power', 'pole'));
+    }
+));
+
+#87 interpolation_lines
+register_special_processor(RuleProcessor->new('interpolation_lines',
+    sub {
+        my $rule = shift;
+        $rule->set_filter(FilterCondition->new('addr:interpolation', '', '<>'));
+    }
+));
+
+#88 housenumbers
+register_special_processor(RuleProcessor->new('housenumbers',
+    sub {
+        my $rule = shift;
+        $rule->put_hint('join', 'node');
+        # somewhat hacky
+        $rule->put_hint('concat', sub {
+            my ($basic_selector, $zoom, $conditions, $closed, $layer) =  @_;
+            return "node${zoom}${conditions}${closed}${layer},\n"
+                  ."area${zoom}${conditions}${closed}${layer}";
+        });
+       $rule->set_filter(FilterCondition->new('addr:housenumber', '', '<>'));
+    }
+));
+
+#90 misc_boundaries
+register_special_processor(RuleProcessor->new('misc_boundaries',
+    sub {
+        my $rule = shift;
+        if ($rule->filter) {
+            $rule->set_filter(Conjunction->new([
+                $rule->filter,
+                FilterCondition->new('boundary', 'national_park'),
+            ]));
+        } else {
+            $rule->set_filter(FilterCondition->new('boundary', 'national_park'));
+        }
     }
 ));
 

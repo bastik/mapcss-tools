@@ -155,7 +155,7 @@ sub negation_normal_form($) {
     } elsif ($x->isa('FilterCondition')) {
         return $x;
     } else {
-        die;
+        die "unexpected input: '$x' (is a '".ref($x)."') Expected FilterCondition or Disjunction or Conjunction";
     }
 }
 
