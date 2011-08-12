@@ -13,45 +13,52 @@ sub new {
     my $class = shift;
     my $self = $class->SUPER::new();
     # default values
-    $self->set_property('width', '1');
-    $self->set_property('color', 'black');
+    $self->set_property('stroke-width', '1');
+    $self->set_property('stroke', 'black');
     return $self;
 }
 
-sub addProperty {
-    my ($self, $name, $value) = @_;
-    
-    if ($name eq 'stroke') 
-    {
-        $self->set_property('color', Validate::color($value));
+sub mapcss_properties {
+
+    my ($self) = @_;
+
+    my %prop = %{ $self->properties };
+    my %mapcss = ();
+
+    while (my ($key, $value) = each %prop) {
+        if ($key eq 'stroke') 
+        {
+            $mapcss{'color'} = Validate::color($value);
+        }
+        elsif ($key eq 'stroke-width') 
+        {
+            $mapcss{'width'} = Validate::positiveFloat($value);
+        }
+        elsif ($key eq 'stroke-linejoin') 
+        {
+            die "Unknown linejoin value: '$value'" unless Constants::LINEJOIN_TYPES->{$value};
+            $mapcss{'linejoin'} = Constants::LINEJOIN_TYPES->{$value};
+        }
+        elsif ($key eq 'stroke-linecap') 
+        {
+            die unless Constants::LINECAP_TYPES->{$value};
+            $mapcss{'linecap'} = Constants::LINECAP_TYPES->{$value};
+        }
+        elsif ($key eq 'stroke-dasharray') 
+        {
+            $mapcss{'dashes'} = Validate::dashes($value);
+        }
+        elsif ($key eq 'stroke-opacity') 
+        {
+            Validate::nonnegativeFloat($value);
+            die unless $value >= 0 && $value <= 1;
+            $mapcss{'opacity'} = $value;
+        }
+        else {
+            die "unrecognized property for ".ref($self).": '$key'";
+        }
     }
-    elsif ($name eq 'stroke-width') 
-    {
-        $self->set_property('width', Validate::positiveFloat($value));
-    }
-    elsif ($name eq 'stroke-linejoin') 
-    {
-        die "Unknown linejoin value: '$value'" unless Constants::LINEJOIN_TYPES->{$value};
-        $self->set_property('linejoin', Constants::LINEJOIN_TYPES->{$value});
-    }
-    elsif ($name eq 'stroke-linecap') 
-    {
-        die unless Constants::LINECAP_TYPES->{$value};
-        $self->set_property('linecap', Constants::LINECAP_TYPES->{$value});
-    }
-    elsif ($name eq 'stroke-dasharray') 
-    {
-        $self->set_property('dashes', Validate::dashes($value));
-    }
-    elsif ($name eq 'stroke-opacity') 
-    {
-        Validate::nonnegativeFloat($value);
-        die unless $value >= 0 && $value <= 1;
-        $self->set_property('opacity', $value);
-    }
-    else {
-        die "unrecognized property for ".ref($self).": '$name'";
-    }
+    return \%mapcss;
 }
 
 1;

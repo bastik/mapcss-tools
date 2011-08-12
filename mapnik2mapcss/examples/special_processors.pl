@@ -796,6 +796,55 @@ register_special_processor(RuleProcessor->new('placenames-medium',
     }
 ));
 
+my ($railway1, $railway2);
+sub amenity_stations {
+    my $rule = shift;
+    my $h = 6;
+    unless (defined $railway1) {
+        my $filterParser = new FilterParser();
+        $railway1 = $filterParser->parse(
+            "((([railway]='halt') or ([railway]='tram_stop')) or ([aerialway]='station'))"
+        );
+        $railway2 = $filterParser->parse(
+            "(([railway]='station') and not (([disused]='yes')))"
+        );
+    }
+    
+    if ($railway1->equals($rule->filter)) {
+        if ($rule->maxzoom && $rule->maxzoom == 15) { # |z15-
+            $h = 6;
+        } else {
+            $h = 4;
+        }
+    }
+    elsif ($railway2->equals($rule->filter)) {
+        if ($rule->maxzoom && $rule->maxzoom == 15) { # |z15-
+            $h = 9;
+        } else {
+            $h = 6;
+        }
+    }
+    
+    $rule->put_hint('icon-height', $h);
+}
+
+#71 amenity-stations
+register_special_processor(RuleProcessor->new('amenity-stations', \&amenity_stations));
+
+#72 amenity-stations-poly
+register_special_processor(RuleProcessor->new('amenity-stations-poly', \&amenity_stations));
+
+sub icon_height16 {
+    my $rule = shift;
+    $rule->put_hint('icon-height', 16);
+}
+
+#73 amenity-symbols
+register_special_processor(RuleProcessor->new('amenity-symbols', \&icon_height16));
+
+#74 amenity-symbols-poly
+register_special_processor(RuleProcessor->new('amenity-symbols-poly', \&icon_height16));
+
 #74 amenity-points
 register_special_processor(RuleProcessor->new('amenity-points',
     sub {
@@ -848,6 +897,73 @@ register_special_processor(RuleProcessor->new('power_poles',
         $rule->set_filter(FilterCondition->new('power', 'pole'));
     }
 ));
+
+#84 text
+my ($amenity1, $historic1, $tourism1);
+register_special_processor(RuleProcessor->new('text',
+    sub {
+        my $rule = shift;
+        my $h = 16;
+        unless (defined $amenity1) {
+            my $filterParser = new FilterParser();
+            $amenity1 = $filterParser->parse(
+                "((([amenity]='library') or ([amenity]='theatre')) or ([amenity]='courthouse'))"
+            );
+            $historic1 = $filterParser->parse(
+                "(([historic]='memorial') or ([historic]='archaeological_site'))"
+            );
+            $tourism1 = $filterParser->parse(
+                "((([tourism]='hotel') or ([tourism]='hostel')) or ([tourism]='chalet'))"
+            );
+        }
+        
+        if ($amenity1->equals($rule->filter)) {
+            $h = 20;
+        }
+        elsif ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'amenity' && $rule->filter->value eq 'bar') {
+            $h = 20;
+        }
+        elsif ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'amenity' && $rule->filter->value eq 'cinema') {
+            $h = 24;
+        }
+        elsif ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'amenity' && $rule->filter->value eq 'cinema') {
+            $h = 24;
+        }
+        elsif ($historic1->equals($rule->filter)) {
+            $h = 20; #FIXME
+        }
+        elsif ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'natural' && $rule->filter->value eq 'spring') {
+            $h = 7;
+        }
+        elsif ($tourism1->equals($rule->filter)) {
+            $h = 20; #FIXME
+        }
+        elsif ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'amenity' && $rule->filter->value eq 'embassy') {
+            $h = 12;
+        }
+        elsif ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'tourism' && $rule->filter->value eq 'bed_and_breakfast') {
+            $h = 20;
+        }
+        elsif ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'tourism' && $rule->filter->value eq 'caravan_site') {
+            $h = 24;
+        }
+        elsif ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'waterway' && $rule->filter->value eq 'lock') {
+            $h = 9;
+        }
+        elsif ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'amenity' && $rule->filter->value eq 'prison') {
+            $h = 20;
+        }
+        elsif ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'man_made' && $rule->filter->value eq 'lighthouse') {
+            $h = 20;
+        }
+        elsif ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'man_made' && $rule->filter->value eq 'windmill') {
+            $h = 15;
+        }
+        
+        $rule->put_hint('icon-height', $h);
+    }
+));
+
 
 #87 interpolation_lines
 register_special_processor(RuleProcessor->new('interpolation_lines',

@@ -123,7 +123,7 @@ sub startElement {
         die if $symbolizer;
         $symbolizer = $element->new;
         for (keys %attributes) {
-            $symbolizer->addProperty($_, $attributes{$_});
+            $symbolizer->set_property($_, $attributes{$_});
         }
     }
     elsif ($element eq 'CssParameter')
@@ -198,7 +198,7 @@ sub endElement {
     }
     elsif ($element eq 'CssParameter')
     {
-        $symbolizer->addProperty($css_name, $charData);
+        $symbolizer->set_property($css_name, $charData);
         undef $css_name;
     }
     elsif ($element eq 'MinScaleDenominator')

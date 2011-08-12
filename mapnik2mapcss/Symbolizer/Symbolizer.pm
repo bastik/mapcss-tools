@@ -3,6 +3,8 @@ package Symbolizer;
 use strict;
 use warnings;
 
+use Carp;
+
 sub new {
     my $class = shift;
     my $self = {
@@ -17,11 +19,22 @@ sub set_property {
     $self->{_properties}->{$key} = $value;
 }
 
-sub toMapCSS {
+sub properties {
     my ($self) = @_;
+    return $self->{_properties};
+}
+
+sub mapcss_properties {
+    my ($self) = @_;
+    confess 'abstract in '.ref($self);
+}
+
+sub toMapCSS {
+    my ($self, @args) = @_;
     my $result = '';
-    for (sort keys %{ $self->{_properties} }) {
-        $result .= "    $_: $self->{_properties}->{$_};\n";
+    my %mapcss = %{ $self->mapcss_properties(@args) };
+    for (sort keys %mapcss) {
+        $result .= "    $_: $mapcss{$_};\n";
     }
     return $result;
 }

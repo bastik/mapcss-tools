@@ -76,6 +76,11 @@ sub hint {
     return $self->{_hints}->{$key};
 }
 
+sub hints {
+    my ($self) = @_;
+    return $self->{_hints};
+}
+
 #####################
 # possible hints: 
 #  * closed     Adds :closed pseudo selector.
@@ -101,21 +106,21 @@ sub toMapCSS {
     my ($self, $out, $basic_type, $subpart, $z_index) = @_;
 
     my @lines = ();
-    my $text;
+    my @texts = ();
     my $point;
     my $area;
     
     my %counter = ();
     for (@{ $self->{_symbolizers} }) {
         if ($counter{ref($_)}) {
-            die "Only one symbolizer of each type (except LineSymbolizer) supported, found more than one of type '".ref($_)."' at l. ".$self->linenumber.' f.';
+            die "Only one symbolizer of each type (except LineSymbolizer and TextSymbolizer) supported, found more than one of type '".ref($_)."' at l. ".$self->linenumber.' f.';
         }
         if ($_->isa('LineSymbolizer') || $_->isa('LinePatternSymbolizer')) {
             push(@lines, $_);
+        } elsif ($_->isa('TextSymbolizer')) {
+            push(@texts, $_);
         } else {
-            if ($_->isa('TextSymbolizer')) {
-                $text = $_;
-            } elsif ($_->isa('PointSymbolizer')) {
+            if ($_->isa('PointSymbolizer')) {
                 $point = $_;
             } elsif ($_->isa('PolygonSymbolizer') || $_->isa('PolygonPatternSymbolizer')) {
                 $area = $_;
@@ -172,8 +177,11 @@ sub toMapCSS {
         if (@lines) {
             die "Not supported: PointSymbolizer in combination with LineSymbolizer";
         }
+        if (@texts > 1) {
+            die "Not supported: PointSymbolizer in combination with more than one TextSymbolizer";
+        }
         my @symbolizers = ($point);
-        push @symbolizers, $text if $text;
+        push @symbolizers, $texts[0] if @texts;
         push @declarations, \@symbolizers;
     }
     elsif ($area) {
@@ -181,23 +189,31 @@ sub toMapCSS {
         die unless $basic_type eq 'polygon';
         $basic_selector = 'area';
         $closed = $self->hint('closed') ? ':closed' : '';
+
+        if (@texts > 1) {
+            die "Not supported: PolygonSymbolizer in combination with more than one TextSymbolizer";
+        }
         
         my @symbolizers = ($area);
         push @symbolizers, $lines[0] if @lines;
-        push @symbolizers, $text if $text;
+        push @symbolizers, $texts[0] if @texts;
         @declarations = (\@symbolizers);
     }
     elsif (@lines) {
         $basic_selector = $basic_type eq 'polygon' ? 'area' : 'way';
         $closed = $self->hint('closed') ? ':closed' : '';
+
+        if (@texts > 1) {
+            die "Not supported: LineSymbolizer in combination with more than one TextSymbolizer";
+        }
         
         for (my $i = 0; $i < @lines; ++$i) {
             my @symbolizers = ($lines[$i]);
-            push @symbolizers, $text if $text && $i == @lines - 1;
+            push @symbolizers, $texts[0] if @texts && $i == @lines - 1;
             push @declarations, \@symbolizers;
         }
     }
-    elsif ($text) 
+    elsif (@texts) 
     {
         if ($basic_type eq 'polygon') {
             $basic_selector = 'area';
@@ -210,7 +226,10 @@ sub toMapCSS {
         } else {
             die;
         }
-        @declarations = ([$text]);
+        for (@texts) {
+            my @symbolizers = ($_);
+            push @declarations, \@symbolizers;
+        }
     }
     else
     {
@@ -255,7 +274,7 @@ sub toMapCSS {
         }
         $output->(join(",\n", @or_complete) . " {\n");
         for my $symbolizer (@$symbolizers) {
-            $output->($symbolizer->toMapCSS());
+            $output->($symbolizer->toMapCSS($self->hints));
         }
         my $this_z_index;
         if ($self->hint('under')) {

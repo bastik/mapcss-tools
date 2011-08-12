@@ -8,28 +8,38 @@ use Validate ();
 
 use base 'Symbolizer';
 
-sub addProperty {
-    my ($self, $name, $value) = @_;
+sub mapcss_properties {
+
+    my ($self) = @_;
     
-    if ($name eq 'file') 
-    {
-        $self->set_property('icon-image', '"' . Validate::file_path($value) . '"');
+    my %prop = %{ $self->properties };
+    my %mapcss = ();
+    
+    while (my ($key, $value) = each %prop) {
+    
+        if ($key eq 'file') 
+        {
+            $mapcss{'icon-image'} = '"' . Validate::file_path($value) . '"';
+        }
+        elsif ($key eq 'allow_overlap') 
+        {
+            # not MapCSS, but keep it
+            $mapcss{'allow_overlap'} = Validate::boolean($value);
+        }
+        elsif ($key eq 'type')
+        {
+            # ignore: type should be clear from file name extension
+        }
+        elsif ($key eq 'width' or $key eq 'height')
+        {
+            # ignore: these are the dimension of the image file, so this is redundant information
+        }
+        else {
+            die "unrecognized property for ".ref($self).": '$key'";
+        }
     }
-    elsif ($name eq 'allow_overlap') 
-    {
-        $self->set_property('allow_overlap', Validate::boolean($value));
-    }
-    elsif ($name eq 'type')
-    {
-        # ignore: type should be clear from file name extension
-    }
-    elsif ($name eq 'width' or $name eq 'height')
-    {
-        # ignore: these are the dimension of the image file, so this is redundant information
-    }
-    else {
-        die "unrecognized property for ".ref($self).": '$name'";
-    }
+    
+    return \%mapcss;
 }
 
 1;
