@@ -257,7 +257,7 @@ write
 
     --layers layer1,layer2
 
-When this option is omitted, all layers from the input file are used. Each layer refers to a certain Style element. A Style is not parsed, unless it is referenced by one of the selected layers.
+When this option is omitted, all layers from the input file are used. Each layer refers to one or more Style elements. A Style is not parsed, unless it is referenced by one of the selected layers.
 
 =item B<--special-processors FILE>
 
