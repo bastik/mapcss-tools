@@ -1,0 +1,294 @@
+
+/**
+ * Layer 'planet roads text osm'
+ * Style 'roads-text'
+ */
+
+way|z13-[highway=motorway][length=1] {
+}
+
+way|z13-[highway=motorway][length=2] {
+}
+
+way|z13-[highway=motorway][length=3] {
+}
+
+way|z13-[highway=motorway][length=4] {
+}
+
+way|z13-[highway=motorway][length=5] {
+}
+
+way|z13-[highway=motorway][length=6] {
+}
+
+way|z13-[highway=motorway][length=7] {
+}
+
+way|z13-[highway=motorway][length=8] {
+}
+
+way|z13-[highway=trunk][length=1] {
+}
+
+way|z13-[highway=trunk][length=2] {
+}
+
+way|z13-[highway=trunk][length=3] {
+}
+
+way|z13-[highway=trunk][length=4] {
+}
+
+way|z13-[highway=trunk][length=5] {
+}
+
+way|z13-[highway=trunk][length=6] {
+}
+
+way|z13-[highway=trunk][length=7] {
+}
+
+way|z13-[highway=trunk][length=8] {
+}
+
+way|z13-[highway=primary][length=1] {
+}
+
+way|z13-[highway=primary][length=2] {
+}
+
+way|z13-[highway=primary][length=3] {
+}
+
+way|z13-[highway=primary][length=4] {
+}
+
+way|z13-[highway=primary][length=5] {
+}
+
+way|z13-[highway=primary][length=6] {
+}
+
+way|z13-[highway=primary][length=7] {
+}
+
+way|z13-[highway=primary][length=8] {
+}
+
+way|z12-[highway=secondary][length=1][!bridge?] {
+}
+
+way|z12-[highway=secondary][length=2][!bridge?] {
+}
+
+way|z12-[highway=secondary][length=3][!bridge?] {
+}
+
+way|z12-[highway=secondary][length=4][!bridge?] {
+}
+
+way|z12-[highway=secondary][length=5][!bridge?] {
+}
+
+way|z12-[highway=secondary][length=6][!bridge?] {
+}
+
+way|z12-[highway=secondary][length=7][!bridge?] {
+}
+
+way|z12-[highway=secondary][length=8][!bridge?] {
+}
+
+way|z13-[highway=tertiary][length=1][!bridge?] {
+}
+
+way|z13-[highway=tertiary][length=2][!bridge?] {
+}
+
+way|z13-[highway=tertiary][length=3][!bridge?] {
+}
+
+way|z13-[highway=tertiary][length=4][!bridge?] {
+}
+
+way|z13-[highway=tertiary][length=5][!bridge?] {
+}
+
+way|z13-[highway=tertiary][length=6][!bridge?] {
+}
+
+way|z13-[highway=tertiary][length=7][!bridge?] {
+}
+
+way|z13-[highway=tertiary][length=8][!bridge?] {
+}
+
+way|z15-[highway=unclassified][!bridge?],
+way|z15-[highway=residential][!bridge?] {
+    font-family: "DejaVu Sans Bold";
+    font-size: 10;
+    text: "ref";
+    text-color: black;
+    text-halo-radius: 1;
+    text-spacing: 750;
+}
+
+way|z15-[aeroway=runway][!bridge?],
+way|z15-[aeroway=taxiway][!bridge?] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "ref";
+    text-color: #333333;
+    text-halo-radius: 1;
+    text-position: line;
+    text-spacing: 750;
+}
+
+way|z13[highway=trunk],
+way|z13[highway=primary] {
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-color: black;
+    text-position: line;
+}
+
+way|z13[highway=secondary] {
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-color: black;
+    text-halo-color: #fed7a5;
+    text-halo-radius: 1;
+    text-position: line;
+}
+
+way|z14[highway=trunk],
+way|z14[highway=primary] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: black;
+    text-position: line;
+}
+
+way|z15-[highway=trunk],
+way|z15-[highway=primary] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: black;
+    text-position: line;
+}
+
+way|z14[highway=secondary] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: black;
+    text-halo-color: #fed7a5;
+    text-halo-radius: 1;
+    text-position: line;
+}
+
+way|z15-[highway=secondary] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: black;
+    text-halo-color: #fed7a5;
+    text-halo-radius: 1;
+    text-position: line;
+}
+
+way|z15-16[highway=tertiary] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: black;
+    text-halo-radius: 1;
+    text-position: line;
+}
+
+way|z17-[highway=tertiary] {
+    font-family: "DejaVu Sans Book";
+    font-size: 11;
+    text: "name";
+    text-color: black;
+    text-halo-radius: 1;
+    text-position: line;
+}
+
+way|z13-15[highway=proposed],
+way|z13-15[highway=construction] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: black;
+    text-halo-radius: 1;
+    text-position: line;
+}
+
+way|z16-[highway=proposed],
+way|z16-[highway=construction] {
+    font-family: "DejaVu Sans Book";
+    font-size: 11;
+    text: "name";
+    text-color: black;
+    text-halo-radius: 1;
+    text-position: line;
+}
+
+way|z15[highway=unclassified],
+way|z15[highway=residential] {
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-color: black;
+    text-halo-radius: 1;
+    text-position: line;
+    text-spacing: 300;
+}
+
+way|z16[highway=unclassified],
+way|z16[highway=residential] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: black;
+    text-halo-radius: 1;
+    text-position: line;
+    text-spacing: 300;
+}
+
+way|z17-[highway=unclassified],
+way|z17-[highway=residential] {
+    font-family: "DejaVu Sans Book";
+    font-size: 11;
+    text: "name";
+    text-color: black;
+    text-halo-radius: 1;
+    text-position: line;
+    text-spacing: 400;
+}
+
+way|z15-16[highway][highway!=motorway][highway!=trunk][highway!=primary][highway!=secondary][highway!=tertiary][highway!=unclassified][highway!=residential][highway!=proposed][highway!=construction],
+way|z15-16[aeroway][aeroway!=runway][aeroway!=taxiway] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: black;
+    text-halo-radius: 1;
+    text-position: line;
+}
+
+way|z17-[highway][highway!=motorway][highway!=trunk][highway!=primary][highway!=secondary][highway!=tertiary][highway!=unclassified][highway!=residential][highway!=proposed][highway!=construction],
+way|z17-[aeroway][aeroway!=runway][aeroway!=taxiway] {
+    font-family: "DejaVu Sans Book";
+    font-size: 11;
+    text: "name";
+    text-color: black;
+    text-halo-radius: 1;
+    text-position: line;
+}

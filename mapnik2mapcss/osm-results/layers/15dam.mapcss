@@ -1,0 +1,20 @@
+
+/**
+ * Layer 'dam'
+ * Style 'dam'
+ */
+
+way|z13-[waterway=dam] {
+    color: #444444;
+    linecap: round;
+    linejoin: round;
+    width: 2;
+}
+
+way|z15-[waterway=dam] {
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-color: #222222;
+    text-halo-radius: 1;
+}

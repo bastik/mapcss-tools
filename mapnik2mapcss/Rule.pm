@@ -265,7 +265,7 @@ sub toMapCSS {
             $result .= $str;
         }
     };
-    $output->('/* \'' . $self->filename . '\', line ' . $self->linenumber . " */\n");
+    $output->('/* \'' . $self->filename . '\', line ' . $self->linenumber . " */\n") if $main::output_line_numbers;
 
     for (my $i = 0; $i < @declarations; ++$i) {
         my $symbolizers = $declarations[$i];

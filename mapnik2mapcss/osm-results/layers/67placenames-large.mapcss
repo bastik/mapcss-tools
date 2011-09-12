@@ -1,0 +1,49 @@
+
+/**
+ * Layer 'placenames-large'
+ * Style 'country'
+ */
+
+node|z2-3[place=country] {
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-color: #9d6c9d;
+    text-halo-radius: 1;
+    text-wrap-width: 20;
+}
+
+node|z4-6[place=country] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: #9d6c9d;
+    text-halo-radius: 1;
+    text-wrap-width: 20;
+}
+
+/* Style 'state' */
+
+node|z4[place=state] {
+    font-family: "DejaVu Sans Oblique";
+    font-size: 9;
+    text: "ref";
+    text-color: #9d6c9d;
+    text-halo-radius: 1;
+}
+
+node|z5-6[place=state] {
+    font-family: "DejaVu Sans Oblique";
+    font-size: 9;
+    text: "name";
+    text-color: #9d6c9d;
+    text-halo-radius: 1;
+}
+
+node|z7-8[place=state] {
+    font-family: "DejaVu Sans Oblique";
+    font-size: 11;
+    text: "name";
+    text-color: #9d6c9d;
+    text-halo-radius: 1;
+}

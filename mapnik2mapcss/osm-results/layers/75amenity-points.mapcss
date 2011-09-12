@@ -1,0 +1,303 @@
+
+/**
+ * Layer 'amenity-points'
+ * Style 'points'
+ */
+
+node|z13-[tourism=alpine_hut] {
+    icon-image: "symbols/alpinehut.p.16.png";
+}
+
+node|z16-[amenity=shelter] {
+    icon-image: "symbols/shelter2.p.16.png";
+}
+
+node|z17-[amenity=atm] {
+    icon-image: "symbols/atm2.p.16.png";
+}
+
+node|z17-[amenity=bank] {
+    icon-image: "symbols/bank2.p.16.png";
+}
+
+node|z17-[amenity=bar] {
+    icon-image: "symbols/bar.p.20.png";
+}
+
+node|z17-[amenity=bicycle_rental] {
+    icon-image: "symbols/rental_bicycle.p.20.png";
+}
+
+node|z16[amenity=bus_stop],
+node|z16[highway=bus_stop] {
+    icon-image: "symbols/bus_stop_small.png";
+}
+
+node|z17-[amenity=bus_stop],
+node|z17-[highway=bus_stop] {
+    icon-image: "symbols/bus_stop.p.12.png";
+}
+
+node|z16-[amenity=bus_station] {
+    icon-image: "symbols/bus_station.n.16.png";
+}
+
+node|z17-[highway=traffic_signals] {
+    icon-image: "symbols/traffic_light.png";
+}
+
+node|z17-[amenity=cafe] {
+    icon-image: "symbols/cafe.p.16.png";
+}
+
+node|z16-[tourism=camp_site] {
+    icon-image: "symbols/camping.n.16.png";
+}
+
+node|z16-[highway=ford] {
+    icon-image: "symbols/transport_ford.p.16.png";
+}
+
+node|z16-[tourism=caravan_site] {
+    icon-image: "symbols/caravan_park.p.24.png";
+}
+
+node|z16-[amenity=car_sharing] {
+    icon-image: "symbols/car_share.p.16.png";
+}
+
+node|z17-[tourism=chalet] {
+    icon-image: "symbols/chalet.p.16.png";
+}
+
+node|z17-[amenity=cinema] {
+    icon-image: "symbols/cinema.p.24.png";
+}
+
+node|z17-[amenity=fire_station] {
+    icon-image: "symbols/firestation.p.16.png";
+}
+
+node|z17-[amenity=fuel] {
+    icon-image: "symbols/fuel.p.16.png";
+}
+
+node|z17-[tourism=guest_house] {
+    icon-image: "symbols/guest_house.p.16.png";
+}
+
+node|z17-[tourism=bed_and_breakfast] {
+    icon-image: "symbols/bandb.p.20.png";
+}
+
+node|z15-[amenity=hospital] {
+    icon-image: "symbols/hospital.p.16.png";
+}
+
+node|z17-[tourism=hostel] {
+    icon-image: "symbols/hostel.p.20.png";
+}
+
+node|z17-[tourism=hotel] {
+    icon-image: "symbols/hotel2.p.20.png";
+}
+
+node|z17-[tourism=motel] {
+    icon-image: "symbols/motel.p.20.png";
+}
+
+node|z16-[tourism=information] {
+    icon-image: "symbols/information.p.16.png";
+}
+
+node|z17-[amenity=embassy] {
+    icon-image: "symbols/embassy.png";
+}
+
+node|z17-[amenity=library] {
+    icon-image: "symbols/library.p.20.png";
+}
+
+node|z17-[amenity=courthouse] {
+    icon-image: "symbols/amenity_court.p.20.png";
+}
+
+node|z15-[waterway=lock],
+node|z15-[lock=yes] {
+    icon-image: "symbols/lock_gate.png";
+}
+
+node|z17-[man_made=mast] {
+    icon-image: "symbols/communications.p.20.png";
+}
+
+node|z17-[tourism=museum] {
+    icon-image: "symbols/museum.p.16.png";
+}
+
+node|z15-[amenity=parking][access=public],
+node|z15-[amenity=parking][access=yes],
+node|z15-[amenity=parking][!access] {
+    icon-image: "symbols/parking.p.16.png";
+}
+
+node|z15-[amenity=parking][access][access!=public][access!=yes] {
+    icon-image: "symbols/parking_private.p.16.png";
+}
+
+node|z17-[amenity=pharmacy] {
+    icon-image: "symbols/pharmacy.p.16.png";
+}
+
+node|z16-[amenity=place_of_worship][religion=christian] {
+    icon-image: "symbols/christian3.p.14.png";
+}
+
+node|z16-[amenity=place_of_worship][religion=muslim] {
+    icon-image: "symbols/islamic3.p.16.png";
+}
+
+node|z16-[amenity=place_of_worship][religion=sikh] {
+    icon-image: "symbols/sikh3.p.16.png";
+}
+
+node|z16-[amenity=place_of_worship][religion=jewish] {
+    icon-image: "symbols/jewish3.p.16.png";
+}
+
+node|z16-[amenity=place_of_worship][religion!=christian][religion!=muslim][religion!=sikh][religion!=jewish] {
+    icon-image: "symbols/place_of_worship3.p.16.png";
+}
+
+node|z17-[amenity=police] {
+    icon-image: "symbols/police.p.16.png";
+}
+
+node|z17-[amenity=post_box] {
+    icon-image: "symbols/post_box.p.16.png";
+}
+
+node|z17-[amenity=post_office] {
+    icon-image: "symbols/post_office.p.16.png";
+}
+
+node|z16-[amenity=pub] {
+    icon-image: "symbols/pub.p.16.png";
+}
+
+node|z16-[amenity=biergarten] {
+    icon-image: "symbols/biergarten.p.16.png";
+}
+
+node|z16-[amenity=recycling] {
+    icon-image: "symbols/recycling.p.16.png";
+}
+
+node|z17-[amenity=restaurant] {
+    icon-image: "symbols/restaurant.p.16.png";
+}
+
+node|z17-[amenity=fast_food] {
+    icon-image: "symbols/fast_food.png";
+}
+
+node|z17-[amenity=telephone] {
+    icon-image: "symbols/telephone.p.16.png";
+}
+
+node|z17-[amenity=emergency_phone] {
+    icon-image: "symbols/sosphone.png";
+}
+
+node|z17-[amenity=theatre] {
+    icon-image: "symbols/theatre.p.20.png";
+}
+
+node|z17-[amenity=toilets] {
+    icon-image: "symbols/toilets.p.20.png";
+}
+
+node|z17-[amenity=drinking_water] {
+    icon-image: "symbols/food_drinkingtap.p.20.png";
+}
+
+node|z16-[amenity=prison] {
+    icon-image: "symbols/amenity_prison.p.20.png";
+}
+
+node|z16-[tourism=viewpoint] {
+    icon-image: "symbols/view_point.p.16.png";
+}
+
+node|z17-[man_made=water_tower] {
+    icon-image: "symbols/tower_water.p.20.png";
+}
+
+node|z17-[historic=memorial] {
+    icon-image: "symbols/tourist_memorial.p.20.png";
+}
+
+node|z16-[historic=archaeological_site] {
+    icon-image: "symbols/tourist_archaeological2.glow.16.png";
+}
+
+node|z16-[shop=supermarket] {
+    icon-image: "symbols/shop_supermarket.p.16.png";
+}
+
+node|z17-[shop=bakery] {
+    icon-image: "symbols/shop_bakery.p.16.png";
+}
+
+node|z17-[shop=butcher] {
+    icon-image: "symbols/shop_butcher.png";
+}
+
+node|z17-[shop=clothes],
+node|z17-[shop=fashion] {
+    icon-image: "symbols/shop_clothes.p.16.png";
+}
+
+node|z17-[shop=convenience] {
+    icon-image: "symbols/shop_convenience.p.16.png";
+}
+
+node|z16-[shop=department_store] {
+    icon-image: "symbols/department_store.p.16.png";
+}
+
+node|z17-[shop=doityourself] {
+    icon-image: "symbols/shop_diy.p.16.png";
+}
+
+node|z17-[shop=florist] {
+    icon-image: "symbols/florist.p.16.png";
+}
+
+node|z17-[shop=hairdresser] {
+    icon-image: "symbols/shop_hairdresser.p.16.png";
+}
+
+node|z17-[shop=car] {
+    icon-image: "symbols/shopping_car.p.16.png";
+}
+
+node|z17-[shop=car_repair] {
+    icon-image: "symbols/shopping_car_repair.p.16.png";
+}
+
+node|z17-[shop=bicycle] {
+    icon-image: "symbols/shopping_bicycle.p.16.png";
+}
+
+node|z17-[leisure=playground] {
+    icon-image: "symbols/playground.p.20.png";
+}
+
+node|z16-[amenity=picnic_site] {
+    icon-image: "symbols/picnic.p.16.png";
+}
+
+node|z17-[leisure=slipway] {
+    icon-image: "symbols/transport_slipway.p.20.png";
+}

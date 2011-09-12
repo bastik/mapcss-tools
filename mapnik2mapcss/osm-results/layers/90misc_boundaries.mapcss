@@ -1,0 +1,48 @@
+
+/**
+ * Layer 'misc_boundaries'
+ * Style 'boundary'
+ */
+
+area|z7-9[boundary=national_park] {
+    fill-color: green;
+    fill-opacity: 0.05;
+    color: green;
+    dashes: 4,2;
+    opacity: 0.15;
+    width: 1.5;
+}
+
+area|z10-12[boundary=national_park] {
+    fill-color: green;
+    fill-opacity: 0.05;
+    color: green;
+    dashes: 6,2;
+    opacity: 0.15;
+    width: 3;
+}
+
+area|z13-[boundary=national_park] {
+    color: green;
+    dashes: 6,2;
+    opacity: 0.15;
+    width: 3;
+}
+
+area|z8-9[way_area>=200000000][boundary=national_park] {
+    font-family: "DejaVu Sans Bold";
+    font-size: 8;
+    text: "name";
+    text-color: #99cc99;
+    text-halo-radius: 1;
+    text-wrap-width: 14;
+}
+
+area|z10-11[boundary=national_park] {
+    font-family: "DejaVu Sans Bold";
+    font-size: 11;
+    text: "name";
+    text-color: #99cc99;
+    text-halo-radius: 1;
+    text-wrap-width: 14;
+}

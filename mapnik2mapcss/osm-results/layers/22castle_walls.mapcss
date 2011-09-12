@@ -1,0 +1,15 @@
+
+/**
+ * Layer 'castle_walls'
+ * Style 'castle_walls'
+ */
+
+area|z14-15[historic=castle_walls] {
+    color: #999999;
+    width: 1;
+}
+
+area|z16-[historic=castle_walls] {
+    color: #888888;
+    width: 2;
+}

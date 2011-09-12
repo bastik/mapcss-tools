@@ -50,6 +50,7 @@ our $yes_true_1_magic_style = 'josm';
 # This option adds :closed selector to area, if the tag is also valid on
 # a unclosed way.
 our $area_closed_josm_hint;
+our $output_line_numbers;
 
 {
     my $debug_flags_tmp = '';
@@ -68,6 +69,7 @@ our $area_closed_josm_hint;
         'restore-named-colors' => \$args_restore_named_colors,
         'yes-true-1-magic-style=s' => \$yes_true_1_magic_style,
         'area-closed-josm-hint' => \$area_closed_josm_hint,
+        'output-line-numbers' => \$output_line_numbers,
         'help|h' => \$help,
     ) or pod2usage(-message => "Try '$0 --help' for more information.\n", -verbose => 0);
     pod2usage(-verbose => 2, -noperldoc => 1) if $help;

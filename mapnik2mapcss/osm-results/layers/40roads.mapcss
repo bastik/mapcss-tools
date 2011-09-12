@@ -1,0 +1,198 @@
+
+/**
+ * Layer 'roads'
+ * Style 'roads'
+ */
+
+way|z5-6[highway=motorway],
+way|z5-6[highway=motorway_link] {
+    color: #809bc0;
+    width: 0.5;
+}
+
+way|z7-8[highway=motorway],
+way|z7-8[highway=motorway_link] {
+    color: #809bc0;
+    width: 1;
+}
+
+way|z9[highway=motorway],
+way|z9[highway=motorway_link] {
+    color: #809bc0;
+    width: 1.4;
+}
+
+way|z10[highway=motorway],
+way|z10[highway=motorway_link] {
+    color: #809bc0;
+    width: 2;
+}
+
+way|z11[highway=motorway],
+way|z11[highway=motorway_link] {
+    color: #809bc0;
+    width: 2.5;
+}
+
+way|z5-6[highway=trunk],
+way|z5-6[highway=trunk_link] {
+    color: #a9dba9;
+    width: 0.4;
+}
+
+way|z7-8[highway=trunk],
+way|z7-8[highway=trunk_link] {
+    color: #97d397;
+    width: 1;
+}
+
+way|z9-10[highway=trunk],
+way|z9-10[highway=trunk_link] {
+    color: #97d397;
+    width: 2;
+}
+
+way|z11[highway=trunk],
+way|z11[highway=trunk_link] {
+    color: #97d397;
+    width: 2.5;
+}
+
+way|z7-8[highway=primary],
+way|z7-8[highway=primary_link] {
+    color: #ec989a;
+    width: 0.5;
+}
+
+way|z9[highway=primary],
+way|z9[highway=primary_link] {
+    color: #ec989a;
+    width: 1.2;
+}
+
+way|z10[highway=primary],
+way|z10[highway=primary_link] {
+    color: #ec989a;
+    width: 2;
+}
+
+way|z11[highway=primary],
+way|z11[highway=primary_link] {
+    color: #ec989a;
+    width: 2.5;
+}
+
+way|z9-10[highway=secondary],
+way|z9-10[highway=secondary_link] {
+    color: #fecc8b;
+    width: 1;
+}
+
+way|z11[highway=secondary],
+way|z11[highway=secondary_link] {
+    color: #fecc8b;
+    width: 2;
+}
+
+way|z6-8[railway=rail][service!=spur][service!=siding][service!=yard] {
+    color: #aaaaaa;
+    width: 0.6;
+}
+
+way|z9[railway=rail][service!=spur][service!=siding][service!=yard][!tunnel?] {
+    color: #aaaaaa;
+    width: 1;
+}
+
+way|z9[railway=rail][service!=spur][service!=siding][service!=yard][tunnel?] {
+    color: #aaaaaa;
+    dashes: 5,2;
+    width: 1;
+}
+
+way|z8-9[railway=tram][service!=spur][service!=siding][service!=yard],
+way|z8-9[railway=light_rail][service!=spur][service!=siding][service!=yard],
+way|z8-9[railway=narrow_gauge][service!=spur][service!=siding][service!=yard],
+way|z8-9[railway=funicular][service!=spur][service!=siding][service!=yard] {
+    color: #cccccc;
+    width: 1;
+}
+
+way|z10-12[railway=rail][service!=spur][service!=siding][service!=yard][!tunnel?] {
+    color: #aaaaaa;
+    width: 2;
+}
+
+way|z10-12[railway=rail][service!=spur][service!=siding][service!=yard][tunnel?] {
+    color: #aaaaaa;
+    dashes: 5,2;
+    width: 2;
+}
+
+way|z10-12[railway=tram][service!=spur][service!=siding][service!=yard],
+way|z10-12[railway=light_rail][service!=spur][service!=siding][service!=yard],
+way|z10-12[railway=narrow_gauge][service!=spur][service!=siding][service!=yard],
+way|z10-12[railway=funicular][service!=spur][service!=siding][service!=yard] {
+    color: #aaaaaa;
+    width: 1;
+}
+
+way|z12[railway=preserved][service!=spur][service!=siding][service!=yard] {
+    color: #aaaaaa;
+    linejoin: round;
+    width: 1.5;
+}
+
+way|z13-[railway=preserved][service!=spur][service!=siding][service!=yard] {
+    color: #999999;
+    linejoin: round;
+    width: 3;
+}
+way|z13-[railway=preserved][service!=spur][service!=siding][service!=yard]::over1 {
+    color: white;
+    dashes: 0,1,8,1;
+    linejoin: round;
+    width: 1;
+    z-index: 0.1;
+}
+
+way|z12[railway=preserved][service=spur],
+way|z12[railway=preserved][service=siding],
+way|z12[railway=preserved][service=yard] {
+    color: #aaaaaa;
+    linejoin: round;
+    width: 1;
+}
+
+way|z13-[railway=preserved][service=spur],
+way|z13-[railway=preserved][service=siding],
+way|z13-[railway=preserved][service=yard] {
+    color: #999999;
+    linejoin: round;
+    width: 2;
+}
+way|z13-[railway=preserved][service=spur]::over1,
+way|z13-[railway=preserved][service=siding]::over1,
+way|z13-[railway=preserved][service=yard]::over1 {
+    color: white;
+    dashes: 0,1,8,1;
+    linejoin: round;
+    width: 0.8;
+    z-index: 0.1;
+}
+
+way|z14-[railway=monorail][service!=spur][service!=siding][service!=yard] {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.4;
+    width: 4;
+}
+way|z14-[railway=monorail][service!=spur][service!=siding][service!=yard]::over1 {
+    color: #777777;
+    dashes: 2,3;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    z-index: 0.1;
+}

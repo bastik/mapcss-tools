@@ -1,0 +1,126 @@
+
+/**
+ * Layer 'bridges_access0'
+ * Style 'access'
+ */
+
+way|z15[access=permissive][highway=unclassified][bridge?]::access,
+way|z15[access=permissive][highway=residential][bridge?]::access,
+way|z15[access=permissive][highway=unclassified][bridge=viaduct]::access,
+way|z15[access=permissive][highway=residential][bridge=viaduct]::access,
+way|z15[access=permissive][highway=footway][bridge?]::access,
+way|z15[access=permissive][highway=footway][bridge=viaduct]::access {
+    color: #ccff99;
+    dashes: 6,8;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 6;
+    z-index: 7;
+}
+
+way|z15[access=permissive][highway=service][service!=parking_aisle][service!=drive-through][service!=driveway][bridge?]::access,
+way|z15[access=permissive][highway=service][service!=parking_aisle][service!=drive-through][service!=driveway][bridge=viaduct]::access {
+    color: #ccff99;
+    dashes: 6,8;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 3;
+    z-index: 7;
+}
+
+way|z16-[access=permissive][highway=unclassified][bridge?]::access,
+way|z16-[access=permissive][highway=residential][bridge?]::access,
+way|z16-[access=permissive][highway=footway][bridge?]::access,
+way|z16-[access=permissive][highway=unclassified][bridge=viaduct]::access,
+way|z16-[access=permissive][highway=residential][bridge=viaduct]::access,
+way|z16-[access=permissive][highway=footway][bridge=viaduct]::access,
+way|z16-[access=permissive][highway=service][bridge?]::access,
+way|z16-[access=permissive][highway=service][bridge=viaduct]::access {
+    color: #ccff99;
+    dashes: 6,8;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 6;
+    z-index: 7;
+}
+
+way|z15[access=destination][highway=unclassified][bridge?]::access,
+way|z15[access=destination][highway=unclassified][bridge=viaduct]::access,
+way|z15[access=destination][highway=residential][bridge?]::access,
+way|z15[access=destination][highway=residential][bridge=viaduct]::access {
+    color: #c2e0ff;
+    dashes: 6,8;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 6;
+    z-index: 7;
+}
+
+way|z15[access=destination][highway=service][service!=parking_aisle][service!=drive-through][service!=driveway][bridge?]::access,
+way|z15[access=destination][highway=service][service!=parking_aisle][service!=drive-through][service!=driveway][bridge=viaduct]::access {
+    color: #c2e0ff;
+    dashes: 6,8;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 3;
+    z-index: 7;
+}
+
+way|z16-[access=destination][highway=unclassified][bridge?]::access,
+way|z16-[access=destination][highway=residential][bridge?]::access,
+way|z16-[access=destination][highway=unclassified][bridge=viaduct]::access,
+way|z16-[access=destination][highway=residential][bridge=viaduct]::access,
+way|z16-[access=destination][highway=service][bridge?]::access,
+way|z16-[access=destination][highway=service][bridge=viaduct]::access {
+    color: #c2e0ff;
+    dashes: 6,8;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 6;
+    z-index: 7;
+}
+
+way|z15[access=private][highway!=service][bridge?]::access,
+way|z15[access=private][highway!=service][bridge=viaduct]::access,
+way|z15[access=no][highway!=service][bridge?]::access,
+way|z15[access=no][highway!=service][bridge=viaduct]::access {
+    color: #efa9a9;
+    dashes: 6,8;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 6;
+    z-index: 7;
+}
+
+way|z15[access=private][highway=service][service!=parking_aisle][service!=drive-through][service!=driveway][bridge?]::access,
+way|z15[access=private][highway=service][service!=parking_aisle][service!=drive-through][service!=driveway][bridge=viaduct]::access,
+way|z15[access=no][highway=service][service!=parking_aisle][service!=drive-through][service!=driveway][bridge?]::access,
+way|z15[access=no][highway=service][service!=parking_aisle][service!=drive-through][service!=driveway][bridge=viaduct]::access {
+    color: #efa9a9;
+    dashes: 6,8;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 3;
+    z-index: 7;
+}
+
+way|z16-[access=private][bridge?]::access,
+way|z16-[access=private][bridge=viaduct]::access,
+way|z16-[access=no][bridge?]::access,
+way|z16-[access=no][bridge=viaduct]::access {
+    color: #efa9a9;
+    dashes: 6,8;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 6;
+    z-index: 7;
+}

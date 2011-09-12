@@ -1,0 +1,19 @@
+
+/**
+ * Layer 'landcover_line'
+ * Style 'landcover_line'
+ */
+
+way|z14-15[man_made=cutline] {
+    color: #f2efe9;
+    linecap: square;
+    linejoin: round;
+    width: 3;
+}
+
+way|z16-[man_made=cutline] {
+    color: #f2efe9;
+    linecap: square;
+    linejoin: round;
+    width: 6;
+}

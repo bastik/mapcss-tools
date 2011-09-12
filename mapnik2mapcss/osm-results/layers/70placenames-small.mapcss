@@ -1,0 +1,65 @@
+
+/**
+ * Layer 'placenames-small'
+ * Style 'suburb'
+ */
+
+node|z12-13[place=suburb] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: black;
+    text-halo-radius: 1;
+}
+
+node|z14-[place=suburb] {
+    font-family: "DejaVu Sans Book";
+    font-size: 13;
+    text: "name";
+    text-color: #777777;
+    text-halo-radius: 1;
+}
+
+/* Style 'village' */
+
+node|z12-14[place=village],
+node|z12-14[place=large_village] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: black;
+    text-halo-radius: 1;
+}
+
+node|z15-[place=village],
+node|z15-[place=large_village] {
+    font-family: "DejaVu Sans Book";
+    font-size: 12;
+    text: "name";
+    text-color: #777777;
+    text-halo-radius: 1;
+}
+
+/* Style 'hamlet' */
+
+node|z14-15[place=hamlet],
+node|z14-15[place=locality],
+node|z14-15[place=isolated_dwelling],
+node|z14-15[place=farm] {
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-color: black;
+    text-halo-radius: 1;
+}
+
+node|z16-[place=hamlet],
+node|z16-[place=locality],
+node|z16-[place=isolated_dwelling],
+node|z16-[place=farm] {
+    font-family: "DejaVu Sans Book";
+    font-size: 11;
+    text: "name";
+    text-color: #777777;
+    text-halo-radius: 1;
+}

@@ -1,0 +1,10 @@
+
+/**
+ * Layer 'power_minorline'
+ * Style 'power_minorline'
+ */
+
+way|z16-[power=minor_line] {
+    color: #777777;
+    width: 0.5;
+}

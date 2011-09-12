@@ -1,0 +1,32 @@
+
+/**
+ * Layer 'glaciers-text'
+ * Style 'glaciers-text'
+ */
+
+area|z10-[natural=glacier][way_area>=10000000] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: #9999ff;
+    text-halo-radius: 1;
+    text-wrap-width: 20;
+}
+
+area|z11-[natural=glacier][way_area>=5000000][way_area<10000000] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: #9999ff;
+    text-halo-radius: 1;
+    text-wrap-width: 20;
+}
+
+area|z12-[natural=glacier][way_area<5000000] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: #9999ff;
+    text-halo-radius: 1;
+    text-wrap-width: 20;
+}

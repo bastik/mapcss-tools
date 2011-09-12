@@ -1,0 +1,17 @@
+
+/**
+ * Layer 'power_towers'
+ * Style 'power_towers'
+ */
+
+node|z14[power=tower] {
+    icon-image: "symbols/power_tower_3x3.png";
+}
+
+node|z15-16[power=tower] {
+    icon-image: "symbols/power_tower_5x5.png";
+}
+
+node|z17-[power=tower] {
+    icon-image: "symbols/power_tower.png";
+}

@@ -1,0 +1,1172 @@
+
+/**
+ * Layer 'bridges_layer0'
+ * Style 'bridges_casing'
+ */
+
+way|z12[highway=motorway][bridge?]::bridge-casing1,
+way|z12[highway=motorway][bridge=viaduct]::bridge-casing1,
+way|z12[highway=motorway_link][bridge?]::bridge-casing1,
+way|z12[highway=motorway_link][bridge=viaduct]::bridge-casing1 {
+    color: #506077;
+    width: 3;
+    z-index: 2;
+}
+
+way|z13-14[highway=motorway][bridge?]::bridge-casing1,
+way|z13-14[highway=motorway][bridge=viaduct]::bridge-casing1,
+way|z13-14[highway=motorway_link][bridge?]::bridge-casing1,
+way|z13-14[highway=motorway_link][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 6.5;
+    z-index: 2;
+}
+
+way|z15-16[highway=motorway][bridge?]::bridge-casing1,
+way|z15-16[highway=motorway][bridge=viaduct]::bridge-casing1,
+way|z15-16[highway=motorway_link][bridge?]::bridge-casing1,
+way|z15-16[highway=motorway_link][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 9;
+    z-index: 2;
+}
+
+way|z17-[highway=motorway][bridge?]::bridge-casing1,
+way|z17-[highway=motorway][bridge=viaduct]::bridge-casing1,
+way|z17-[highway=motorway_link][bridge?]::bridge-casing1,
+way|z17-[highway=motorway_link][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 12;
+    z-index: 2;
+}
+
+way|z12[highway=trunk][bridge?]::bridge-casing1,
+way|z12[highway=trunk][bridge=viaduct]::bridge-casing1,
+way|z12[highway=trunk_link][bridge?]::bridge-casing1,
+way|z12[highway=trunk_link][bridge=viaduct]::bridge-casing1 {
+    color: #477147;
+    width: 4;
+    z-index: 2;
+}
+
+way|z13-14[highway=trunk][bridge?]::bridge-casing1,
+way|z13-14[highway=trunk][bridge=viaduct]::bridge-casing1,
+way|z13-14[highway=trunk_link][bridge?]::bridge-casing1,
+way|z13-14[highway=trunk_link][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 8;
+    z-index: 2;
+}
+
+way|z15-16[highway=trunk][bridge?]::bridge-casing1,
+way|z15-16[highway=trunk][bridge=viaduct]::bridge-casing1,
+way|z15-16[highway=trunk_link][bridge?]::bridge-casing1,
+way|z15-16[highway=trunk_link][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 11;
+    z-index: 2;
+}
+
+way|z17-[highway=trunk][bridge?]::bridge-casing1,
+way|z17-[highway=trunk][bridge=viaduct]::bridge-casing1,
+way|z17-[highway=trunk_link][bridge?]::bridge-casing1,
+way|z17-[highway=trunk_link][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 16;
+    z-index: 2;
+}
+
+way|z12[highway=primary][bridge?]::bridge-casing1,
+way|z12[highway=primary][bridge=viaduct]::bridge-casing1,
+way|z12[highway=primary_link][bridge?]::bridge-casing1,
+way|z12[highway=primary_link][bridge=viaduct]::bridge-casing1 {
+    color: #8d4346;
+    width: 4;
+    z-index: 2;
+}
+
+way|z13-14[highway=primary][bridge?]::bridge-casing1,
+way|z13-14[highway=primary][bridge=viaduct]::bridge-casing1,
+way|z13-14[highway=primary_link][bridge?]::bridge-casing1,
+way|z13-14[highway=primary_link][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 8;
+    z-index: 2;
+}
+
+way|z15-16[highway=primary][bridge?]::bridge-casing1,
+way|z15-16[highway=primary][bridge=viaduct]::bridge-casing1,
+way|z15-16[highway=primary_link][bridge?]::bridge-casing1,
+way|z15-16[highway=primary_link][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 11;
+    z-index: 2;
+}
+
+way|z17-[highway=primary][bridge?]::bridge-casing1,
+way|z17-[highway=primary][bridge=viaduct]::bridge-casing1,
+way|z17-[highway=primary_link][bridge?]::bridge-casing1,
+way|z17-[highway=primary_link][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 16;
+    z-index: 2;
+}
+
+way|z13-14[highway=secondary][bridge?]::bridge-casing1,
+way|z13-14[highway=secondary][bridge=viaduct]::bridge-casing1,
+way|z13-14[highway=secondary_link][bridge?]::bridge-casing1,
+way|z13-14[highway=secondary_link][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 10;
+    z-index: 2;
+}
+
+way|z15-16[highway=secondary][bridge?]::bridge-casing1,
+way|z15-16[highway=secondary][bridge=viaduct]::bridge-casing1,
+way|z15-16[highway=secondary_link][bridge?]::bridge-casing1,
+way|z15-16[highway=secondary_link][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 12;
+    z-index: 2;
+}
+
+way|z17-[highway=secondary][bridge?]::bridge-casing1,
+way|z17-[highway=secondary][bridge=viaduct]::bridge-casing1,
+way|z17-[highway=secondary_link][bridge?]::bridge-casing1,
+way|z17-[highway=secondary_link][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 16;
+    z-index: 2;
+}
+
+way|z14[highway=tertiary][bridge?]::bridge-casing1,
+way|z14[highway=tertiary][bridge=viaduct]::bridge-casing1,
+way|z14[highway=tertiary_link][bridge?]::bridge-casing1,
+way|z14[highway=tertiary_link][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 7.5;
+    z-index: 2;
+}
+
+way|z15-16[highway=tertiary][bridge?]::bridge-casing1,
+way|z15-16[highway=tertiary][bridge=viaduct]::bridge-casing1,
+way|z15-16[highway=tertiary_link][bridge?]::bridge-casing1,
+way|z15-16[highway=tertiary_link][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 11;
+    z-index: 2;
+}
+
+way|z17-[highway=tertiary][bridge?]::bridge-casing1,
+way|z17-[highway=tertiary][bridge=viaduct]::bridge-casing1,
+way|z17-[highway=tertiary_link][bridge?]::bridge-casing1,
+way|z17-[highway=tertiary_link][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 16;
+    z-index: 2;
+}
+
+way|z14[highway=residential][bridge?]::bridge-casing1,
+way|z14[highway=unclassified][bridge?]::bridge-casing1,
+way|z14[highway=residential][bridge=viaduct]::bridge-casing1,
+way|z14[highway=unclassified][bridge=viaduct]::bridge-casing1,
+way|z14[highway=road][bridge?]::bridge-casing1,
+way|z14[highway=road][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 4.5;
+    z-index: 2;
+}
+
+way|z15[highway=residential][bridge?]::bridge-casing1,
+way|z15[highway=unclassified][bridge?]::bridge-casing1,
+way|z15[highway=residential][bridge=viaduct]::bridge-casing1,
+way|z15[highway=unclassified][bridge=viaduct]::bridge-casing1,
+way|z15[highway=road][bridge?]::bridge-casing1,
+way|z15[highway=road][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 9;
+    z-index: 2;
+}
+
+way|z16[highway=residential][bridge?]::bridge-casing1,
+way|z16[highway=unclassified][bridge?]::bridge-casing1,
+way|z16[highway=residential][bridge=viaduct]::bridge-casing1,
+way|z16[highway=unclassified][bridge=viaduct]::bridge-casing1,
+way|z16[highway=road][bridge?]::bridge-casing1,
+way|z16[highway=road][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 11;
+    z-index: 2;
+}
+
+way|z17-[highway=residential][bridge?]::bridge-casing1,
+way|z17-[highway=unclassified][bridge?]::bridge-casing1,
+way|z17-[highway=residential][bridge=viaduct]::bridge-casing1,
+way|z17-[highway=unclassified][bridge=viaduct]::bridge-casing1,
+way|z17-[highway=road][bridge?]::bridge-casing1,
+way|z17-[highway=road][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 16;
+    z-index: 2;
+}
+
+way|z14-15[highway=service][bridge?]::bridge-casing1,
+way|z14-15[highway=service][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 3;
+    z-index: 2;
+}
+
+way|z16-[highway=service][bridge?]::bridge-casing1,
+way|z16-[highway=service][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 8;
+    z-index: 2;
+}
+
+way|z13[highway=pedestrian][bridge?]::bridge-casing1,
+way|z13[highway=pedestrian][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 2.2;
+    z-index: 2;
+}
+
+way|z14[highway=pedestrian][bridge?]::bridge-casing1,
+way|z14[highway=pedestrian][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 3.8;
+    z-index: 2;
+}
+
+way|z15[highway=pedestrian][bridge?]::bridge-casing1,
+way|z15[highway=pedestrian][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 7;
+    z-index: 2;
+}
+
+way|z16-[highway=pedestrian][bridge?]::bridge-casing1,
+way|z16-[highway=pedestrian][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 9.5;
+    z-index: 2;
+}
+
+way|z14-[aeroway=runway][bridge?]::bridge-casing1,
+way|z14-[aeroway=runway][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 19;
+    z-index: 2;
+}
+
+way|z14[aeroway=taxiway][bridge?]::bridge-casing1,
+way|z14[aeroway=taxiway][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 5;
+    z-index: 2;
+}
+
+way|z15-[aeroway=taxiway][bridge?]::bridge-casing1,
+way|z15-[aeroway=taxiway][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 7;
+    z-index: 2;
+}
+
+way|z14-[railway=subway][bridge?]::bridge-casing1,
+way|z14-[railway=subway][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 5.5;
+    z-index: 2;
+}
+
+way|z14-[railway=light_rail][bridge?]::bridge-casing1,
+way|z14-[railway=light_rail][bridge=viaduct]::bridge-casing1,
+way|z14-[railway=narrow_gauge][bridge?]::bridge-casing1,
+way|z14-[railway=narrow_gauge][bridge=viaduct]::bridge-casing1 {
+    color: #555555;
+    width: 5.5;
+    z-index: 2;
+}
+
+way|z13[highway=unsurfaced][bridge?]::bridge-casing1,
+way|z13[highway=unsurfaced][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 5;
+    z-index: 2;
+}
+
+way|z14-[highway=unsurfaced][bridge?]::bridge-casing1,
+way|z14-[highway=unsurfaced][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 6.5;
+    z-index: 2;
+}
+
+way|z14-[highway=bridleway][bridge?]::bridge-casing1,
+way|z14-[highway=bridleway][bridge=viaduct]::bridge-casing1,
+way|z14-[highway=path][horse=designated][bridge?]::bridge-casing1,
+way|z14-[highway=path][horse=designated][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 5.5;
+    z-index: 2;
+}
+
+way|z14-[highway=footway][bridge?]::bridge-casing1,
+way|z14-[highway=footway][bridge=viaduct]::bridge-casing1,
+way|z14-[highway=path][foot=designated][bridge?]::bridge-casing1,
+way|z14-[highway=path][foot=designated][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 6;
+    z-index: 2;
+}
+
+way|z14-[highway=path][bicycle!=designated][foot!=designated][horse!=designated][bridge?]::bridge-casing1,
+way|z14-[highway=path][bicycle!=designated][foot!=designated][horse!=designated][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 4;
+    z-index: 2;
+}
+
+way|z14-[highway=cycleway][bridge?]::bridge-casing1,
+way|z14-[highway=cycleway][bridge=viaduct]::bridge-casing1,
+way|z14-[highway=path][bicycle=designated][bridge?]::bridge-casing1,
+way|z14-[highway=path][bicycle=designated][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 5.5;
+    z-index: 2;
+}
+
+way|z14-[highway=byway][bridge?]::bridge-casing1,
+way|z14-[highway=byway][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 5.5;
+    z-index: 2;
+}
+
+way|z13-[railway=rail][bridge?]::bridge-casing1,
+way|z13-[railway=rail][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    linejoin: round;
+    width: 6.5;
+    z-index: 2;
+}
+
+way|z13-[railway=spur][bridge?]::bridge-casing1,
+way|z13-[railway=spur][bridge=viaduct]::bridge-casing1,
+way|z13-[railway=siding][bridge?]::bridge-casing1,
+way|z13-[railway=siding][bridge=viaduct]::bridge-casing1,
+way|z13-[railway=rail][service=spur][bridge?]::bridge-casing1,
+way|z13-[railway=rail][service=siding][bridge?]::bridge-casing1,
+way|z13-[railway=rail][service=yard][bridge?]::bridge-casing1,
+way|z13-[railway=rail][service=spur][bridge=viaduct]::bridge-casing1,
+way|z13-[railway=rail][service=siding][bridge=viaduct]::bridge-casing1,
+way|z13-[railway=rail][service=yard][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    linejoin: round;
+    width: 5.7;
+    z-index: 2;
+}
+
+way|z13-[railway=disused][!highway][bridge?]::bridge-casing1,
+way|z13-[railway=abandoned][!highway][bridge?]::bridge-casing1,
+way|z13-[railway=disused][!highway][bridge=viaduct]::bridge-casing1,
+way|z13-[railway=abandoned][!highway][bridge=viaduct]::bridge-casing1,
+way|z13-[railway=construction][!highway][bridge?]::bridge-casing1,
+way|z13-[railway=construction][!highway][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 6;
+    z-index: 2;
+}
+
+way|z14-[highway=track][tracktype=grade1][bridge?]::bridge-casing1,
+way|z14-[highway=track][tracktype=grade1][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 5;
+    z-index: 2;
+}
+
+way|z14-[highway=track][tracktype=grade2][bridge?]::bridge-casing1,
+way|z14-[highway=track][tracktype=grade2][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 4.5;
+    z-index: 2;
+}
+
+way|z14-[highway=track][tracktype=grade3][bridge?]::bridge-casing1,
+way|z14-[highway=track][tracktype=grade3][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 4.5;
+    z-index: 2;
+}
+
+way|z14-[highway=track][tracktype=grade4][bridge?]::bridge-casing1,
+way|z14-[highway=track][tracktype=grade4][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 4.5;
+    z-index: 2;
+}
+
+way|z14-[highway=track][tracktype=grade5][bridge?]::bridge-casing1,
+way|z14-[highway=track][tracktype=grade5][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 4.5;
+    z-index: 2;
+}
+
+way|z14-[highway=track][!tracktype][bridge?]::bridge-casing1,
+way|z14-[highway=track][!tracktype][bridge=viaduct]::bridge-casing1 {
+    color: black;
+    width: 4.5;
+    z-index: 2;
+}
+
+/* Style 'bridges_casing2' */
+
+way|z14-[railway=subway][bridge?]::bridge-casing2,
+way|z14-[railway=subway][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    width: 4;
+    z-index: 3;
+}
+
+way|z14-[railway=light_rail][bridge?]::bridge-casing2,
+way|z14-[railway=light_rail][bridge=viaduct]::bridge-casing2,
+way|z14-[railway=narrow_gauge][bridge?]::bridge-casing2,
+way|z14-[railway=narrow_gauge][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    width: 4;
+    z-index: 3;
+}
+
+way|z13[highway=unsurfaced][bridge?]::bridge-casing2,
+way|z13[highway=unsurfaced][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 4;
+    z-index: 3;
+}
+
+way|z14-[highway=unsurfaced][bridge?]::bridge-casing2,
+way|z14-[highway=unsurfaced][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 5;
+    z-index: 3;
+}
+
+way|z14-[highway=bridleway][bridge?]::bridge-casing2,
+way|z14-[highway=bridleway][bridge=viaduct]::bridge-casing2,
+way|z14-[highway=path][horse=designated][bridge?]::bridge-casing2,
+way|z14-[highway=path][horse=designated][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 4;
+    z-index: 3;
+}
+
+way|z14-[highway=footway][bridge?]::bridge-casing2,
+way|z14-[highway=footway][bridge=viaduct]::bridge-casing2,
+way|z14-[highway=path][foot=designated][bridge?]::bridge-casing2,
+way|z14-[highway=path][foot=designated][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 4.5;
+    z-index: 3;
+}
+
+way|z14-[highway=path][bicycle!=designated][foot!=designated][horse!=designated][bridge?]::bridge-casing2,
+way|z14-[highway=path][bicycle!=designated][foot!=designated][horse!=designated][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 2.5;
+    z-index: 3;
+}
+
+way|z14-[highway=cycleway][bridge?]::bridge-casing2,
+way|z14-[highway=cycleway][bridge=viaduct]::bridge-casing2,
+way|z14-[highway=path][bicycle=designated][bridge?]::bridge-casing2,
+way|z14-[highway=path][bicycle=designated][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 4;
+    z-index: 3;
+}
+
+way|z14-[highway=byway][bridge?]::bridge-casing2,
+way|z14-[highway=byway][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 4;
+    z-index: 3;
+}
+
+way|z13-[railway=rail][bridge?]::bridge-casing2,
+way|z13-[railway=rail][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    linejoin: round;
+    width: 5;
+    z-index: 3;
+}
+
+way|z13-[railway=spur][bridge?]::bridge-casing2,
+way|z13-[railway=spur][bridge=viaduct]::bridge-casing2,
+way|z13-[railway=siding][bridge?]::bridge-casing2,
+way|z13-[railway=siding][bridge=viaduct]::bridge-casing2,
+way|z13-[railway=rail][service=spur][bridge?]::bridge-casing2,
+way|z13-[railway=rail][service=siding][bridge?]::bridge-casing2,
+way|z13-[railway=rail][service=yard][bridge?]::bridge-casing2,
+way|z13-[railway=rail][service=spur][bridge=viaduct]::bridge-casing2,
+way|z13-[railway=rail][service=siding][bridge=viaduct]::bridge-casing2,
+way|z13-[railway=rail][service=yard][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    linejoin: round;
+    width: 4;
+    z-index: 3;
+}
+
+way|z13-[railway=disused][!highway][bridge?]::bridge-casing2,
+way|z13-[railway=abandoned][!highway][bridge?]::bridge-casing2,
+way|z13-[railway=disused][!highway][bridge=viaduct]::bridge-casing2,
+way|z13-[railway=abandoned][!highway][bridge=viaduct]::bridge-casing2,
+way|z13-[railway=construction][!highway][bridge?]::bridge-casing2,
+way|z13-[railway=construction][!highway][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 4.5;
+    z-index: 3;
+}
+
+way|z14-[highway=track][tracktype=grade1][bridge?]::bridge-casing2,
+way|z14-[highway=track][tracktype=grade1][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    width: 3.5;
+    z-index: 3;
+}
+
+way|z14-[highway=track][tracktype=grade2][bridge?]::bridge-casing2,
+way|z14-[highway=track][tracktype=grade2][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    z-index: 3;
+}
+
+way|z14-[highway=track][tracktype=grade3][bridge?]::bridge-casing2,
+way|z14-[highway=track][tracktype=grade3][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 3.5;
+    z-index: 3;
+}
+
+way|z14-[highway=track][tracktype=grade4][bridge?]::bridge-casing2,
+way|z14-[highway=track][tracktype=grade4][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    z-index: 3;
+}
+
+way|z14-[highway=track][tracktype=grade5][bridge?]::bridge-casing2,
+way|z14-[highway=track][tracktype=grade5][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    z-index: 3;
+}
+
+way|z14-[highway=track][!tracktype][bridge?]::bridge-casing2,
+way|z14-[highway=track][!tracktype][bridge=viaduct]::bridge-casing2 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    z-index: 3;
+}
+
+/* Style 'bridges_fill' */
+
+way|z12[highway=motorway][bridge?],
+way|z12[highway=motorway][bridge=viaduct],
+way|z12[highway=motorway_link][bridge?],
+way|z12[highway=motorway_link][bridge=viaduct] {
+    color: #809bc0;
+    linecap: round;
+    linejoin: round;
+    width: 2;
+    z-index: 4;
+}
+
+way|z13-14[highway=motorway][bridge?],
+way|z13-14[highway=motorway][bridge=viaduct],
+way|z13-14[highway=motorway_link][bridge?],
+way|z13-14[highway=motorway_link][bridge=viaduct] {
+    color: #809bc0;
+    linecap: round;
+    linejoin: round;
+    width: 5.5;
+    z-index: 4;
+}
+
+way|z15-16[highway=motorway][bridge?],
+way|z15-16[highway=motorway][bridge=viaduct],
+way|z15-16[highway=motorway_link][bridge?],
+way|z15-16[highway=motorway_link][bridge=viaduct] {
+    color: #809bc0;
+    linecap: round;
+    linejoin: round;
+    width: 7.5;
+    z-index: 4;
+}
+
+way|z17-[highway=motorway][bridge?],
+way|z17-[highway=motorway][bridge=viaduct],
+way|z17-[highway=motorway_link][bridge?],
+way|z17-[highway=motorway_link][bridge=viaduct] {
+    color: #809bc0;
+    linecap: round;
+    linejoin: round;
+    width: 10;
+    z-index: 4;
+}
+
+way|z12[highway=trunk][bridge?],
+way|z12[highway=trunk][bridge=viaduct],
+way|z12[highway=trunk_link][bridge?],
+way|z12[highway=trunk_link][bridge=viaduct] {
+    color: #a9dba9;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    z-index: 4;
+}
+
+way|z13-14[highway=trunk][bridge?],
+way|z13-14[highway=trunk][bridge=viaduct],
+way|z13-14[highway=trunk_link][bridge?],
+way|z13-14[highway=trunk_link][bridge=viaduct] {
+    color: #a9dba9;
+    linecap: round;
+    linejoin: round;
+    width: 7;
+    z-index: 4;
+}
+
+way|z15-16[highway=trunk][bridge?],
+way|z15-16[highway=trunk][bridge=viaduct],
+way|z15-16[highway=trunk_link][bridge?],
+way|z15-16[highway=trunk_link][bridge=viaduct] {
+    color: #a9dba9;
+    linecap: round;
+    linejoin: round;
+    width: 9.5;
+    z-index: 4;
+}
+
+way|z17-[highway=trunk][bridge?],
+way|z17-[highway=trunk][bridge=viaduct],
+way|z17-[highway=trunk_link][bridge?],
+way|z17-[highway=trunk_link][bridge=viaduct] {
+    color: #a9dba9;
+    linecap: round;
+    linejoin: round;
+    width: 14.5;
+    z-index: 4;
+}
+
+way|z12[highway=primary][bridge?],
+way|z12[highway=primary][bridge=viaduct],
+way|z12[highway=primary_link][bridge?],
+way|z12[highway=primary_link][bridge=viaduct] {
+    color: #ec989a;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    z-index: 4;
+}
+
+way|z13-14[highway=primary][bridge?],
+way|z13-14[highway=primary][bridge=viaduct],
+way|z13-14[highway=primary_link][bridge?],
+way|z13-14[highway=primary_link][bridge=viaduct] {
+    color: #ec989a;
+    linecap: round;
+    linejoin: round;
+    width: 7;
+    z-index: 4;
+}
+
+way|z15-16[highway=primary][bridge?],
+way|z15-16[highway=primary][bridge=viaduct],
+way|z15-16[highway=primary_link][bridge?],
+way|z15-16[highway=primary_link][bridge=viaduct] {
+    color: #ec989a;
+    linecap: round;
+    linejoin: round;
+    width: 9.5;
+    z-index: 4;
+}
+
+way|z17-[highway=primary][bridge?],
+way|z17-[highway=primary][bridge=viaduct],
+way|z17-[highway=primary_link][bridge?],
+way|z17-[highway=primary_link][bridge=viaduct] {
+    color: #ec989a;
+    linecap: round;
+    linejoin: round;
+    width: 14.5;
+    z-index: 4;
+}
+
+way|z13-14[highway=secondary][bridge?],
+way|z13-14[highway=secondary][bridge=viaduct],
+way|z13-14[highway=secondary_link][bridge?],
+way|z13-14[highway=secondary_link][bridge=viaduct] {
+    color: #fed7a5;
+    linecap: round;
+    linejoin: round;
+    width: 9;
+    z-index: 4;
+}
+
+way|z15-16[highway=secondary][bridge?],
+way|z15-16[highway=secondary][bridge=viaduct],
+way|z15-16[highway=secondary_link][bridge?],
+way|z15-16[highway=secondary_link][bridge=viaduct] {
+    color: #fed7a5;
+    linecap: round;
+    linejoin: round;
+    width: 10.5;
+    z-index: 4;
+}
+
+way|z17-[highway=secondary][bridge?],
+way|z17-[highway=secondary][bridge=viaduct],
+way|z17-[highway=secondary_link][bridge?],
+way|z17-[highway=secondary_link][bridge=viaduct] {
+    color: #fed7a5;
+    linecap: round;
+    linejoin: round;
+    width: 14.5;
+    z-index: 4;
+}
+
+way|z14[highway=tertiary][bridge?],
+way|z14[highway=tertiary][bridge=viaduct],
+way|z14[highway=tertiary_link][bridge?],
+way|z14[highway=tertiary_link][bridge=viaduct] {
+    color: #ffffb3;
+    linecap: round;
+    linejoin: round;
+    width: 6;
+    z-index: 4;
+}
+
+way|z15-16[highway=tertiary][bridge?],
+way|z15-16[highway=tertiary][bridge=viaduct],
+way|z15-16[highway=tertiary_link][bridge?],
+way|z15-16[highway=tertiary_link][bridge=viaduct] {
+    color: #ffffb3;
+    linecap: round;
+    linejoin: round;
+    width: 9.5;
+    z-index: 4;
+}
+
+way|z17-[highway=tertiary][bridge?],
+way|z17-[highway=tertiary][bridge=viaduct],
+way|z17-[highway=tertiary_link][bridge?],
+way|z17-[highway=tertiary_link][bridge=viaduct] {
+    color: #ffffb3;
+    linecap: round;
+    linejoin: round;
+    width: 14;
+    z-index: 4;
+}
+
+way|z14[highway=road][bridge?],
+way|z14[highway=road][bridge=viaduct] {
+    color: #dddddd;
+    linecap: round;
+    linejoin: round;
+    width: 3.5;
+    z-index: 4;
+}
+
+way|z15-16[highway=road][bridge?],
+way|z15-16[highway=road][bridge=viaduct] {
+    color: #dddddd;
+    linecap: round;
+    linejoin: round;
+    width: 9.5;
+    z-index: 4;
+}
+
+way|z17-[highway=road][bridge?],
+way|z17-[highway=road][bridge=viaduct] {
+    color: #dddddd;
+    linecap: round;
+    linejoin: round;
+    width: 14;
+    z-index: 4;
+}
+
+way|z14[highway=residential][bridge?],
+way|z14[highway=residential][bridge=viaduct],
+way|z14[highway=unclassified][bridge?],
+way|z14[highway=unclassified][bridge=viaduct] {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 3.5;
+    z-index: 4;
+}
+
+way|z15[highway=residential][bridge?],
+way|z15[highway=residential][bridge=viaduct],
+way|z15[highway=unclassified][bridge?],
+way|z15[highway=unclassified][bridge=viaduct] {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 7.5;
+    z-index: 4;
+}
+
+way|z16[highway=residential][bridge?],
+way|z16[highway=residential][bridge=viaduct],
+way|z16[highway=unclassified][bridge?],
+way|z16[highway=unclassified][bridge=viaduct] {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 9.5;
+    z-index: 4;
+}
+
+way|z17-[highway=residential][bridge?],
+way|z17-[highway=residential][bridge=viaduct],
+way|z17-[highway=unclassified][bridge?],
+way|z17-[highway=unclassified][bridge=viaduct] {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 14;
+    z-index: 4;
+}
+
+way|z14-15[highway=service][bridge?],
+way|z14-15[highway=service][bridge=viaduct] {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 2;
+    z-index: 4;
+}
+
+way|z16-[highway=service][bridge?],
+way|z16-[highway=service][bridge=viaduct] {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 6;
+    z-index: 4;
+}
+
+way|z13[highway=pedestrian][bridge?],
+way|z13[highway=pedestrian][bridge=viaduct] {
+    color: #ededed;
+    linecap: round;
+    linejoin: round;
+    width: 1.5;
+    z-index: 4;
+}
+
+way|z14[highway=pedestrian][bridge?],
+way|z14[highway=pedestrian][bridge=viaduct] {
+    color: #ededed;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    z-index: 4;
+}
+
+way|z15[highway=pedestrian][bridge?],
+way|z15[highway=pedestrian][bridge=viaduct] {
+    color: #ededed;
+    linecap: round;
+    linejoin: round;
+    width: 5.5;
+    z-index: 4;
+}
+
+way|z16-[highway=pedestrian][bridge?],
+way|z16-[highway=pedestrian][bridge=viaduct] {
+    color: #ededed;
+    linecap: round;
+    linejoin: round;
+    width: 8;
+    z-index: 4;
+}
+
+way|z14-[aeroway=runway][bridge?],
+way|z14-[aeroway=runway][bridge=viaduct] {
+    color: #bbbbcc;
+    width: 18;
+    z-index: 4;
+}
+
+way|z14[aeroway=taxiway][bridge?],
+way|z14[aeroway=taxiway][bridge=viaduct] {
+    color: #bbbbcc;
+    width: 4;
+    z-index: 4;
+}
+
+way|z15-[aeroway=taxiway][bridge?],
+way|z15-[aeroway=taxiway][bridge=viaduct] {
+    color: #bbbbcc;
+    width: 6;
+    z-index: 4;
+}
+
+way|z14-[railway=subway][bridge?],
+way|z14-[railway=subway][bridge=viaduct] {
+    color: #999999;
+    width: 2;
+    z-index: 4;
+}
+
+way|z14-[railway=light_rail][bridge?],
+way|z14-[railway=light_rail][bridge=viaduct],
+way|z14-[railway=narrow_gauge][bridge?],
+way|z14-[railway=narrow_gauge][bridge=viaduct] {
+    color: #666666;
+    width: 2;
+    z-index: 4;
+}
+
+way|z13[highway=unsurfaced][bridge?],
+way|z13[highway=unsurfaced][bridge=viaduct] {
+    color: #debd9c;
+    dashes: 2,4;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    z-index: 4;
+}
+
+way|z14-[highway=unsurfaced][bridge?],
+way|z14-[highway=unsurfaced][bridge=viaduct] {
+    color: #debd9c;
+    dashes: 4,6;
+    linecap: round;
+    linejoin: round;
+    width: 4;
+    z-index: 4;
+}
+
+way|z14-[highway=bridleway][bridge?],
+way|z14-[highway=bridleway][bridge=viaduct],
+way|z14-[highway=path][horse=designated][bridge?],
+way|z14-[highway=path][horse=designated][bridge=viaduct] {
+    color: green;
+    dashes: 4,2;
+    width: 1.5;
+    z-index: 4;
+}
+
+way|z14-[highway=footway][bridge?],
+way|z14-[highway=footway][bridge=viaduct],
+way|z14-[highway=path][foot=designated][bridge?],
+way|z14-[highway=path][foot=designated][bridge=viaduct] {
+    color: salmon;
+    dashes: 1,3;
+    linecap: round;
+    linejoin: round;
+    width: 2;
+    z-index: 4;
+}
+
+way|z14-[highway=path][bicycle!=designated][foot!=designated][horse!=designated][bridge?],
+way|z14-[highway=path][bicycle!=designated][foot!=designated][horse!=designated][bridge=viaduct] {
+    color: black;
+    dashes: 6,3;
+    linecap: round;
+    linejoin: round;
+    width: 0.5;
+    z-index: 4;
+}
+
+way|z14-[highway=cycleway][bridge?],
+way|z14-[highway=cycleway][bridge=viaduct],
+way|z14-[highway=path][bicycle=designated][bridge?],
+way|z14-[highway=path][bicycle=designated][bridge=viaduct] {
+    color: blue;
+    dashes: 1,3;
+    linecap: round;
+    linejoin: round;
+    width: 1.5;
+    z-index: 4;
+}
+
+way|z14-[highway=byway][bridge?],
+way|z14-[highway=byway][bridge=viaduct] {
+    color: #ffcc00;
+    dashes: 3,4;
+    linecap: round;
+    linejoin: round;
+    width: 1.5;
+    z-index: 4;
+}
+
+way|z13[railway=rail][bridge?]::casing1,
+way|z13[railway=rail][bridge=viaduct]::casing1 {
+    color: #999999;
+    linejoin: round;
+    width: 3;
+    z-index: 3.9;
+}
+way|z13[railway=rail][bridge?],
+way|z13[railway=rail][bridge=viaduct] {
+    color: white;
+    dashes: 8,12;
+    linejoin: round;
+    width: 1;
+    z-index: 4;
+}
+
+way|z14-[railway=rail][bridge?]::casing1,
+way|z14-[railway=rail][bridge=viaduct]::casing1 {
+    color: #999999;
+    linejoin: round;
+    width: 3;
+    z-index: 3.9;
+}
+way|z14-[railway=rail][bridge?],
+way|z14-[railway=rail][bridge=viaduct] {
+    color: white;
+    dashes: 0,11,8,1;
+    linejoin: round;
+    width: 1;
+    z-index: 4;
+}
+
+way|z13-[railway=spur][bridge?],
+way|z13-[railway=spur][bridge=viaduct],
+way|z13-[railway=siding][bridge?],
+way|z13-[railway=siding][bridge=viaduct],
+way|z13-[railway=rail][service=spur][bridge?],
+way|z13-[railway=rail][service=siding][bridge?],
+way|z13-[railway=rail][service=yard][bridge?],
+way|z13-[railway=rail][service=spur][bridge=viaduct],
+way|z13-[railway=rail][service=siding][bridge=viaduct],
+way|z13-[railway=rail][service=yard][bridge=viaduct] {
+    color: #999999;
+    linejoin: round;
+    width: 2;
+    z-index: 4;
+}
+way|z13-[railway=spur][bridge?]::over1,
+way|z13-[railway=spur][bridge=viaduct]::over1,
+way|z13-[railway=siding][bridge?]::over1,
+way|z13-[railway=siding][bridge=viaduct]::over1,
+way|z13-[railway=rail][service=spur][bridge?]::over1,
+way|z13-[railway=rail][service=siding][bridge?]::over1,
+way|z13-[railway=rail][service=yard][bridge?]::over1,
+way|z13-[railway=rail][service=spur][bridge=viaduct]::over1,
+way|z13-[railway=rail][service=siding][bridge=viaduct]::over1,
+way|z13-[railway=rail][service=yard][bridge=viaduct]::over1 {
+    color: white;
+    dashes: 0,8,11,1;
+    linejoin: round;
+    width: 0.8;
+    z-index: 4.1;
+}
+
+way|z13-[railway=disused][!highway][bridge?],
+way|z13-[railway=abandoned][!highway][bridge?],
+way|z13-[railway=disused][!highway][bridge=viaduct],
+way|z13-[railway=abandoned][!highway][bridge=viaduct],
+way|z13-[railway=construction][!highway][bridge?],
+way|z13-[railway=construction][!highway][bridge=viaduct] {
+    color: grey;
+    dashes: 2,4;
+    linejoin: round;
+    width: 2;
+    z-index: 4;
+}
+
+way|z14-[highway=track][tracktype=grade1][bridge?],
+way|z14-[highway=track][tracktype=grade1][bridge=viaduct] {
+    color: #b37700;
+    opacity: 0.7;
+    width: 2;
+    z-index: 4;
+}
+
+way|z14-[highway=track][tracktype=grade2][bridge?],
+way|z14-[highway=track][tracktype=grade2][bridge=viaduct] {
+    color: #a87000;
+    dashes: 3,4;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.8;
+    width: 1.5;
+    z-index: 4;
+}
+
+way|z14-[highway=track][tracktype=grade3][bridge?],
+way|z14-[highway=track][tracktype=grade3][bridge=viaduct] {
+    color: #996600;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.7;
+    width: 2;
+    z-index: 4;
+}
+
+way|z14-[highway=track][tracktype=grade4][bridge?],
+way|z14-[highway=track][tracktype=grade4][bridge=viaduct] {
+    color: #996600;
+    dashes: 4,7,1,5;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.8;
+    width: 2;
+    z-index: 4;
+}
+
+way|z14-[highway=track][tracktype=grade5][bridge?],
+way|z14-[highway=track][tracktype=grade5][bridge=viaduct] {
+    color: #996600;
+    dashes: 1,5;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.8;
+    width: 2;
+    z-index: 4;
+}
+
+way|z14-[highway=track][!tracktype][bridge?],
+way|z14-[highway=track][!tracktype][bridge=viaduct] {
+    color: #996600;
+    dashes: 3,4;
+    linecap: round;
+    linejoin: round;
+    width: 1.5;
+    z-index: 4;
+}

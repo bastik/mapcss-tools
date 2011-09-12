@@ -1,0 +1,19 @@
+
+/**
+ * Layer 'water-lines-casing'
+ * Style 'water-lines-casing'
+ */
+
+way|z13-14[waterway=stream][!tunnel?]::water_lines-casing,
+way|z13-14[waterway=ditch][!tunnel?]::water_lines-casing,
+way|z13-14[waterway=drain][!tunnel?]::water_lines-casing {
+    color: white;
+    width: 1.5;
+    z-index: -1;
+}
+
+way|z15-[waterway=stream][!tunnel?]::water_lines-casing {
+    color: white;
+    width: 2.5;
+    z-index: -1;
+}

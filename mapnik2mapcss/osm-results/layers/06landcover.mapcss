@@ -1,0 +1,285 @@
+
+/**
+ * Layer 'landcover'
+ * Style 'landcover'
+ */
+
+area|z14-[leisure=swimming_pool] {
+    fill-color: #b5d0d0;
+    color: blue;
+    width: 0.5;
+}
+
+area|z13-[leisure=playground] {
+    fill-color: #ccfff1;
+    color: #666666;
+    width: 0.3;
+}
+
+area|z13-[tourism=camp_site],
+area|z13-[tourism=caravan_site],
+area|z13-[tourism=picnic_site] {
+    fill-color: #ccff99;
+    fill-opacity: 0.5;
+    color: #666666;
+    width: 0.3;
+}
+
+area|z10-[tourism=attraction] {
+    fill-color: #f2caea;
+}
+
+area|z11-[landuse=quarry] {
+    fill-image: "symbols/quarry2.png";
+    color: grey;
+    width: 0.5;
+}
+
+area|z10-12[landuse=vineyard] {
+    fill-color: #abdf96;
+}
+
+area|z10-[landuse=orchard] {
+    fill-image: "symbols/orchard.png";
+}
+
+area|z13-[landuse=vineyard] {
+    fill-image: "symbols/vineyard.png";
+}
+
+area|z10-14[landuse=cemetery],
+area|z10-14[landuse=grave_yard],
+area|z10-14[amenity=grave_yard] {
+    fill-color: #aacbaf;
+}
+
+area|z10-[landuse=residential] {
+    fill-color: #dddddd;
+}
+
+area|z12-[landuse=garages] {
+    fill-color: #999966;
+    fill-opacity: 0.2;
+}
+
+area|z10-[military=barracks] {
+    fill-color: #ff8f8f;
+}
+
+area|z10-13[landuse=field],
+area|z10-13[natural=field] {
+    fill-color: #666600;
+    fill-opacity: 0.2;
+}
+
+area|z14-[landuse=field],
+area|z14-[natural=field] {
+    fill-color: #666600;
+    fill-opacity: 0.2;
+    color: #666600;
+    opacity: 0.4;
+    width: 0.3;
+}
+
+area|z9-10[military=danger_area] {
+    fill-color: pink;
+    fill-opacity: 0.3;
+}
+
+area|z11-[military=danger_area] {
+    fill-image: "symbols/danger.png";
+}
+
+area|z14-[landuse=cemetery][religion=jewish],
+area|z14-[landuse=grave_yard][religion=jewish],
+area|z14-[amenity=grave_yard][religion=jewish] {
+    fill-image: "symbols/cemetery_jewish.18.png";
+}
+
+area|z14-[landuse=cemetery][religion=christian],
+area|z14-[landuse=grave_yard][religion=christian],
+area|z14-[amenity=grave_yard][religion=christian] {
+    fill-image: "symbols/grave_yard.png";
+}
+
+area|z14-[landuse=cemetery][religion!=christian][religion!=jewish],
+area|z14-[landuse=grave_yard][religion!=christian][religion!=jewish],
+area|z14-[amenity=grave_yard][religion!=christian][religion!=jewish] {
+    fill-image: "symbols/grave_yard_generic.png";
+}
+
+area|z10-[landuse=meadow],
+area|z10-[landuse=grass] {
+    fill-color: #cfeca8;
+}
+
+area|z10-[leisure=park],
+area|z10-[leisure=recreation_ground] {
+    fill-color: #b6fdb6;
+    fill-opacity: 0.6;
+}
+
+area|z10-[tourism=zoo] {
+    fill-image: "symbols/zoo.png";
+}
+
+area|z10-[leisure=common] {
+    fill-color: #cfeca8;
+}
+
+area|z10-[leisure=garden] {
+    fill-color: #cfeca8;
+}
+
+area|z10-[leisure=golf_course] {
+    fill-color: #b5e3b5;
+}
+
+area|z10-13[landuse=allotments] {
+    fill-color: #e5c7ab;
+}
+
+area|z14-[landuse=allotments] {
+    fill-image: "symbols/allotments.png";
+}
+
+area|z8-13[landuse=forest] {
+    fill-color: #8dc56c;
+}
+
+area|z14-[landuse=forest] {
+    fill-image: "symbols/forest.png";
+}
+
+area|z9-[landuse=farmyard] {
+    fill-color: #ddbf92;
+}
+
+area|z9-[landuse=farm],
+area|z9-[landuse=farmland] {
+    fill-color: #ead8bd;
+}
+
+area|z10-[landuse=recreation_ground],
+area|z10-[landuse=conservation] {
+    fill-color: #cfeca8;
+}
+
+area|z11-[landuse=village_green] {
+    fill-color: #cfeca8;
+}
+
+area|z10-[landuse=retail] {
+    fill-color: #f1dada;
+}
+
+area|z15-[landuse=retail] {
+    color: red;
+    width: 0.3;
+}
+
+area|z10-[landuse=industrial],
+area|z10-[landuse=railway] {
+    fill-color: #dfd1d6;
+}
+
+area|z10-11[power=station],
+area|z10-11[power=generator] {
+    fill-color: #bbbbbb;
+}
+
+area|z12-[power=station],
+area|z12-[power=generator] {
+    fill-color: #bbbbbb;
+    color: #555555;
+    width: 0.4;
+}
+
+area|z13-[power=sub_station] {
+    fill-color: #bbbbbb;
+    color: #555555;
+    width: 0.4;
+}
+
+area|z10-[landuse=commercial] {
+    fill-color: #efc8c8;
+}
+
+area|z10-[landuse=brownfield],
+area|z10-[landuse=landfill],
+area|z10-[landuse=greenfield],
+area|z10-[landuse=construction] {
+    fill-color: #9d9d6c;
+    fill-opacity: 0.7;
+}
+
+area|z8-[natural=wood],
+area|z8-[landuse=wood] {
+    fill-color: #aed1a0;
+}
+
+area|z8-[natural=desert] {
+    fill-color: #e3b57a;
+}
+
+area|z10-[natural=sand] {
+    fill-color: #ffdf88;
+}
+
+area|z10-[natural=heath] {
+    fill-color: #d6d99f;
+}
+
+area|z10-13[natural=scrub] {
+    fill-color: #b5e3b5;
+}
+
+area|z14-[natural=scrub] {
+    fill-image: "symbols/scrub.png";
+}
+
+area|z10-[amenity=university],
+area|z10-[amenity=college],
+area|z10-[amenity=school],
+area|z10-[amenity=hospital],
+area|z10-[amenity=kindergarten] {
+    fill-color: #f0f0d8;
+}
+
+area|z12-[amenity=university],
+area|z12-[amenity=college],
+area|z12-[amenity=school],
+area|z12-[amenity=hospital],
+area|z12-[amenity=kindergarten] {
+    color: brown;
+    width: 0.3;
+}
+
+area|z10-[amenity=parking] {
+    fill-color: #f7efb7;
+}
+
+area|z15-[amenity=parking] {
+    color: #eeeed1;
+    width: 0.3;
+}
+
+area|z12-[aeroway=apron] {
+    fill-color: #e9d1ff;
+}
+
+area|z12-[aeroway=aerodrome] {
+    fill-color: #cccccc;
+    fill-opacity: 0.2;
+    color: #555555;
+    width: 0.2;
+}
+
+area|z13-[natural=beach] {
+    fill-image: "symbols/beach.png";
+}
+
+area|z14-[highway=services],
+area|z14-[highway=rest_area] {
+    fill-color: #efc8c8;
+}

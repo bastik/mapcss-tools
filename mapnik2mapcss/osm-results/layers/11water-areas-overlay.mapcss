@@ -1,0 +1,11 @@
+
+/**
+ * Layer 'water-areas-overlay'
+ * Style 'water-areas-overlay'
+ */
+
+area|z13-[natural=marsh],
+area|z13-[natural=wetland] {
+    fill-image: "symbols/marsh.png";
+    z-index: -998;
+}

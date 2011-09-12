@@ -1,0 +1,35 @@
+
+/**
+ * Layer 'line features'
+ * Style 'cliffs'
+ */
+
+way|z13-14[natural=cliff] {
+    pattern-image: "symbols/cliff.png";
+}
+
+way|z15-[natural=cliff] {
+    pattern-image: "symbols/cliff2.png";
+}
+
+way|z15-[man_made=embankment] {
+    pattern-image: "symbols/cliff.png";
+}
+
+/* Style 'barriers' */
+
+way|z14-[barrier=embankment] {
+    color: #444444;
+    width: 0.4;
+}
+
+way|z16-[natural=hedge],
+way|z16-[barrier=hedge] {
+    color: #aed1a0;
+    width: 3;
+}
+
+way|z16-[barrier][barrier!=hedge][barrier!=embankment] {
+    color: #444444;
+    width: 0.4;
+}

@@ -1,0 +1,366 @@
+
+/**
+ * Layer 'water_lines'
+ * Style 'water_lines'
+ */
+
+way|z15-[waterway=weir][!bridge?][bridge!=aqueduct] {
+    color: #aaaaaa;
+    linecap: round;
+    linejoin: round;
+    width: 2;
+}
+
+way|z13-15[waterway=wadi][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    dashes: 4,4;
+    linecap: round;
+    linejoin: round;
+    width: 1;
+}
+
+way|z16-[waterway=wadi][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    dashes: 4,4;
+    linecap: round;
+    linejoin: round;
+    width: 2;
+}
+
+way|z12[waterway=river][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    linecap: round;
+    linejoin: round;
+    width: 2;
+}
+
+way|z13[waterway=river][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+    text-spacing: 400;
+}
+
+way|z14[waterway=river][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    linecap: round;
+    linejoin: round;
+    width: 5;
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+    text-spacing: 400;
+}
+
+way|z15-16[waterway=river][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    linecap: round;
+    linejoin: round;
+    width: 6;
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+    text-spacing: 400;
+}
+
+way|z17[waterway=river][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    linecap: round;
+    linejoin: round;
+    width: 10;
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+    text-spacing: 400;
+}
+
+way|z18-[waterway=river][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    linecap: round;
+    linejoin: round;
+    width: 12;
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+    text-spacing: 400;
+}
+
+way|z12[waterway=canal][disused!=yes][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+}
+
+way|z13[waterway=canal][disused!=yes][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    linecap: round;
+    linejoin: round;
+    width: 4;
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+}
+
+way|z13-14[waterway=stream][!bridge?][bridge!=aqueduct],
+way|z13-14[waterway=ditch][!bridge?][bridge!=aqueduct],
+way|z13-14[waterway=drain][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    width: 1;
+}
+
+way|z14[waterway=river][tunnel?][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    dashes: 4,2;
+    width: 6;
+}
+way|z14[waterway=river][tunnel?][!bridge?][bridge!=aqueduct]::over1 {
+    color: white;
+    width: 4;
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+    z-index: 0.1;
+}
+
+way|z15-16[waterway=river][tunnel?][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    dashes: 4,2;
+    width: 7;
+}
+way|z15-16[waterway=river][tunnel?][!bridge?][bridge!=aqueduct]::over1 {
+    color: white;
+    width: 4;
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+    z-index: 0.1;
+}
+
+way|z17[waterway=river][tunnel?][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    dashes: 4,2;
+    width: 11;
+}
+way|z17[waterway=river][tunnel?][!bridge?][bridge!=aqueduct]::over1 {
+    color: white;
+    width: 7;
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+    z-index: 0.1;
+}
+
+way|z18-[waterway=river][tunnel?][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    dashes: 4,2;
+    width: 13;
+}
+way|z18-[waterway=river][tunnel?][!bridge?][bridge!=aqueduct]::over1 {
+    color: white;
+    width: 9;
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+    z-index: 0.1;
+}
+
+way|z14-16[waterway=canal][tunnel?][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    dashes: 4,2;
+    width: 7;
+}
+way|z14-16[waterway=canal][tunnel?][!bridge?][bridge!=aqueduct]::over1 {
+    color: white;
+    width: 3;
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+    z-index: 0.1;
+}
+
+way|z14-16[waterway=canal][!tunnel?][disused!=yes][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    linecap: round;
+    linejoin: round;
+    width: 7;
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+}
+
+way|z17-[waterway=canal][tunnel?][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    dashes: 4,2;
+    width: 11;
+}
+way|z17-[waterway=canal][tunnel?][!bridge?][bridge!=aqueduct]::over1 {
+    color: white;
+    width: 7;
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+    z-index: 0.1;
+}
+
+way|z17-[waterway=canal][!tunnel?][disused!=yes][lock!=yes][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    linecap: round;
+    linejoin: round;
+    width: 11;
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+}
+
+way|z17-[waterway=canal][!tunnel?][disused!=yes][lock=yes][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    linecap: round;
+    linejoin: round;
+    width: 7;
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-wrap-width: 20;
+}
+
+way|z12[waterway=derelict_canal][!bridge?][bridge!=aqueduct],
+way|z12[waterway=canal][disused=yes][!bridge?][bridge!=aqueduct] {
+    color: #b5e4d0;
+    dashes: 4,4;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 1.5;
+}
+
+way|z13[waterway=derelict_canal][!bridge?][bridge!=aqueduct],
+way|z13[waterway=canal][disused=yes][!bridge?][bridge!=aqueduct] {
+    color: #b5e4d0;
+    dashes: 4,6;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 2.5;
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: #80d1ae;
+    text-halo-radius: 1;
+    text-position: line;
+    text-spacing: 600;
+}
+
+way|z14-[waterway=derelict_canal][!bridge?][bridge!=aqueduct],
+way|z14-[waterway=canal][disused=yes][!bridge?][bridge!=aqueduct] {
+    color: #b5e4d0;
+    dashes: 4,8;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 4.5;
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: #80d1ae;
+    text-halo-radius: 1;
+    text-position: line;
+    text-spacing: 600;
+}
+
+way|z15-[waterway=stream][tunnel?][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    dashes: 4,2;
+    width: 2.4;
+}
+way|z15-[waterway=stream][tunnel?][!bridge?][bridge!=aqueduct]::over1 {
+    color: #f3f7f7;
+    width: 1.2;
+    z-index: 0.1;
+}
+
+way|z15-[waterway=stream][!tunnel?][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    width: 2;
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+    text-spacing: 600;
+}
+
+way|z15-[waterway=drain][tunnel?][!bridge?][bridge!=aqueduct],
+way|z15-[waterway=ditch][tunnel?][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    dashes: 4,2;
+    width: 2;
+}
+way|z15-[waterway=drain][tunnel?][!bridge?][bridge!=aqueduct]::over1,
+way|z15-[waterway=ditch][tunnel?][!bridge?][bridge!=aqueduct]::over1 {
+    color: #f3f7f7;
+    width: 1;
+    z-index: 0.1;
+}
+
+way|z15-[waterway=drain][!tunnel?][!bridge?][bridge!=aqueduct],
+way|z15-[waterway=ditch][!tunnel?][!bridge?][bridge!=aqueduct] {
+    color: #b5d0d0;
+    width: 1;
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+    text-spacing: 600;
+}

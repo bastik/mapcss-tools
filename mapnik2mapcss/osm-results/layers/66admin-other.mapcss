@@ -1,0 +1,19 @@
+
+/**
+ * Layer 'admin-other'
+ * Style 'admin-other'
+ */
+
+way|z13-[admin_level=10],
+way|z13-[admin_level=9] {
+    color: purple;
+    dashes: 2,3;
+    opacity: 0.3;
+    width: 2;
+}
+
+way|z9-11[admin_level][admin_level>8] {
+    color: purple;
+    opacity: 0.2;
+    width: 1;
+}

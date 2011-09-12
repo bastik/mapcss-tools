@@ -1,0 +1,20 @@
+
+/**
+ * Layer 'water-lines-low-zoom'
+ * Style 'water-lines-low-zoom'
+ */
+
+way|z8[waterway=river] {
+    color: #b5d0d0;
+    width: 0.7;
+}
+
+way|z9[waterway=river] {
+    color: #b5d0d0;
+    width: 1.2;
+}
+
+way|z10-11[waterway=river] {
+    color: #b5d0d0;
+    width: 1.6;
+}

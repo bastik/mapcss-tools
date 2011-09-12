@@ -1,0 +1,9 @@
+
+/**
+ * Layer 'locks'
+ * Style 'locks'
+ */
+
+node|z17-[waterway=lock_gate] {
+    icon-image: "symbols/lock_gate.png";
+}

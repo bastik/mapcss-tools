@@ -1,0 +1,19 @@
+
+/**
+ * Layer 'marinas-area'
+ * Style 'marinas-area'
+ */
+
+area|z14-15[leisure=marina] {
+    color: blue;
+    dashes: 6,2;
+    opacity: 0.5;
+    width: 1;
+}
+
+area|z16-[leisure=marina] {
+    color: blue;
+    dashes: 6,2;
+    opacity: 0.5;
+    width: 2;
+}

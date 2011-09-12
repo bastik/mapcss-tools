@@ -1,0 +1,27 @@
+
+/**
+ * Layer 'admin-5678'
+ * Style 'admin-5678'
+ */
+
+way|z11-[admin_level=5] {
+    color: purple;
+    dashes: 6,3,2,3,2,3;
+    opacity: 0.3;
+    width: 2;
+}
+
+way|z11-[admin_level=6] {
+    color: purple;
+    dashes: 6,3,2,3;
+    opacity: 0.3;
+    width: 2;
+}
+
+way|z12-[admin_level=8],
+way|z12-[admin_level=7] {
+    color: purple;
+    dashes: 5,2;
+    opacity: 0.3;
+    width: 1.5;
+}

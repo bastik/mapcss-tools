@@ -1,0 +1,26 @@
+
+/**
+ * Layer 'citywalls'
+ * Style 'citywalls'
+ */
+
+way|z14[historic=citywalls] {
+    color: grey;
+    linejoin: round;
+    opacity: 0.8;
+    width: 4;
+}
+
+way|z15[historic=citywalls] {
+    color: grey;
+    linejoin: round;
+    opacity: 0.8;
+    width: 6;
+}
+
+way|z16-[historic=citywalls] {
+    color: grey;
+    linejoin: round;
+    opacity: 0.8;
+    width: 9;
+}

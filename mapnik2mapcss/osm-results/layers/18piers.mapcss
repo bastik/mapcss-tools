@@ -1,0 +1,38 @@
+
+/**
+ * Layer 'piers'
+ * Style 'piers'
+ */
+
+way|z11-12[man_made=breakwater],
+way|z11-12[man_made=groyne] {
+    color: #aaaaaa;
+    width: 1;
+}
+
+way|z11-12[man_made=pier] {
+    color: #f2efe9;
+    width: 1.5;
+}
+
+way|z13-15[man_made=breakwater],
+way|z13-15[man_made=groyne] {
+    color: #aaaaaa;
+    width: 2;
+}
+
+way|z13-15[man_made=pier] {
+    color: #f2efe9;
+    width: 3;
+}
+
+way|z16-[man_made=breakwater],
+way|z16-[man_made=groyne] {
+    color: #aaaaaa;
+    width: 4;
+}
+
+way|z16-[man_made=pier] {
+    color: #f2efe9;
+    width: 7;
+}

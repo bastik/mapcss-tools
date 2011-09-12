@@ -1,0 +1,91 @@
+01  world
+02  coast-poly
+03  builtup
+04  necountries
+05  nepopulated
+06  landcover
+07  landcover_line
+08  sports_grounds
+09  water-lines-casing
+10  water_areas
+11  water-areas-overlay
+12  glaciers-text
+13  water-lines-low-zoom
+14  water_lines
+15  dam
+16  marinas-area
+17  piers-area
+18  piers
+19  locks
+20  tunnels                     (tunnels-casing, tunnels-fill)
+21  citywalls
+22  castle_walls
+23  castle_walls-2(duplicate)
+24  landuse_overlay
+25  turning_circle-casing
+26  footbikecycle-tunnels
+27  tracks-tunnels
+28  line features               (cliffs, barriers)
+29  polygon barriers            (barriers_area)
+30  highway-area-casing
+31  minor-roads-casing          (minor-roads-casing-links, minor-roads-casing)
+32  highway-area-fill
+33  buildings-lz
+34  buildings
+35  turning_circle-fill
+36  tracks-notunnel-nobridge
+37  minor-roads-fill            (minor-roads-fill-links, minor-roads-fill)
+38  ferry-routes
+39  aerialways
+40  roads
+41  waterway-bridges
+42  access-pre_bridges          (access)
+43  direction_pre_bridges       (directions)
+44  bridges_layer0              (bridges_casing, bridges_casing2, bridges_fill)
+45  bridges_access0             (access)
+46  bridges_directions0         (directions)
+47  bridges_layer1              (bridges_casing, bridges_casing2, bridges_fill)
+48  bridges_access1             (access)
+49  bridges_directions1         (directions)
+50  bridges_layer2              (bridges_casing, bridges_casing2, bridges_fill)
+51  bridges_access2             (access)
+52  bridges_directions2         (directions)
+53  bridges_layer3              (bridges_casing, bridges_casing2, bridges_fill)
+54  bridges_access3             (access)
+55  bridges_directions3         (directions)
+56  bridges_layer4              (bridges_casing, bridges_casing2, bridges_fill)
+57  bridges_access4             (access)
+58  bridges_directions4         (directions)
+59  bridges_layer5              (bridges_casing, bridges_casing2, bridges_fill)
+60  bridges_access5             (access)
+61  bridges_directions5         (directions)
+62  trams
+63  guideways
+64  admin-01234
+65  admin-5678
+66  admin-other
+67  placenames-large            (country, state)
+68  placenames-capital          (capital)
+69  placenames-medium           (city,town)
+70  placenames-small            (suburb, village, hamlet)
+71  amenity-stations            (stations)
+72  amenity-stations-poly       (stations)
+73  amenity-symbols             (symbols)
+74  amenity-symbols-poly        (symbols)
+75  amenity-points              (points)
+76  amenity-points-poly         (points)
+77  power_line
+78  power_minorline
+79  power_towers
+80  power_poles
+81  planet roads text osm low zoom  (roads-text-low-zoom)
+82  highway-junctions
+83  planet roads text osm           (roads-text)
+84  text
+85  text-poly                       (text)
+86  area-text
+87  interpolation_lines             (interpolation)
+88  housenumbers
+89  housenames
+90  misc_boundaries                 (boundary)
+91  theme_park

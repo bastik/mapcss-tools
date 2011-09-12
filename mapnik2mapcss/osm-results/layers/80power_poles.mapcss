@@ -1,0 +1,9 @@
+
+/**
+ * Layer 'power_poles'
+ * Style 'power_poles'
+ */
+
+node|z16-[power=pole] {
+    icon-image: "symbols/power_pole.png";
+}

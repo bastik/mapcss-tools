@@ -1,0 +1,53 @@
+
+/**
+ * Layer 'admin-01234'
+ * Style 'admin-01234'
+ */
+
+way|z4-6[admin_level=2],
+way|z4-6[admin_level=3] {
+    color: purple;
+    opacity: 0.2;
+    width: 0.6;
+}
+
+way|z7-9[admin_level=2],
+way|z7-9[admin_level=3] {
+    color: purple;
+    opacity: 0.2;
+    width: 2;
+}
+
+way|z10-[admin_level=2] {
+    color: purple;
+    opacity: 0.1;
+    width: 6;
+}
+
+way|z10-[admin_level=3] {
+    color: purple;
+    dashes: 4,2;
+    opacity: 0.1;
+    width: 5;
+}
+
+way|z4-6[admin_level=4] {
+    color: purple;
+    dashes: 4,3;
+    opacity: 0.2;
+    width: 0.6;
+}
+
+way|z7-10[admin_level=4] {
+    color: purple;
+    dashes: 4,3;
+    opacity: 0.2;
+    width: 1;
+}
+
+way|z11-[admin_level=4] {
+    color: purple;
+    dashes: 4,3;
+    opacity: 0.2;
+    width: 3;
+}

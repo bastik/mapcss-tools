@@ -1,0 +1,47 @@
+
+/**
+ * Layer 'waterway-bridges'
+ * Style 'waterway-bridges'
+ */
+
+way|z14-16[waterway=canal][bridge?],
+way|z14-16[waterway=canal][bridge=aqueduct] {
+    color: black;
+    linejoin: round;
+    width: 7;
+}
+way|z14-16[waterway=canal][bridge?]::over1,
+way|z14-16[waterway=canal][bridge=aqueduct]::over1 {
+    color: #b5d0d0;
+    linecap: round;
+    linejoin: round;
+    width: 6;
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+    z-index: 0.1;
+}
+
+way|z17-[waterway=canal][bridge?],
+way|z17-[waterway=canal][bridge=aqueduct] {
+    color: black;
+    linejoin: round;
+    width: 11;
+}
+way|z17-[waterway=canal][bridge?]::over1,
+way|z17-[waterway=canal][bridge=aqueduct]::over1 {
+    color: #b5d0d0;
+    linecap: round;
+    linejoin: round;
+    width: 10;
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-position: line;
+    z-index: 0.1;
+}

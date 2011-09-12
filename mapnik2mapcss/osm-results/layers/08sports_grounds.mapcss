@@ -1,0 +1,25 @@
+
+/**
+ * Layer 'sports_grounds'
+ * Style 'sports_grounds'
+ */
+
+area|z10-[leisure=sports_centre],
+area|z10-[leisure=stadium] {
+    fill-color: #33cc99;
+    z-index: -999;
+}
+
+area|z10-[leisure=track] {
+    fill-color: #74dcba;
+    color: #888888;
+    width: 0.5;
+    z-index: -998;
+}
+
+area|z10-[leisure=pitch] {
+    fill-color: #8ad3af;
+    color: #888888;
+    width: 0.5;
+    z-index: -997;
+}

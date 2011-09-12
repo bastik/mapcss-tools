@@ -1,0 +1,106 @@
+
+/**
+ * Layer 'footbikecycle-tunnels'
+ * Style 'footbikecycle-tunnels'
+ */
+
+way|z13-[highway=bridleway][tunnel?]::under2,
+way|z13-[highway=path][horse=designated][tunnel?]::under2 {
+    color: grey;
+    dashes: 4,2;
+    width: 5;
+    z-index: -0.2;
+}
+way|z13-[highway=bridleway][tunnel?]::under1,
+way|z13-[highway=path][horse=designated][tunnel?]::under1 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    z-index: -0.1;
+}
+way|z13-[highway=bridleway][tunnel?],
+way|z13-[highway=path][horse=designated][tunnel?] {
+    color: green;
+    dashes: 4,2;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 2;
+    z-index: 0;
+}
+
+way|z13-[highway=footway][tunnel?]::under2,
+way|z13-[highway=path][foot=designated][tunnel?]::under2 {
+    color: grey;
+    dashes: 4,2;
+    width: 5.5;
+    z-index: -0.2;
+}
+way|z13-[highway=footway][tunnel?]::under1,
+way|z13-[highway=path][foot=designated][tunnel?]::under1 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 3.5;
+    z-index: -0.1;
+}
+way|z13-[highway=footway][tunnel?],
+way|z13-[highway=path][foot=designated][tunnel?] {
+    color: salmon;
+    dashes: 1,3;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 2.5;
+    z-index: 0;
+}
+
+way|z13-[highway=path][bicycle!=designated][foot!=designated][horse!=designated][tunnel?]::under2 {
+    color: grey;
+    dashes: 4,2;
+    width: 5.5;
+    z-index: -0.2;
+}
+way|z13-[highway=path][bicycle!=designated][foot!=designated][horse!=designated][tunnel?]::under1 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.4;
+    width: 1;
+    z-index: -0.1;
+}
+way|z13-[highway=path][bicycle!=designated][foot!=designated][horse!=designated][tunnel?] {
+    color: black;
+    dashes: 6,3;
+    linecap: round;
+    linejoin: round;
+    width: 0.5;
+    z-index: 0;
+}
+
+way|z13-[highway=cycleway][tunnel?]::under2,
+way|z13-[highway=path][bicycle=designated][tunnel?]::under2 {
+    color: grey;
+    dashes: 4,2;
+    width: 5;
+    z-index: -0.2;
+}
+way|z13-[highway=cycleway][tunnel?]::under1,
+way|z13-[highway=path][bicycle=designated][tunnel?]::under1 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    z-index: -0.1;
+}
+way|z13-[highway=cycleway][tunnel?],
+way|z13-[highway=path][bicycle=designated][tunnel?] {
+    color: blue;
+    dashes: 1,3;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 2;
+    z-index: 0;
+}

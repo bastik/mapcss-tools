@@ -1,0 +1,17 @@
+
+/**
+ * Layer 'ferry-routes'
+ * Style 'ferry-routes'
+ */
+
+way|z7-10[route=ferry] {
+    color: #6666ff;
+    dashes: 4,4;
+    width: 0.4;
+}
+
+way|z11-[route=ferry] {
+    color: #6666ff;
+    dashes: 6,6;
+    width: 0.8;
+}

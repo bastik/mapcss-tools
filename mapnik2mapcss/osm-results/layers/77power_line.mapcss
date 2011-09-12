@@ -1,0 +1,15 @@
+
+/**
+ * Layer 'power_line'
+ * Style 'power_line'
+ */
+
+way|z14-15[power=line] {
+    color: #777777;
+    width: 1;
+}
+
+way|z16-[power=line] {
+    color: #777777;
+    width: 1.5;
+}

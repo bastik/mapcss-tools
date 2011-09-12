@@ -1,0 +1,27 @@
+
+/**
+ * Layer 'buildings-lz'
+ * Style 'buildings-lz'
+ */
+
+area|z10-[railway=station],
+area|z10-[building=station] {
+    fill-color: #d4aaaa;
+}
+
+area|z10-[building=supermarket] {
+    fill-color: pink;
+    fill-opacity: 0.5;
+}
+
+area|z10-14[amenity=place_of_worship] {
+    fill-color: #777777;
+    fill-opacity: 0.5;
+}
+
+area|z15-[amenity=place_of_worship] {
+    fill-color: #aaaaaa;
+    fill-opacity: 0.9;
+    color: #111111;
+    width: 0.3;
+}

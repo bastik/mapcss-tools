@@ -1,0 +1,32 @@
+
+/**
+ * Layer 'highway-area-casing'
+ * Style 'highway-area-casing'
+ */
+
+area|z14-[highway=residential]:closed,
+area|z14-[highway=unclassified]:closed {
+    color: #999999;
+    width: 1;
+}
+
+area|z14-[highway=pedestrian]:closed,
+area|z14-[highway=service]:closed,
+area|z14-[highway=footway]:closed,
+area|z14-[highway=path]:closed {
+    color: grey;
+    width: 1;
+}
+
+area|z14-[highway=track]:closed {
+    color: #996600;
+    width: 2;
+}
+
+area|z16-[highway=platform]:closed,
+area|z16-[railway=platform]:closed {
+    color: grey;
+    linecap: round;
+    linejoin: round;
+    width: 2;
+}

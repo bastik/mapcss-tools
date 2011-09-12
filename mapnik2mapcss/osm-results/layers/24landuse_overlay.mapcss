@@ -1,0 +1,24 @@
+
+/**
+ * Layer 'landuse_overlay'
+ * Style 'landuse_overlay'
+ */
+
+area|z10-[landuse=military] {
+    fill-image: "symbols/military_red_hz2.png";
+    color: #ff5555;
+    opacity: 0.329;
+    width: 3;
+}
+
+area|z10-13[leisure=nature_reserve] {
+    fill-image: "symbols/nature_reserve5.png";
+    color: #66cc33;
+    width: 0.5;
+}
+
+area|z14-[leisure=nature_reserve] {
+    fill-image: "symbols/nature_reserve6.png";
+    color: #66cc33;
+    width: 1;
+}

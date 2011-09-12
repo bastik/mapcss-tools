@@ -1,0 +1,11 @@
+
+/**
+ * Layer 'interpolation_lines'
+ * Style 'interpolation'
+ */
+
+way|z17-[addr:interpolation] {
+    color: #888888;
+    dashes: 2,4;
+    width: 1;
+}

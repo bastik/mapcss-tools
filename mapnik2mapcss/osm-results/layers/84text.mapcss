@@ -1,0 +1,574 @@
+
+/**
+ * Layer 'text'
+ * Style 'text'
+ */
+
+node|z12-[place=island] {
+    font-family: "DejaVu Sans Oblique";
+    font-size: 9;
+    text: "name";
+    text-color: black;
+    text-halo-radius: 1;
+}
+
+node|z17-[amenity=pub],
+node|z17-[amenity=restaurant],
+node|z17-[amenity=cafe],
+node|z17-[amenity=fast_food],
+node|z17-[amenity=biergarten] {
+    font-family: "DejaVu Sans Bold";
+    font-size: 10;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #734a08;
+    text-halo-radius: 1;
+    text-offset-y: 1;
+    text-wrap-width: 34;
+}
+
+node|z17-[amenity=bar] {
+    font-family: "DejaVu Sans Bold";
+    font-size: 10;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #734a08;
+    text-halo-radius: 1;
+    text-offset-y: 1;
+}
+
+node|z17-[amenity=library],
+node|z17-[amenity=theatre],
+node|z17-[amenity=courthouse] {
+    font-family: "DejaVu Sans Bold";
+    font-size: 10;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #734a08;
+    text-halo-radius: 1;
+    text-offset-y: 0;
+}
+
+node|z17-[amenity=cinema] {
+    font-family: "DejaVu Sans Bold";
+    font-size: 10;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #734a08;
+    text-halo-radius: 1;
+    text-offset-y: 0;
+}
+
+node|z17-[amenity=parking][access=public],
+node|z17-[amenity=parking][!access] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #0066ff;
+    text-halo-radius: 1;
+    text-offset-y: 1;
+    text-wrap-width: 34;
+}
+
+node|z17-[amenity=parking][access][access!=public] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #66ccaf;
+    text-halo-radius: 1;
+    text-offset-y: 1;
+    text-wrap-width: 34;
+}
+
+node|z17-[amenity=police] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #734a08;
+    text-halo-radius: 1;
+    text-offset-y: 0;
+    text-wrap-width: 30;
+}
+
+node|z17-[amenity=fire_station] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #734a08;
+    text-halo-radius: 1;
+    text-offset-y: 1;
+    text-wrap-width: 30;
+}
+
+node|z17-[amenity=place_of_worship] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #000033;
+    text-halo-radius: 1;
+    text-offset-y: -1;
+    text-wrap-width: 30;
+}
+
+node|z15-[natural=wood] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: black;
+    text-halo-radius: 2;
+    text-wrap-width: 10;
+}
+
+node|z13-[natural=peak] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: brown;
+    text-halo-radius: 1;
+    text-offset-y: 1;
+}
+
+node|z14-[natural=peak][!name] {
+    font-family: "DejaVu Sans Oblique";
+    font-size: 9;
+    text: "ele";
+    text-anchor-vertical: below;
+    text-color: brown;
+    text-halo-radius: 1;
+    text-offset-y: 0;
+}
+
+node|z14-[natural=peak][name]::ele {
+    font-family: "DejaVu Sans Oblique";
+    font-size: 9;
+    text: "ele";
+    text-anchor-vertical: below;
+    text-color: brown;
+    text-halo-radius: 1;
+    text-offset-y: -12;
+}
+
+node|z13-[natural=volcano] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: brown;
+    text-halo-radius: 1;
+    text-offset-y: 5;
+}
+
+node|z14-[natural=volcano][!name] {
+    font-family: "DejaVu Sans Oblique";
+    font-size: 9;
+    text: "ele";
+    text-anchor-vertical: below;
+    text-color: brown;
+    text-halo-radius: 1;
+    text-offset-y: 4;
+}
+
+node|z14-[natural=volcano][name] {
+    font-family: "DejaVu Sans Oblique";
+    font-size: 9;
+    text: "ele";
+    text-anchor-vertical: below;
+    text-color: brown;
+    text-halo-radius: 1;
+    text-offset-y: -6;
+}
+
+node|z15-[natural=cave_entrance] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: brown;
+    text-halo-radius: 1;
+    text-offset-y: 1;
+    text-wrap-width: 20;
+}
+
+node|z17-[historic=memorial],
+node|z17-[historic=archaeological_site] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: brown;
+    text-halo-radius: 1;
+    text-offset-y: 0;
+    text-wrap-width: 20;
+}
+
+node|z15-[natural=water],
+node|z15-[natural=lake],
+node|z15-[landuse=reservoir],
+node|z15-[landuse=basin] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-wrap-width: 20;
+}
+
+node|z15-[leisure][point=yes],
+node|z15-[landuse][point=yes] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: black;
+    text-halo-radius: 2;
+    text-wrap-width: 10;
+}
+
+node|z14-[natural=bay] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-wrap-width: 20;
+}
+
+node|z16-[natural=spring] {
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-offset-y: -5;
+    text-wrap-width: 20;
+}
+
+node|z15-[tourism=alpine_hut] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-offset-y: 0;
+}
+
+node|z16-[tourism=alpine_hut] {
+    font-family: "DejaVu Sans Oblique";
+    font-size: 8;
+    text: "ele";
+    text-anchor-vertical: below;
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-offset-y: -12;
+}
+
+node|z17-[amenity=shelter] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-offset-y: 0;
+}
+node|z17-[amenity=shelter]::over1 {
+    font-family: "DejaVu Sans Oblique";
+    font-size: 8;
+    text: "ele";
+    text-anchor-vertical: below;
+    text-color: #6699cc;
+    text-halo-radius: 1;
+    text-offset-y: -12;
+    z-index: 0.1;
+}
+
+node|z17-[amenity=bank] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: black;
+    text-halo-radius: 1;
+    text-offset-y: 1;
+}
+
+node|z17-[tourism=hotel],
+node|z17-[tourism=hostel],
+node|z17-[tourism=chalet] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #0066ff;
+    text-halo-radius: 1;
+    text-offset-y: 1;
+}
+
+node|z17-[amenity=embassy] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #0066ff;
+    text-halo-radius: 1;
+    text-offset-y: 0;
+}
+
+node|z17-[tourism=guest_house] {
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #0066ff;
+    text-halo-radius: 1;
+    text-offset-y: 1;
+}
+
+node|z17-[tourism=bed_and_breakfast] {
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #0066ff;
+    text-halo-radius: 1;
+    text-offset-y: 5;
+}
+
+node|z17-[amenity=fuel],
+node|z17-[amenity=bus_station] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #0066ff;
+    text-halo-radius: 1;
+    text-offset-y: 1;
+}
+
+node|z17-[tourism=camp_site] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #0066ff;
+    text-halo-radius: 1;
+    text-offset-y: -5;
+    text-wrap-width: 70;
+}
+
+node|z17-[tourism=caravan_site] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #0066ff;
+    text-halo-radius: 1;
+    text-offset-y: -5;
+    text-wrap-width: 70;
+}
+
+node|z15-[waterway=lock] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #0066ff;
+    text-halo-radius: 1;
+    text-offset-y: -4;
+    text-wrap-width: 70;
+}
+
+node|z15-16[leisure=marina] {
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-color: blue;
+    text-halo-radius: 1;
+    text-wrap-width: 30;
+}
+
+node|z17-[leisure=marina] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: blue;
+    text-halo-radius: 1;
+    text-wrap-width: 30;
+}
+
+node|z14-15[tourism=theme_park] {
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-color: #734a08;
+    text-halo-radius: 1;
+    text-wrap-width: 30;
+}
+
+node|z16-[tourism=theme_park] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: #734a08;
+    text-halo-radius: 1;
+    text-wrap-width: 30;
+}
+
+node|z17-[tourism=museum] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #734a08;
+    text-halo-radius: 1;
+    text-offset-y: 0;
+}
+
+node|z17-[amenity=prison] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #734a08;
+    text-halo-radius: 1;
+    text-offset-y: -4;
+}
+
+node|z16-[tourism=attraction] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "name";
+    text-color: #660033;
+    text-halo-radius: 2;
+    text-wrap-width: 10;
+}
+
+node|z15-[amenity=university] {
+    font-family: "DejaVu Sans Bold";
+    font-size: 9;
+    text: "name";
+    text-color: #000033;
+    text-halo-radius: 1;
+    text-wrap-width: 16;
+}
+
+node|z15-[amenity=school],
+node|z15-[amenity=college] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-color: #000033;
+    text-halo-radius: 1;
+    text-wrap-width: 14;
+}
+
+node|z16-[amenity=kindergarten] {
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-color: #000033;
+    text-halo-radius: 1;
+    text-wrap-width: 14;
+}
+
+node|z15-[man_made=lighthouse] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #000033;
+    text-halo-radius: 2;
+    text-offset-y: -4;
+    text-wrap-width: 12;
+}
+
+node|z17-[man_made=windmill] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #734a08;
+    text-halo-radius: 1;
+    text-offset-y: -3;
+    text-wrap-width: 20;
+}
+
+node|z16-[amenity=hospital] {
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #da0092;
+    text-halo-radius: 2;
+    text-offset-y: 0;
+    text-wrap-width: 24;
+}
+
+node|z17-[amenity=pharmacy] {
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #da0092;
+    text-halo-radius: 1;
+    text-offset-y: 1;
+    text-wrap-width: 12;
+}
+
+node|z17-[shop=bakery],
+node|z17-[shop=clothes],
+node|z17-[shop=fashion],
+node|z17-[shop=convenience],
+node|z17-[shop=doityourself],
+node|z17-[shop=hairdresser],
+node|z17-[shop=butcher],
+node|z17-[shop=car],
+node|z17-[shop=car_repair],
+node|z17-[shop=bicycle],
+node|z17-[shop=florist] {
+    font-family: "DejaVu Sans Book";
+    font-size: 8;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #993399;
+    text-halo-radius: 1;
+    text-offset-y: 1;
+    text-wrap-width: 12;
+}
+
+node|z16-[shop=supermarket],
+node|z16-[shop=department_store] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "name";
+    text-anchor-vertical: below;
+    text-color: #993399;
+    text-halo-radius: 1;
+    text-offset-y: 1;
+    text-wrap-width: 20;
+}
+
+node|z12-[military=danger_area] {
+    font-family: "DejaVu Sans Bold";
+    font-size: 9;
+    text: "name";
+    text-color: pink;
+    text-halo-radius: 1;
+    text-wrap-width: 10;
+}
+
+node|z17-[aeroway=gate] {
+    font-family: "DejaVu Sans Book";
+    font-size: 10;
+    text: "ref";
+    text-color: #aa66cc;
+    text-halo-radius: 1;
+    text-wrap-width: 10;
+}

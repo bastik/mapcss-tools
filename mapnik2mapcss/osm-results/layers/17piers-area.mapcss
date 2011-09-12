@@ -1,0 +1,11 @@
+
+/**
+ * Layer 'piers-area'
+ * Style 'piers-area'
+ */
+
+area|z12-[man_made=pier],
+area|z12-[man_made=breakwater],
+area|z12-[man_made=groyne] {
+    fill-color: #f2efe9;
+}

@@ -1,0 +1,14 @@
+
+/**
+ * Layer 'housenumbers'
+ * Style 'housenumbers'
+ */
+
+node|z17-[addr:housenumber],
+area|z17-[addr:housenumber] {
+    font-family: "DejaVu Sans Book";
+    font-size: 9;
+    text: "addr:housenumber";
+    text-color: #444444;
+    text-position: center;
+}

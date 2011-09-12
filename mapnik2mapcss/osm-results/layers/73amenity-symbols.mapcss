@@ -1,0 +1,121 @@
+
+/**
+ * Layer 'amenity-symbols'
+ * Style 'symbols'
+ */
+
+node|z16-[aeroway=helipad] {
+    icon-image: "symbols/helipad.p.16.png";
+    font-family: "DejaVu Sans Bold";
+    font-size: 8;
+    text: "name";
+    text-anchor-vertical: above;
+    text-color: #6692da;
+    text-halo-radius: 1;
+    text-offset-y: 0;
+}
+
+node|z9-10[aeroway=airport] {
+    icon-image: "symbols/airport.p.16.png";
+    font-family: "DejaVu Sans Bold";
+    font-size: 8;
+    text: "name";
+    text-anchor-vertical: above;
+    text-color: #6692da;
+    text-halo-radius: 1;
+    text-offset-y: 2;
+}
+
+node|z11-12[aeroway=airport] {
+    font-family: "DejaVu Sans Bold";
+    font-size: 9;
+    text: "name";
+    text-color: #6692da;
+    text-halo-radius: 1;
+}
+
+node|z10[aeroway=aerodrome] {
+    icon-image: "symbols/aerodrome.p.16.png";
+    font-family: "DejaVu Sans Oblique";
+    font-size: 8;
+    text: "name";
+    text-anchor-vertical: above;
+    text-color: #6692da;
+    text-halo-radius: 1;
+    text-offset-y: 2;
+}
+
+node|z11-12[aeroway=aerodrome] {
+    font-family: "DejaVu Sans Oblique";
+    font-size: 8;
+    text: "name";
+    text-color: #6692da;
+    text-halo-radius: 1;
+}
+
+node|z14-15[railway=level_crossing] {
+    icon-image: "symbols/level_crossing.png";
+}
+
+node|z16-[railway=level_crossing] {
+    icon-image: "symbols/level_crossing2.png";
+}
+
+node|z15-[man_made=lighthouse] {
+    icon-image: "symbols/lighthouse.p.20.png";
+}
+
+node|z11-[natural=peak] {
+    icon-image: "symbols/peak.png";
+}
+
+node|z11-[natural=volcano] {
+    icon-image: "symbols/volcano.png";
+}
+
+node|z15-[natural=cave_entrance] {
+    icon-image: "symbols/poi_cave.p.16.png";
+}
+
+node|z14-[natural=spring] {
+    icon-image: "symbols/spring.png";
+}
+
+node|z16[natural=tree] {
+    icon-image: "symbols/tree.png";
+}
+
+node|z17-[natural=tree] {
+    icon-image: "symbols/tree2.png";
+}
+
+node|z15-[man_made=power_wind],
+node|z15-[power=generator][power_source=wind] {
+    icon-image: "symbols/power_wind.png";
+}
+
+node|z16-[man_made=windmill] {
+    icon-image: "symbols/windmill.png";
+}
+
+node|z17-[man_made=mast] {
+    icon-image: "symbols/communications.p.20.png";
+}
+
+node|z15-[highway=mini_roundabout] {
+    icon-image: "symbols/mini_round.png";
+}
+
+node|z15-[highway=gate],
+node|z15-[barrier=gate] {
+    icon-image: "symbols/gate2.png";
+}
+
+node|z16-[barrier=lift_gate] {
+    icon-image: "symbols/liftgate.png";
+}
+
+node|z16-[barrier=bollard],
+node|z16-[barrier=block] {
+    icon-image: "symbols/bollard.png";
+}

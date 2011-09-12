@@ -1,0 +1,79 @@
+
+/**
+ * Layer 'direction_pre_bridges'
+ * Style 'directions'
+ */
+
+way|z16-[oneway?][highway][!bridge?][bridge!=viaduct]::oneway,
+way|z16-[oneway?][railway][!bridge?][bridge!=viaduct]::oneway,
+way|z16-[oneway?][waterway][!bridge?][bridge!=viaduct]::oneway {
+    color: #6c70d5;
+    dashes: 0,12,10,152;
+    linejoin: bevel;
+    width: 1;
+    z-index: 15;
+}
+way|z16-[oneway?][highway][!bridge?][bridge!=viaduct]::oneway_over1,
+way|z16-[oneway?][railway][!bridge?][bridge!=viaduct]::oneway_over1,
+way|z16-[oneway?][waterway][!bridge?][bridge!=viaduct]::oneway_over1 {
+    color: #6c70d5;
+    dashes: 0,12,9,153;
+    linejoin: bevel;
+    width: 2;
+    z-index: 15.1;
+}
+way|z16-[oneway?][highway][!bridge?][bridge!=viaduct]::oneway_over2,
+way|z16-[oneway?][railway][!bridge?][bridge!=viaduct]::oneway_over2,
+way|z16-[oneway?][waterway][!bridge?][bridge!=viaduct]::oneway_over2 {
+    color: #6c70d5;
+    dashes: 0,18,2,154;
+    linejoin: bevel;
+    width: 3;
+    z-index: 15.2;
+}
+way|z16-[oneway?][highway][!bridge?][bridge!=viaduct]::oneway_over3,
+way|z16-[oneway?][railway][!bridge?][bridge!=viaduct]::oneway_over3,
+way|z16-[oneway?][waterway][!bridge?][bridge!=viaduct]::oneway_over3 {
+    color: #6c70d5;
+    dashes: 0,18,1,155;
+    linejoin: bevel;
+    width: 4;
+    z-index: 15.3;
+}
+
+way|z16-[oneway=-1][highway][!bridge?][bridge!=viaduct]::oneway,
+way|z16-[oneway=-1][railway][!bridge?][bridge!=viaduct]::oneway,
+way|z16-[oneway=-1][waterway][!bridge?][bridge!=viaduct]::oneway {
+    color: #6c70d5;
+    dashes: 0,12,10,152;
+    linejoin: bevel;
+    width: 1;
+    z-index: 15;
+}
+way|z16-[oneway=-1][highway][!bridge?][bridge!=viaduct]::oneway_over1,
+way|z16-[oneway=-1][railway][!bridge?][bridge!=viaduct]::oneway_over1,
+way|z16-[oneway=-1][waterway][!bridge?][bridge!=viaduct]::oneway_over1 {
+    color: #6c70d5;
+    dashes: 0,13,9,152;
+    linejoin: bevel;
+    width: 2;
+    z-index: 15.1;
+}
+way|z16-[oneway=-1][highway][!bridge?][bridge!=viaduct]::oneway_over2,
+way|z16-[oneway=-1][railway][!bridge?][bridge!=viaduct]::oneway_over2,
+way|z16-[oneway=-1][waterway][!bridge?][bridge!=viaduct]::oneway_over2 {
+    color: #6c70d5;
+    dashes: 0,14,2,158;
+    linejoin: bevel;
+    width: 3;
+    z-index: 15.2;
+}
+way|z16-[oneway=-1][highway][!bridge?][bridge!=viaduct]::oneway_over3,
+way|z16-[oneway=-1][railway][!bridge?][bridge!=viaduct]::oneway_over3,
+way|z16-[oneway=-1][waterway][!bridge?][bridge!=viaduct]::oneway_over3 {
+    color: #6c70d5;
+    dashes: 0,15,1,158;
+    linejoin: bevel;
+    width: 4;
+    z-index: 15.3;
+}

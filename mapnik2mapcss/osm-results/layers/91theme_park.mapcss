@@ -1,0 +1,19 @@
+
+/**
+ * Layer 'theme_park'
+ * Style 'theme_park'
+ */
+
+area|z13-14[tourism=theme_park] {
+    color: #734a08;
+    dashes: 9,3;
+    opacity: 0.6;
+    width: 1.5;
+}
+
+area|z15-[tourism=theme_park] {
+    color: #734a08;
+    dashes: 9,3;
+    opacity: 0.6;
+    width: 2.5;
+}

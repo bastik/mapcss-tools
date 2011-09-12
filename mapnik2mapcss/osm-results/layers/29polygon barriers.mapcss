@@ -1,0 +1,15 @@
+
+/**
+ * Layer 'polygon barriers'
+ * Style 'barriers_area'
+ */
+
+area|z16-[natural=hedge],
+area|z16-[barrier=hedge] {
+    fill-color: #aed1a0;
+}
+
+area|z16-[barrier][barrier!=hedge] {
+    color: #444444;
+    width: 0.4;
+}

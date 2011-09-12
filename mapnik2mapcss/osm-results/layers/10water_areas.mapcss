@@ -1,0 +1,53 @@
+
+/**
+ * Layer 'water_areas'
+ * Style 'water_areas'
+ */
+
+area|z6-7[natural=glacier] {
+    fill-image: "symbols/glacier.png";
+    color: #99ccff;
+    dashes: 4,2;
+    width: 1.5;
+    z-index: -999;
+}
+
+area|z8-[natural=glacier] {
+    fill-image: "symbols/glacier2.png";
+    color: #99ccff;
+    dashes: 4,2;
+    width: 1.5;
+    z-index: -999;
+}
+
+area|z9-[waterway=dock],
+area|z9-[waterway=mill_pond],
+area|z9-[waterway=canal] {
+    fill-color: #b5d0d0;
+    z-index: -999;
+}
+
+area|z7-[landuse=basin] {
+    fill-color: #b5d0d0;
+    z-index: -999;
+}
+
+area|z6-[natural=lake],
+area|z6-[natural=water],
+area|z6-[landuse=reservoir],
+area|z6-[waterway=riverbank],
+area|z6-[landuse=water],
+area|z6-[natural=bay] {
+    fill-color: #b5d0d0;
+    z-index: -999;
+}
+
+area|z13-[natural=mud] {
+    fill-image: "symbols/mud.png";
+    z-index: -999;
+}
+
+area|z10-[natural=land] {
+    fill-color: #f2efe9;
+    z-index: -999;
+}

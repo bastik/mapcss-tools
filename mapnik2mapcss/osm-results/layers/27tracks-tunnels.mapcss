@@ -1,0 +1,137 @@
+
+/**
+ * Layer 'tracks-tunnels'
+ * Style 'tracks-tunnels'
+ */
+
+way|z14-[highway=track][tunnel?][tracktype=grade1]::under2 {
+    color: grey;
+    dashes: 4,2;
+    width: 5;
+    z-index: -0.2;
+}
+way|z14-[highway=track][tunnel?][tracktype=grade1]::under1 {
+    color: white;
+    width: 3.5;
+    z-index: -0.1;
+}
+way|z14-[highway=track][tunnel?][tracktype=grade1] {
+    color: #b37700;
+    opacity: 0.5;
+    width: 2;
+    z-index: 0;
+}
+
+way|z14-[highway=track][tunnel?][tracktype=grade2]::under2 {
+    color: grey;
+    dashes: 4,2;
+    width: 4.5;
+    z-index: -0.2;
+}
+way|z14-[highway=track][tunnel?][tracktype=grade2]::under1 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    z-index: -0.1;
+}
+way|z14-[highway=track][tunnel?][tracktype=grade2] {
+    color: #a87000;
+    dashes: 3,4;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 1.5;
+    z-index: 0;
+}
+
+way|z14-[highway=track][tunnel?][tracktype=grade3]::under2 {
+    color: grey;
+    dashes: 4,2;
+    width: 4.5;
+    z-index: -0.2;
+}
+way|z14-[highway=track][tunnel?][tracktype=grade3]::under1 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 3.5;
+    z-index: -0.1;
+}
+way|z14-[highway=track][tunnel?][tracktype=grade3] {
+    color: #996600;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 2;
+    z-index: 0;
+}
+
+way|z14-[highway=track][tunnel?][tracktype=grade4]::under2 {
+    color: grey;
+    dashes: 4,2;
+    width: 4.5;
+    z-index: -0.2;
+}
+way|z14-[highway=track][tunnel?][tracktype=grade4]::under1 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    z-index: -0.1;
+}
+way|z14-[highway=track][tunnel?][tracktype=grade4] {
+    color: #996600;
+    dashes: 4,7,1,5;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 2;
+    z-index: 0;
+}
+
+way|z14-[highway=track][tunnel?][tracktype=grade5]::under2 {
+    color: grey;
+    dashes: 4,2;
+    width: 4.5;
+    z-index: -0.2;
+}
+way|z14-[highway=track][tunnel?][tracktype=grade5]::under1 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    z-index: -0.1;
+}
+way|z14-[highway=track][tunnel?][tracktype=grade5] {
+    color: #996600;
+    dashes: 1,5;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 2;
+    z-index: 0;
+}
+
+way|z14-[highway=track][tunnel?][tracktype!=grade1][tracktype!=grade2][tracktype!=grade3][tracktype!=grade4][tracktype!=grade5]::under2 {
+    color: grey;
+    dashes: 4,2;
+    width: 4.5;
+    z-index: -0.2;
+}
+way|z14-[highway=track][tunnel?][tracktype!=grade1][tracktype!=grade2][tracktype!=grade3][tracktype!=grade4][tracktype!=grade5]::under1 {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    z-index: -0.1;
+}
+way|z14-[highway=track][tunnel?][tracktype!=grade1][tracktype!=grade2][tracktype!=grade3][tracktype!=grade4][tracktype!=grade5] {
+    color: #996600;
+    dashes: 3,4;
+    linecap: round;
+    linejoin: round;
+    opacity: 0.5;
+    width: 1.5;
+    z-index: 0;
+}

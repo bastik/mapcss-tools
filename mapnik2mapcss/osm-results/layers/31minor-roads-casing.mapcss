@@ -1,0 +1,507 @@
+
+/**
+ * Layer 'minor-roads-casing'
+ * Style 'minor-roads-casing-links'
+ */
+
+way|z12[highway=raceway]::roads-casing {
+    color: pink;
+    linejoin: round;
+    width: 1.2;
+    z-index: -1;
+}
+
+way|z13-14[highway=raceway]::roads-casing {
+    color: pink;
+    linejoin: round;
+    width: 4;
+    z-index: -1;
+}
+
+way|z15-[highway=raceway]::roads-casing {
+    color: pink;
+    linejoin: round;
+    width: 7;
+    z-index: -1;
+}
+
+way|z12[highway=motorway_link][!tunnel?]::roads-casing {
+    color: #506077;
+    linejoin: round;
+    width: 1.5;
+    z-index: -1;
+}
+
+way|z13-14[highway=motorway_link][!tunnel?]::roads-casing {
+    color: #506077;
+    linejoin: round;
+    width: 4.5;
+    z-index: -1;
+}
+
+way|z15-16[highway=motorway_link][!tunnel?]::roads-casing {
+    color: #506077;
+    linejoin: round;
+    width: 8;
+    z-index: -1;
+}
+
+way|z17-[highway=motorway_link][!tunnel?]::roads-casing {
+    color: #506077;
+    linejoin: round;
+    width: 11;
+    z-index: -1;
+}
+
+way|z12[highway=trunk_link][!tunnel?]::roads-casing {
+    color: #477147;
+    linejoin: round;
+    width: 3;
+    z-index: -1;
+}
+
+way|z13-14[highway=trunk_link][!tunnel?]::roads-casing {
+    color: #477147;
+    linejoin: round;
+    width: 7.5;
+    z-index: -1;
+}
+
+way|z15-16[highway=trunk_link][!tunnel?]::roads-casing {
+    color: #477147;
+    linejoin: round;
+    width: 11.5;
+    z-index: -1;
+}
+
+way|z17-[highway=trunk_link][!tunnel?]::roads-casing {
+    color: #477147;
+    linejoin: round;
+    width: 16;
+    z-index: -1;
+}
+
+way|z12[highway=primary_link][!tunnel?]::roads-casing {
+    color: #8d4346;
+    linejoin: round;
+    width: 3;
+    z-index: -1;
+}
+
+way|z13-14[highway=primary_link][!tunnel?]::roads-casing {
+    color: #8d4346;
+    linejoin: round;
+    width: 7.5;
+    z-index: -1;
+}
+
+way|z15-16[highway=primary_link][!tunnel?]::roads-casing {
+    color: #8d4346;
+    linejoin: round;
+    width: 11.5;
+    z-index: -1;
+}
+
+way|z17-[highway=primary_link][!tunnel?]::roads-casing {
+    color: #8d4346;
+    linejoin: round;
+    width: 16;
+    z-index: -1;
+}
+
+way|z12[highway=secondary_link][!tunnel?]::roads-casing {
+    color: #a37b48;
+    linecap: round;
+    linejoin: round;
+    width: 2.5;
+    z-index: -1;
+}
+
+way|z13-14[highway=secondary_link][!tunnel?]::roads-casing {
+    color: #a37b48;
+    linecap: round;
+    linejoin: round;
+    width: 8.5;
+    z-index: -1;
+}
+
+way|z15-16[highway=secondary_link][!tunnel?]::roads-casing {
+    color: #a37b48;
+    linecap: round;
+    linejoin: round;
+    width: 11.5;
+    z-index: -1;
+}
+
+way|z17-[highway=secondary_link][!tunnel?]::roads-casing {
+    color: #a37b48;
+    linecap: round;
+    linejoin: round;
+    width: 16;
+    z-index: -1;
+}
+
+way|z13[highway=tertiary_link][!tunnel?]::roads-casing {
+    color: #bbbbbb;
+    linecap: round;
+    linejoin: round;
+    width: 6;
+    z-index: -1;
+}
+
+way|z14[highway=tertiary_link][!tunnel?]::roads-casing {
+    color: #bbbbbb;
+    linecap: round;
+    linejoin: round;
+    width: 7.5;
+    z-index: -1;
+}
+
+way|z15-16[highway=tertiary_link][!tunnel?]::roads-casing {
+    color: #bbbbbb;
+    linecap: round;
+    linejoin: round;
+    width: 11;
+    z-index: -1;
+}
+
+way|z17-[highway=tertiary_link][!tunnel?]::roads-casing {
+    color: #bbbbbb;
+    linecap: round;
+    linejoin: round;
+    width: 16;
+    z-index: -1;
+}
+
+/* Style 'minor-roads-casing' */
+
+way|z12[highway=motorway][!tunnel?]::roads-casing {
+    color: #506077;
+    linejoin: round;
+    width: 3;
+    z-index: -1;
+}
+
+way|z12[highway=trunk][!tunnel?]::roads-casing {
+    color: #477147;
+    linejoin: round;
+    width: 3;
+    z-index: -1;
+}
+
+way|z12[highway=primary][!tunnel?]::roads-casing {
+    color: #8d4346;
+    linejoin: round;
+    width: 3;
+    z-index: -1;
+}
+
+way|z12[highway=secondary][!tunnel?]::roads-casing {
+    color: #a37b48;
+    linecap: round;
+    linejoin: round;
+    width: 2.5;
+    z-index: -1;
+}
+
+way|z13-14[highway=motorway][!tunnel?]::roads-casing {
+    color: #506077;
+    linejoin: round;
+    width: 6.5;
+    z-index: -1;
+}
+
+way|z13-14[highway=trunk][!tunnel?]::roads-casing {
+    color: #477147;
+    linejoin: round;
+    width: 7.5;
+    z-index: -1;
+}
+
+way|z13-14[highway=primary][!tunnel?]::roads-casing {
+    color: #8d4346;
+    linejoin: round;
+    width: 7.5;
+    z-index: -1;
+}
+
+way|z13-14[highway=secondary][!tunnel?]::roads-casing {
+    color: #a37b48;
+    linecap: round;
+    linejoin: round;
+    width: 8.5;
+    z-index: -1;
+}
+
+way|z15-16[highway=motorway][!tunnel?]::roads-casing {
+    color: #506077;
+    linejoin: round;
+    width: 10;
+    z-index: -1;
+}
+
+way|z15-16[highway=trunk][!tunnel?]::roads-casing {
+    color: #477147;
+    linejoin: round;
+    width: 11.5;
+    z-index: -1;
+}
+
+way|z15-16[highway=primary][!tunnel?]::roads-casing {
+    color: #8d4346;
+    linejoin: round;
+    width: 11.5;
+    z-index: -1;
+}
+
+way|z15-16[highway=secondary][!tunnel?]::roads-casing {
+    color: #a37b48;
+    linecap: round;
+    linejoin: round;
+    width: 11.5;
+    z-index: -1;
+}
+
+way|z17-[highway=motorway][!tunnel?]::roads-casing {
+    color: #506077;
+    linejoin: round;
+    width: 13;
+    z-index: -1;
+}
+
+way|z17-[highway=trunk][!tunnel?]::roads-casing {
+    color: #477147;
+    linejoin: round;
+    width: 16;
+    z-index: -1;
+}
+
+way|z17-[highway=primary][!tunnel?]::roads-casing {
+    color: #8d4346;
+    linejoin: round;
+    width: 16;
+    z-index: -1;
+}
+
+way|z17-[highway=secondary][!tunnel?]::roads-casing {
+    color: #a37b48;
+    linecap: round;
+    linejoin: round;
+    width: 16;
+    z-index: -1;
+}
+
+way|z13[highway=tertiary][!tunnel?]::roads-casing {
+    color: #bbbbbb;
+    linecap: round;
+    linejoin: round;
+    width: 6;
+    z-index: -1;
+}
+
+way|z13[highway=residential][!tunnel?]::roads-casing,
+way|z13[highway=unclassified][!tunnel?]::roads-casing,
+way|z13[highway=road][!tunnel?]::roads-casing {
+    color: #999999;
+    linecap: round;
+    linejoin: round;
+    width: 3;
+    z-index: -1;
+}
+
+way|z14[highway=tertiary][!tunnel?]::roads-casing {
+    color: #bbbbbb;
+    linecap: round;
+    linejoin: round;
+    width: 7.5;
+    z-index: -1;
+}
+
+way|z14[highway=residential][!tunnel?]::roads-casing,
+way|z14[highway=unclassified][!tunnel?]::roads-casing,
+way|z14[highway=road][!tunnel?]::roads-casing {
+    color: #999999;
+    linecap: round;
+    linejoin: round;
+    width: 4.5;
+    z-index: -1;
+}
+
+way|z15[highway=residential][!tunnel?]::roads-casing,
+way|z15[highway=unclassified][!tunnel?]::roads-casing,
+way|z15[highway=road][!tunnel?]::roads-casing {
+    color: #bbbbbb;
+    linecap: round;
+    linejoin: round;
+    width: 8;
+    z-index: -1;
+}
+
+way|z16[highway=residential][!tunnel?]::roads-casing,
+way|z16[highway=unclassified][!tunnel?]::roads-casing,
+way|z16[highway=road][!tunnel?]::roads-casing {
+    color: #bbbbbb;
+    linecap: round;
+    linejoin: round;
+    width: 11;
+    z-index: -1;
+}
+
+way|z15-16[highway=tertiary][!tunnel?]::roads-casing {
+    color: #bbbbbb;
+    linecap: round;
+    linejoin: round;
+    width: 11;
+    z-index: -1;
+}
+
+way|z17-[highway=tertiary][!tunnel?]::roads-casing,
+way|z17-[highway=residential][!tunnel?]::roads-casing,
+way|z17-[highway=unclassified][!tunnel?]::roads-casing,
+way|z17-[highway=road][!tunnel?]::roads-casing {
+    color: #bbbbbb;
+    linecap: round;
+    linejoin: round;
+    width: 16;
+    z-index: -1;
+}
+
+way|z14-15[highway=service][service!=parking_aisle][service!=drive-through][service!=driveway][!tunnel?]::roads-casing {
+    color: #999999;
+    linecap: round;
+    linejoin: round;
+    width: 2.5;
+    z-index: -1;
+}
+
+way|z14-15[highway=service][tunnel?]::roads-casing {
+    color: #999999;
+    dashes: 4,2;
+    width: 2.5;
+    z-index: -1;
+}
+
+way|z16-[highway=service][service!=parking_aisle][service!=drive-through][service!=driveway][!tunnel?]::roads-casing {
+    color: #999999;
+    linecap: round;
+    linejoin: round;
+    width: 7;
+    z-index: -1;
+}
+
+way|z16-[highway=service][tunnel?]::roads-casing {
+    color: #999999;
+    dashes: 4,2;
+    width: 7;
+    z-index: -1;
+}
+
+way|z16-[highway=service][service=parking_aisle]::roads-casing,
+way|z16-[highway=service][service=drive-through]::roads-casing,
+way|z16-[highway=service][service=driveway]::roads-casing {
+    color: #999999;
+    linecap: round;
+    linejoin: round;
+    width: 4;
+    z-index: -1;
+}
+
+way|z13[highway=pedestrian][!tunnel?]::roads-casing {
+    color: grey;
+    linecap: round;
+    linejoin: round;
+    width: 2;
+    z-index: -1;
+}
+
+way|z13[highway=pedestrian][tunnel?]::roads-casing {
+    color: grey;
+    dashes: 4,2;
+    width: 2;
+    z-index: -1;
+}
+
+way|z14[highway=pedestrian][!tunnel?]::roads-casing {
+    color: grey;
+    linecap: round;
+    linejoin: round;
+    width: 3.6;
+    z-index: -1;
+}
+
+way|z14[highway=pedestrian][tunnel?]::roads-casing {
+    color: grey;
+    dashes: 4,2;
+    width: 3.6;
+    z-index: -1;
+}
+
+way|z15[highway=pedestrian][!tunnel?]::roads-casing {
+    color: grey;
+    linecap: round;
+    linejoin: round;
+    width: 6.5;
+    z-index: -1;
+}
+
+way|z15[highway=pedestrian][tunnel?]::roads-casing {
+    color: grey;
+    dashes: 4,2;
+    width: 6.5;
+    z-index: -1;
+}
+
+way|z16-[highway=pedestrian][!tunnel?]::roads-casing {
+    color: grey;
+    linecap: round;
+    linejoin: round;
+    width: 9;
+    z-index: -1;
+}
+
+way|z16-[highway=pedestrian][tunnel?]::roads-casing {
+    color: grey;
+    dashes: 4,2;
+    width: 9;
+    z-index: -1;
+}
+
+way|z12-13[highway=living_street]::roads-casing {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 2.5;
+    z-index: -1;
+}
+
+way|z14[highway=living_street]::roads-casing {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 4;
+    z-index: -1;
+}
+
+way|z15[highway=living_street]::roads-casing {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 6;
+    z-index: -1;
+}
+
+way|z16[highway=living_street]::roads-casing {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 9;
+    z-index: -1;
+}
+
+way|z17-[highway=living_street]::roads-casing {
+    color: white;
+    linecap: round;
+    linejoin: round;
+    width: 14.5;
+    z-index: -1;
+}

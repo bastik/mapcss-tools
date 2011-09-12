@@ -1,0 +1,33 @@
+
+/**
+ * Layer 'guideways'
+ * Style 'guideways'
+ */
+
+way|z13[highway=bus_guideway][!tunnel?]::casing1 {
+    color: #6666ff;
+    linejoin: round;
+    width: 3;
+    z-index: -0.1;
+}
+way|z13[highway=bus_guideway][!tunnel?] {
+    color: white;
+    dashes: 8,12;
+    linejoin: round;
+    width: 1;
+    z-index: 0;
+}
+
+way|z14-[highway=bus_guideway][!tunnel?]::casing1 {
+    color: #6666ff;
+    linejoin: round;
+    width: 3;
+    z-index: -0.1;
+}
+way|z14-[highway=bus_guideway][!tunnel?] {
+    color: white;
+    dashes: 0,11,8,1;
+    linejoin: round;
+    width: 1;
+    z-index: 0;
+}

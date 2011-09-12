@@ -1,0 +1,40 @@
+
+/**
+ * Layer 'buildings'
+ * Style 'buildings'
+ */
+
+area|z12-[building=residential][railway!=station][amenity!=place_of_worship],
+area|z12-[building=house][railway!=station][amenity!=place_of_worship],
+area|z12-[building=garage][railway!=station][amenity!=place_of_worship],
+area|z12-[building=garages][railway!=station][amenity!=place_of_worship],
+area|z12-[building=detached][railway!=station][amenity!=place_of_worship],
+area|z12-[building=terrace][railway!=station][amenity!=place_of_worship],
+area|z12-[building=apartments][railway!=station][amenity!=place_of_worship] {
+    fill-color: #bca9a9;
+    fill-opacity: 0.7;
+    z-index: -900;
+}
+
+area|z12-[building!=residential][building!=house][building!=garage][building!=garages][building!=detached][building!=terrace][building!=apartments][building][building!=no][building!=station][building!=supermarket][railway!=station][amenity!=place_of_worship] {
+    fill-color: #bca9a9;
+    fill-opacity: 0.9;
+    z-index: -900;
+}
+
+area|z16-[building!=residential][building!=house][building!=garage][building!=garages][building!=detached][building!=terrace][building!=apartments][building][building!=no][building!=station][building!=supermarket][railway!=station][amenity!=place_of_worship] {
+    color: #330066;
+    width: 0.2;
+    z-index: -900;
+}
+
+area|z12-[aeroway=terminal] {
+    fill-color: #cc99ff;
+    z-index: -900;
+}
+
+area|z14-[aeroway=terminal] {
+    color: #330066;
+    width: 0.2;
+    z-index: -900;
+}

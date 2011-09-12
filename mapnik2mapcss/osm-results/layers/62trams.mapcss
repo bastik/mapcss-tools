@@ -1,0 +1,33 @@
+
+/**
+ * Layer 'trams'
+ * Style 'trams'
+ */
+
+way|z13-14[railway=tram][!tunnel?]::tram {
+    color: #444444;
+    width: 1;
+    z-index: 17;
+}
+
+way|z15-[railway=tram][bridge!=yes][!tunnel?]::tram {
+    color: #444444;
+    width: 2;
+    z-index: 17;
+}
+
+way|z15-[railway=tram][bridge=yes][!tunnel?]::tram_under3 {
+    color: black;
+    width: 5;
+    z-index: 16.8;
+}
+way|z15-[railway=tram][bridge=yes][!tunnel?]::tram_under2 {
+    color: white;
+    width: 4;
+    z-index: 16.9;
+}
+way|z15-[railway=tram][bridge=yes][!tunnel?]::tram {
+    color: #444444;
+    width: 2;
+    z-index: 17;
+}

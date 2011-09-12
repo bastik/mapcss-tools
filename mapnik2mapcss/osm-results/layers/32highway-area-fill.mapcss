@@ -1,0 +1,42 @@
+
+/**
+ * Layer 'highway-area-fill'
+ * Style 'highway-area-fill'
+ */
+
+area|z14-[highway=living_street]:closed {
+    fill-color: #cccccc;
+}
+
+area|z14-[highway=residential]:closed,
+area|z14-[highway=unclassified]:closed,
+area|z14-[highway=service]:closed {
+    fill-color: white;
+}
+
+area|z14-[highway=pedestrian]:closed,
+area|z14-[highway=footway]:closed,
+area|z14-[highway=path]:closed {
+    fill-color: #ededed;
+}
+
+area|z14-[highway=track]:closed {
+    fill-color: #dfcc66;
+}
+
+area|z16-[highway=platform]:closed,
+area|z16-[railway=platform]:closed {
+    fill-color: #bbbbbb;
+}
+
+area|z11-[aeroway=runway]:closed {
+    fill-color: #bbbbcc;
+}
+
+area|z13-[aeroway=taxiway]:closed {
+    fill-color: #bbbbcc;
+}
+
+area|z16-[aeroway=helipad]:closed {
+    fill-color: #bbbbcc;
+}

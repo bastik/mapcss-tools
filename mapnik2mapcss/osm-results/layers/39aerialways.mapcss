@@ -1,0 +1,20 @@
+
+/**
+ * Layer 'aerialways'
+ * Style 'aerialways'
+ */
+
+way|z12-[aerialway=cable_car],
+way|z12-[aerialway=gondola],
+way|z12-[aerialway=goods] {
+    pattern-image: "symbols/cable_car.png";
+}
+
+way|z12-[aerialway=chair_lift],
+way|z12-[aerialway=drag_lift],
+way|z12-[aerialway=t-bar],
+way|z12-[aerialway=j-bar],
+way|z12-[aerialway=platter],
+way|z12-[aerialway=rope_tow] {
+    pattern-image: "symbols/chair_lift.png";
+}
