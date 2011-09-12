@@ -284,8 +284,9 @@ register_special_processor(RuleProcessor->new('tracks-tunnels',
             ])); 
         }
         $rule->set_filter(Conjunction->new([
-            $rule->filter,
+            FilterCondition->new('highway', 'track'),
             FilterCondition->new('tunnel', '#magic_yes'),
+            $rule->filter,
         ]));
         $rule->put_hint('under', 'under');
     }
@@ -576,6 +577,13 @@ register_special_processor(RuleProcessor->new('waterway-bridges',
 
 #42 access-pre_bridges
 register_special_processor(ConditionReplaceProcessor->new('access-pre_bridges', $int_minor));
+register_special_processor(LayerProcessor->new('access-pre_bridges',
+    sub {
+        my $layer = shift;
+        $layer->set_subpart('access', 'access');
+        $layer->set_z_index('access', $access_z_index);
+    }
+));
 register_special_processor(RuleProcessor->new('access-pre_bridges',
     sub {
         my $rule = shift;
@@ -648,6 +656,10 @@ register_special_processor(RuleProcessor->new('bridges_layer0',
     sub {
         my $rule = shift;
         my $filter = $rule->filter;
+        
+        if ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'railway' && $rule->filter->value eq 'rail') {
+            $rule->put_hint('under', 'casing');
+        }
         $rule->set_filter(Conjunction->new([
             $rule->filter,
             Disjunction->new([
@@ -945,7 +957,7 @@ register_special_processor(ConditionReplaceProcessor->new('planet roads text osm
 ));
 
 #84 text
-my ($amenity1, $historic1, $tourism1);
+my ($amenity1, $historic1, $tourism1, $peak_noname, $peak_name);
 register_special_processor(RuleProcessor->new('text',
     sub {
         my $rule = shift;
@@ -961,6 +973,12 @@ register_special_processor(RuleProcessor->new('text',
             $tourism1 = $filterParser->parse(
                 "((([tourism]='hotel') or ([tourism]='hostel')) or ([tourism]='chalet'))"
             );
+            $peak_noname = $filterParser->parse(
+                "(([natural]='peak') and not (([name]<>'')))"
+            );
+            $peak_name = $filterParser->parse(
+                "(([natural]='peak') and ([name]<>''))"
+            );
         }
         
         if ($amenity1->equals($rule->filter)) {
@@ -972,8 +990,15 @@ register_special_processor(RuleProcessor->new('text',
         elsif ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'amenity' && $rule->filter->value eq 'cinema') {
             $h = 24;
         }
-        elsif ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'amenity' && $rule->filter->value eq 'cinema') {
-            $h = 24;
+        elsif ($rule->filter->isa('FilterCondition') && $rule->filter->key eq 'natural' && $rule->filter->value eq 'peak') {
+            $h = 8;
+        }
+        elsif ($peak_noname->equals($rule->filter)) {
+            $h = 8;
+        }
+        elsif ($peak_name->equals($rule->filter)) {
+            $h = 8;
+            $rule->put_hint('subpart', 'ele');
         }
         elsif ($historic1->equals($rule->filter)) {
             $h = 20; #FIXME
@@ -1031,6 +1056,7 @@ register_special_processor(RuleProcessor->new('housenumbers',
                   ."area${zoom}${conditions}${closed}${layer}";
         });
        $rule->set_filter(FilterCondition->new('addr:housenumber', '', '<>'));
+       $rule->put_hint('text-position=center', 1);
     }
 ));
 

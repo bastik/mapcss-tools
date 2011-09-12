@@ -93,9 +93,12 @@ sub hints {
 #               level as the main stroke (probably because they do not overlap).
 #  * concat     A sub that concatinates the string elements of a selector.
 #               (To override the default behaviour.)
-#  * z-index    overrides the layer z-index
-#  * join       when db query is a join operation, this sets the basic
-#               selector
+#  * z-index    Overrides the layer z-index.
+#  * join       When db query is a join operation, this sets the basic
+#               selector.
+#  * subpart    Select subpart for this rule.
+#  * text-position=center
+#               Sets the mapcss property text-position=center for text symbolizers.
 #                
 sub put_hint {
     my ($self, $key, $value) = @_;
@@ -107,6 +110,9 @@ sub toMapCSS {
 
     if ($self->hint('skip')) {
         return '';
+    }
+    if (defined $self->hint('subpart')) {
+        $subpart = $self->hint('subpart');
     }
     
     my @lines = ();

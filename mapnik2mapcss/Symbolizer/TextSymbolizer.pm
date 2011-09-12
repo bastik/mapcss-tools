@@ -122,6 +122,9 @@ sub mapcss_properties {
         }
         
     }
+    if ($hints{'text-position=center'}) {
+        $mapcss{'text-position'} = 'center';
+    }
     return \%mapcss;
 }
 
