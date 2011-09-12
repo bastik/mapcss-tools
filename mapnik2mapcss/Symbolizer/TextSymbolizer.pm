@@ -24,7 +24,7 @@ sub mapcss_properties {
         }
         elsif ($key eq 'name')
         {
-            $mapcss{'text'} = $value;
+            $mapcss{'text'} = "\"$value\"";
         }
         elsif ($key eq 'size')
         {
@@ -39,6 +39,10 @@ sub mapcss_properties {
         {
             die unless $value =~ /^\d+$/;
             $mapcss{'text-halo-radius'} = $value;
+        }
+        elsif ($key eq 'halo_fill')
+        {
+            $mapcss{'text-halo-color'} = Validate::color($value);
         }
         elsif ($key eq 'placement')
         {
@@ -63,7 +67,7 @@ sub mapcss_properties {
             }
             elsif ($prop{'vertical_alignment'} eq 'bottom')
             {
-                $off += int($icon_height / 2);
+                $off += int($icon_height / 2) + 2;
             }
             else {
                 die "unexpected 'vertical_alignment':".$prop{'vertical_alignment'}." in combination with 'dy'";
@@ -103,6 +107,11 @@ sub mapcss_properties {
         {
             # Not in MapCSS, but sounds reasonable.
             $mapcss{'text-wrap-width'} = Validate::positiveFloat($value);
+        }
+        elsif ($key eq 'wrap_character')
+        {
+            # Not in MapCSS, but sounds reasonable.
+            $mapcss{'text-wrap-character'} = "\"$value\"";
         }
         elsif ($key eq 'min_distance')
         {

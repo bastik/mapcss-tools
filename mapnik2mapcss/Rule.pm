@@ -105,10 +105,15 @@ sub put_hint {
 sub toMapCSS {
     my ($self, $out, $basic_type, $subpart, $z_index) = @_;
 
+    if ($self->hint('skip')) {
+        return '';
+    }
+    
     my @lines = ();
     my @texts = ();
     my $point;
     my $area;
+    my $shield;
     
     my %counter = ();
     for (@{ $self->{_symbolizers} }) {
@@ -124,6 +129,8 @@ sub toMapCSS {
                 $point = $_;
             } elsif ($_->isa('PolygonSymbolizer') || $_->isa('PolygonPatternSymbolizer')) {
                 $area = $_;
+            } elsif ($_->isa('ShieldSymbolizer')) {
+                $shield = $_;
             } else {
                 die;
             }
@@ -230,6 +237,13 @@ sub toMapCSS {
             my @symbolizers = ($_);
             push @declarations, \@symbolizers;
         }
+    }
+    elsif ($shield)
+    {
+        # ignore for now
+        $basic_selector = 'way';
+        my @symbolizers = ();
+        push @declarations, \@symbolizers;
     }
     else
     {

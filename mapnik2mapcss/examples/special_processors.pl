@@ -898,6 +898,52 @@ register_special_processor(RuleProcessor->new('power_poles',
     }
 ));
 
+#82 highway-junctions
+register_special_processor(RuleProcessor->new('highway-junctions',
+    sub {
+        my $rule = shift;
+        $rule->set_filter(FilterCondition->new('highway', 'motorway_junction'));
+        $rule->put_hint('icon-height', 8);
+    }
+));
+
+#83 planet roads text osm
+register_special_processor(RuleProcessor->new('planet roads text osm',
+    sub {
+        my $rule = shift;
+        if ($rule->filter eq 'ElseFilter') {
+            $rule->set_filter(Disjunction->new([
+                Conjunction->new([
+                    FilterCondition->new('highway', '', '<>'),
+                    FilterCondition->new('highway', 'motorway', '<>'),
+                    FilterCondition->new('highway', 'trunk', '<>'),
+                    FilterCondition->new('highway', 'primary', '<>'),
+                    FilterCondition->new('highway', 'secondary', '<>'),
+                    FilterCondition->new('highway', 'tertiary', '<>'),
+                    FilterCondition->new('highway', 'unclassified', '<>'),
+                    FilterCondition->new('highway', 'residential', '<>'),
+                    FilterCondition->new('highway', 'proposed', '<>'),
+                    FilterCondition->new('highway', 'construction', '<>'),
+                ]),
+                Conjunction->new([
+                    FilterCondition->new('aeroway', '', '<>'),
+                    FilterCondition->new('aeroway', 'runway', '<>'),
+                    FilterCondition->new('aeroway', 'taxiway', '<>'),
+                ]),
+            ]));
+        }
+    }
+));
+register_special_processor(ConditionReplaceProcessor->new('planet roads text osm',
+    sub {
+        my $cond = shift;
+        if ($cond->key eq 'bridge' and $cond->value eq 'yes') {
+            $cond->set_value('#magic_yes');
+        }
+        return $cond;
+    }
+));
+
 #84 text
 my ($amenity1, $historic1, $tourism1);
 register_special_processor(RuleProcessor->new('text',

@@ -16,6 +16,7 @@ use Symbolizer::PolygonSymbolizer ();
 use Symbolizer::PointSymbolizer ();
 use Symbolizer::TextSymbolizer ();
 use Symbolizer::LinePatternSymbolizer ();
+use Symbolizer::ShieldSymbolizer ();
 
 use constant SYMBOLIZERS => {
     'LineSymbolizer' => 1,
@@ -24,6 +25,7 @@ use constant SYMBOLIZERS => {
     'PolygonPatternSymbolizer' => 1,
     'PolygonSymbolizer' => 1,
     'LinePatternSymbolizer' => 1,
+    'ShieldSymbolizer' => 1,
 };
 
 # The list of all (Mapnik-)Styles, partly processed for MapCSS output.
