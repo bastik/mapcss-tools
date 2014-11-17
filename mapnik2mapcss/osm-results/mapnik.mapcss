@@ -6,7 +6,7 @@ meta {
 }
 
 canvas {
-    background-color: #f1eee8;
+    fill-color: #f1eee8;
     default-lines: false;
     default-points: false;
 }
